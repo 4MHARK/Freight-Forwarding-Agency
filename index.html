@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FFA</title>
     <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="login.css"> -->
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700;900&display=swap"
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
@@ -41,85 +42,162 @@
                 </div>
 
 
+<!-- ========== UNIFIED FORM CONTAINER ========== -->
+<div class="form-container" id="formContainer">
+    <!-- Flipper: This element will get a class to trigger the slide -->
+    <div class="form-flipper">
+      <!-- REGISTRATION FORM (SLIDE 1) -->
+      <form id="registrationForm" class="form">
+        <h1 class="form-title">Create Your Company Account</h1>
+  
+        <div class="form-grid">
+          <div class="form-group full-width">
+            <label for="companyName">Company Name</label>
+            <input
+              type="text"
+              id="companyName"
+              placeholder="Enter your official company name"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="rcNumber">RC Number</label>
+            <input type="text" id="rcNumber" placeholder="e.g., 1234567" required />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input
+              type="tel"
+              id="phone"
+              placeholder="+234 000 000 0000"
+              required
+            />
+          </div>
+          <div class="form-group full-width">
+            <label for="email">Contact Email</label>
+            <input type="email" id="email" placeholder="you@company.com" required />
+          </div>
+          <div class="form-group full-width">
+            <label for="address">Company Address</label>
+            <textarea
+              id="address"
+              placeholder="Enter your company's physical address"
+              required
+            ></textarea>
+          </div>
+          <div class="form-group full-width">
+            <label for="password">Password</label>
+            <div class="password-wrapper">
+              <input
+                type="password"
+                id="password"
+                placeholder="Create a strong password"
+                required
+              />
+              <button
+                type="button"
+                class="password-toggle"
+                onclick="togglePassword('password')"
+              >
+                <span class="material-symbols-outlined">visibility_off</span>
+              </button>
+            </div>
+          </div>
+          <div class="form-group full-width">
+            <label for="confirmPassword">Confirm Password</label>
+            <div class="password-wrapper">
+              <input
+                type="password"
+                id="confirmPassword"
+                placeholder="Re-enter your password"
+                required
+              />
+              <button
+                type="button"
+                class="password-toggle"
+                onclick="togglePassword('confirmPassword')"
+              >
+                <span class="material-symbols-outlined">visibility_off</span>
+              </button>
+            </div>
+          </div>
+        </div>
+  
+        <div class="checkbox-group">
+          <input type="checkbox" id="terms" required />
+          <label for="terms" class="checkbox-label">
+            I agree to the <a href="#">Terms and Conditions</a>
+          </label>
+        </div>
+  
+        <button type="submit" class="btn-submit">
+          <span>Create Account</span>
+        </button>
+  
+        <p class="form-link">
+          Already have an account? <a href="#" id="goToLogin">Sign In</a>
+        </p>
+      </form>
+  
+      <!-- LOGIN FORM (SLIDE 2) -->
+      <!-- We use <form> and give it the correct ID and classes -->
+      <form id="loginForm" class="form">
+        <h1 class="form-title">Agency Portal Login</h1>
+        <p class="form-subtitle">
+          Sign in to manage your freight-forwarding operations
+        </p>
+  
+        <div class="form-group full-width">
+          <label for="loginEmail">Email or Username</label>
+          <input
+            type="text"
+            id="loginEmail"
+            placeholder="Enter your email or username"
+            required
+          />
+        </div>
+  
+        <div class="form-group full-width">
+          <label for="loginPassword">Password</label>
+          <div class="password-wrapper">
+            <input
+              type="password"
+              id="loginPassword"
+              placeholder="Enter your password"
+              required
+            />
+            <button
+              type="button"
+              class="password-toggle"
+              onclick="togglePassword('loginPassword')"
+            >
+              <span class="material-symbols-outlined">visibility_off</span>
+            </button>
+          </div>
+        </div>
+  
+        <a href="#" class="form-link-alt">Forgot Password?</a>
+  
+        <button type="submit" class="btn-submit">
+          <span>Login</span>
+        </button>
+  
+        <p class="form-link">
+          Don't have an account? <a href="#" id="goToRegistration">Register</a>
+        </p>
+      </form>
+    </div>
+  </div>
+       
+                    
+                  
 
-                <!-- RIGHT-SIDE -->
-                <div class="form-container">
-                    <h1 class="form-title">Create Your Company Account</h1>
-                    <form action="" id="registrationForm">
-                        <div class="form-grid">
-                            <div class="form-group full-width">
-                                <label for="companyName">companyName</label>
-                                <input type="text" id="companyName" placeholder="Enter your official company name"
-                                    required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="rcNumber">RC Number</label>
-                                <input type="text" id="rcNumber" placeholder="e.g., 1234567" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="phone">Phone Number</label>
-                                <input type="tel" id="phone" placeholder="+234 000 000 0000" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="email">Contact Email</label>
-                                <input type="email" id="email" placeholder="you@company.com" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="address">Company Address</label>
-                                <textarea id="address" placeholder="Enter your company's physical address"
-                                    required></textarea>
-                            </div>
-
-                            <div class="form-group full-width">
-                                <label for="password">Password</label>
-                                <div class="password-wrapper">
-                                    <input type="password" id="password" placeholder="Create a strong password"
-                                        required>
-                                    <button type="button" class="password-toggle" onclick="togglePassword('password')">
-                                        <span class="material-symbols-outlined">visibility_off</span>
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div class="form-group full-width">
-                                <label for="confirmPassword">Confirm Password</label>
-                                <div class="password-wrapper">
-                                    <input type="password" id="confirmPassword" placeholder="Re-enter your password"
-                                        required>
-                                    <button type="button" class="password-toggle"
-                                        onclick="togglePassword('confirmPassword')">
-                                        <span class="material-symbols-outlined">visibility_off</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="terms" required>
-                            <label for="terms" class="checkbox-label">
-                                I agree to the <a href="#">Terms and Conditions</a>
-                            </label>
-                        </div>
-
-                        <button type="submit" class="btn-submit">
-                            <span>Create Account</span>
-                        </button>
-
-                        <p class="signin-link">
-                            Already have an account? <a href="#">Sign In</a>
-                        </p>
-                    </form>
-                </div>
             </div>
         </div>
     </main>
     <footer>
         <div class="footer-content">
-            <p>© 20245FFA. All rights reserved.</p>
+            <p>© 2025 FFA. All rights reserved.</p>
             <div class="footer-links">
                 <a href="#">Privacy Policy</a>
                 <a href="#">Help Center</a>
@@ -127,6 +205,7 @@
         </div>
     </footer>
 <script src="index.js"></script>
+<script></script>
 </body>
 
 </html>

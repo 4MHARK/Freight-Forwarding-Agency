@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreightForward Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div>
+                <div class="logo-section">
+                    <div class="logo"></div>
+                    <div class="logo-text">
+                        <h1>FreightForward</h1>
+                        <p>Global Logistics</p>
+                    </div>
+                </div>
+
+                <nav class="nav-menu">
+                    <div class="nav-item active" data-section="dashboard">
+                        <span class="material-symbols-outlined">grid_view</span>
+                        <p>Dashboard</p>
+                    </div>
+                    <div class="nav-item" data-section="shipments">
+                        <span class="material-symbols-outlined">local_shipping</span>
+                        <p>Shipments</p>
+                    </div>
+                    <div class="nav-item" data-section="documents">
+                        <span class="material-symbols-outlined">folder_open</span>
+                        <p>Documents</p>
+                    </div>
+                    <div class="nav-item" data-section="analytics">
+                        <span class="material-symbols-outlined">analytics</span>
+                        <p>Analytics</p>
+                    </div>
+                    <div class="nav-item" data-section="settings">
+                        <span class="material-symbols-outlined">settings</span>
+                        <p>Settings</p>
+                    </div>
+                </nav>
+            </div>
+
+            <div>
+                <button class="new-shipment-btn">
+                    <span>New Shipment</span>
+                </button>
+                <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <div class="nav-item">
+                        <span class="material-symbols-outlined">help</span>
+                        <p>Help</p>
+                    </div>
+                    <div class="nav-item">
+                        <span class="material-symbols-outlined">logout</span>
+                        <p>Logout</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="search-bar">
+                    <span class="material-symbols-outlined search-icon">search</span>
+                    <input type="text" placeholder="Search shipments, documents...">
+                </div>
+
+                <div class="header-actions">
+                    <button class="notification-btn">
+                        <span class="material-symbols-outlined">notifications</span>
+                    </button>
+                    <div class="user-avatar"></div>
+                </div>
+            </header>
+
+            <!-- Dashboard Section -->
+            <section id="dashboard-section" class="section visible">
+                <main class="page-content">
+                    <div class="page-header">
+                        <h1>Welcome back, David!</h1>
+                        <p>Here's a summary of your freight operations for today.</p>
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <p class="stat-label">Shipments in Transit</p>
+                            <p class="stat-value">124</p>
+                            <p class="stat-change positive">+2.5% vs last month</p>
+                        </div>
+
+                        <div class="stat-card">
+                            <p class="stat-label">Pending Tasks</p>
+                            <p class="stat-value">18</p>
+                            <p class="stat-change positive">+5% vs last month</p>
+                        </div>
+
+                        <div class="stat-card">
+                            <p class="stat-label">Customs Clearance Issues</p>
+                            <p class="stat-value">3</p>
+                            <p class="stat-change negative">-1.2% vs last month</p>
+                        </div>
+
+                        <div class="stat-card">
+                            <p class="stat-label">On-Time Delivery</p>
+                            <p class="stat-value">98.2%</p>
+                            <p class="stat-change positive">+0.3% vs last month</p>
+                        </div>
+                    </div>
+
+                    <!-- Dashboard Grid -->
+                    <div class="dashboard-grid">
+                        <!-- Active Shipments -->
+                        <div class="card">
+                            <h2>Active Shipments</h2>
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Shipment ID</th>
+                                            <th>Origin</th>
+                                            <th>Destination</th>
+                                            <th>Status</th>
+                                            <th>ETA</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>#SH12345</td>
+                                            <td>Shanghai, CN</td>
+                                            <td>Los Angeles, US</td>
+                                            <td><span class="status-badge status-transit">In Transit</span></td>
+                                            <td>2023-10-25</td>
+                                        </tr>
+                                        <tr>
+                                            <td>#SH67890</td>
+                                            <td>Rotterdam, NL</td>
+                                            <td>New York, US</td>
+                                            <td><span class="status-badge status-delivered">Delivered</span></td>
+                                            <td>2023-10-18</td>
+                                        </tr>
+                                        <tr>
+                                            <td>#SH54321</td>
+                                            <td>Singapore, SG</td>
+                                            <td>Felixstowe, UK</td>
+                                            <td><span class="status-badge status-hold">Customs Hold</span></td>
+                                            <td>2023-10-28</td>
+                                        </tr>
+                                        <tr>
+                                            <td>#SH98765</td>
+                                            <td>Hamburg, DE</td>
+                                            <td>Dubai, AE</td>
+                                            <td><span class="status-badge status-delayed">Delayed</span></td>
+                                            <td>2023-10-22</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Right Column -->
+                        <div style="display: flex; flex-direction: column; gap: 32px;">
+                            <!-- Pending Tasks -->
+                            <div class="card">
+                                <h2>Pending Tasks</h2>
+                                <div>
+                                    <div class="task-item">
+                                        <span class="material-symbols-outlined task-icon" style="color: #F39C12;">error</span>
+                                        <div class="task-content">
+                                            <p>Submit Bill of Lading for #SH12345</p>
+                                            <span>Due in 2 days</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="task-item">
+                                        <span class="material-symbols-outlined task-icon" style="color: var(--primary);">check_circle</span>
+                                        <div class="task-content">
+                                            <p>Confirm Delivery for #SH67890</p>
+                                            <span>Awaiting Confirmation</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="task-item">
+                                        <span class="material-symbols-outlined task-icon" style="color: var(--danger);">gavel</span>
+                                        <div class="task-content">
+                                            <p>Address Customs Query for #SH54321</p>
+                                            <span>Action Required</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Quick Links -->
+                            <div class="card">
+                                <h2>Quick Links</h2>
+                                <div class="quick-links-grid">
+                                    <button class="quick-link">
+                                        <span class="material-symbols-outlined">add_box</span>
+                                        <p>New Quote</p>
+                                    </button>
+                                    <button class="quick-link">
+                                        <span class="material-symbols-outlined">upload_file</span>
+                                        <p>Upload Docs</p>
+                                    </button>
+                                    <button class="quick-link">
+                                        <span class="material-symbols-outlined">pin_drop</span>
+                                        <p>Track & Trace</p>
+                                    </button>
+                                    <button class="quick-link">
+                                        <span class="material-symbols-outlined">summarize</span>
+                                        <p>View Reports</p>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </section>
+
+            <!-- Shipments/Documents Section -->
+            <section id="shipments-section" class="section hidden">
+                <div class="page-content">
+                    <!-- VIEW 1: Document List (Main Table View) -->
+                    <div id="doc-list-view" class="doc-view active-view">
+                        <div class="doc-header">
+                            <div>
+                                <h1>Document Management</h1>
+                                <p>Upload and manage your required documents for verification.</p>
+                            </div>
+                            <button id="btn-new-document" class="btn-upload-new">
+                                <span class="material-symbols-outlined">upload_file</span>
+                                Upload New Document
+                            </button>
+                        </div>
+
+                        <div class="doc-search-bar">
+                            <span class="material-symbols-outlined">search</span>
+                            <input type="text" id="doc-search" placeholder="Search for a document...">
+                        </div>
+
+                        <div class="doc-table-wrapper">
+                            <table class="doc-table">
+                                <thead>
+                                    <tr>
+                                        <th>DOCUMENT NAME</th>
+                                        <th>UPLOAD DATE</th>
+                                        <th>STATUS</th>
+                                        <th>ACTIONS</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="doc-table-body"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- VIEW 2: Upload New Documents -->
+                    <div id="doc-upload-view" class="doc-view">
+                        <div class="doc-header">
+                            <div>
+                                <h1>Upload Documents</h1>
+                                <p>Upload and review all necessary documents for this shipment.</p>
+                            </div>
+                            <button id="btn-submit-review" class="btn-submit-review">Submit for Review</button>
+                        </div>
+
+                        <div class="doc-upload-grid">
+                            <div class="doc-required-panel">
+                                <h2>Required Documents</h2>
+                                <ul id="required-docs-list"></ul>
+                            </div>
+
+                            <div class="doc-upload-panel">
+                                <h2>Upload Document</h2>
+                                <div class="doc-dropzone" id="doc-dropzone">
+                                    <span class="material-symbols-outlined upload-icon">cloud_upload</span>
+                                    <p class="dropzone-text"><strong>Click to upload</strong> or drag and drop</p>
+                                    <p class="dropzone-subtext">PDF, JPG, PNG (MAX. 10MB)</p>
+                                    <input type="file" id="file-input-upload" hidden accept=".pdf,.jpg,.jpeg,.png,.docx,.doc">
+                                </div>
+
+                                <div id="upload-file-details" class="upload-details hidden">
+                                    <h3>Document Details</h3>
+                                    <div id="upload-file-info" class="file-info-box"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- VIEW 3: View Document (Read-Only) -->
+                    <div id="doc-view-only" class="doc-view">
+                        <div class="doc-header">
+                            <div>
+                                <h1 id="view-doc-title">View Document</h1>
+                                <p id="view-doc-subtitle"></p>
+                            </div>
+                            <button id="btn-back-from-view" class="btn-back">
+                                <span class="material-symbols-outlined">arrow_back</span>
+                                Back to Documents
+                            </button>
+                        </div>
+
+                        <div class="doc-view-content">
+                            <div class="doc-view-card">
+                                <div class="doc-view-info">
+                                    <p><strong>Status:</strong> <span id="view-status-badge"></span></p>
+                                    <p><strong>Upload Date:</strong> <span id="view-upload-date"></span></p>
+                                    <p><strong>File Name:</strong> <span id="view-filename"></span></p>
+                                </div>
+
+                                <div id="view-feedback-section" class="feedback-section hidden">
+                                    <h3>Feedback & Notes</h3>
+                                    <div id="view-feedback-content" class="feedback-content"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- VIEW 4: Replace/Edit Document -->
+                    <div id="doc-replace-view" class="doc-view">
+                        <div class="doc-alert-banner">
+                            <span class="material-symbols-outlined">error</span>
+                            <span><strong>Attention required:</strong> <span id="rejected-count">3</span> document(s) have been rejected. Please review and re-upload.</span>
+                        </div>
+
+                        <div class="doc-header">
+                            <div>
+                                <h1 id="replace-doc-title">Manage Documents for Shipment #ID-738-2910</h1>
+                                <p>Upload and review all necessary documents for this shipment.</p>
+                            </div>
+                            <button id="btn-submit-replacement" class="btn-submit-review">Submit for Review</button>
+                        </div>
+
+                        <div class="doc-upload-grid">
+                            <div class="doc-required-panel">
+                                <h2>Required Documents</h2>
+                                <ul id="replace-docs-list"></ul>
+                            </div>
+
+                            <div class="doc-upload-panel">
+                                <h2>Upload Document</h2>
+                                <div class="doc-dropzone" id="doc-dropzone-replace">
+                                    <span class="material-symbols-outlined upload-icon">cloud_upload</span>
+                                    <p class="dropzone-text"><strong>Click to upload</strong> or drag and drop</p>
+                                    <p class="dropzone-subtext">PDF, JPG, PNG (MAX. 10MB)</p>
+                                    <input type="file" id="file-input-replace" hidden accept=".pdf,.jpg,.jpeg,.png,.docx,.doc">
+                                </div>
+
+                                <div id="replace-file-details" class="upload-details">
+                                    <h3>Document Details</h3>
+                                    <div id="replace-file-info" class="file-info-box">
+                                        <p class="file-name" id="replace-current-filename">commercial_invoice_v2.pdf</p>
+                                        <p class="file-meta">Uploaded: 2023-10-27 11:35 AM</p>
+                                        <div class="file-status rejected">
+                                            <span class="material-symbols-outlined">cancel</span>
+                                            Rejected
+                                        </div>
+                                    </div>
+
+                                    <div class="feedback-section">
+                                        <h3>Feedback & Notes</h3>
+                                        <div class="feedback-content rejected-feedback">
+                                            <p><strong>Reason for rejection:</strong> Signature is missing from the bottom of page 2. Please sign and re-upload.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="doc-actions">
+                                        <button id="btn-delete-doc" class="btn-delete">Delete</button>
+                                        <button id="btn-replace-file" class="btn-replace">Replace File</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Documents Section -->
+            <section id="documents-section" class="section hidden">
+                <div class="page-content">
+                    <h1>Documents Center</h1>
+                    <p>Upload and verify your shipping documents here.</p>
+                    <div class="card">
+                        <h2>Uploaded Documents</h2>
+                        <p>- Bill of Lading.pdf (Verified)</p>
+                        <p>- Invoice.pdf (Pending)</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Analytics Section -->
+            <section id="analytics-section" class="section hidden">
+                <div class="page-content">
+                    <h1>Analytics & Reports</h1>
+                    <p>Review shipping trends and performance insights.</p>
+                    <div class="card">
+                        <h2>Analytics Dashboard</h2>
+                        <p>Charts and graphs coming soon...</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section id="settings-section" class="section hidden">
+                <div class="page-content">
+                    <h1>Settings</h1>
+                    <p>Manage your preferences and account details.</p>
+                    <div class="card">
+                        <button class="btn-upload-new">Change Password</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+ <script src="dashboard.js"></script>
+</body>
+</html>

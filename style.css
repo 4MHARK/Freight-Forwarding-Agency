@@ -81,6 +81,113 @@
     transform: translateY(-2px);
     box-shadow: 0 9px 20px rgba(23, 54, 207, 0.3);
   }
+
+  /* ====================================================== */
+/* ==           CUSTOM NOTIFICATION STYLES             == */
+/* ====================================================== */
+
+/* Container for all notifications */
+#notification-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    width: 100%;
+    max-width: 380px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  /* Base style for a single notification */
+  .notification {
+    display: flex;
+    align-items: flex-start;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-left: 5px solid;
+    animation: slideInFromRight 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    opacity: 1;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  
+  /* Style for the icon */
+  .notification-icon {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    margin-right: 12px;
+  }
+  
+  /* Container for the text content */
+  .notification-content {
+    flex-grow: 1;
+  }
+  
+  .notification-title {
+    font-weight: 700;
+    margin: 0 0 4px 0;
+  }
+  
+  .notification-message {
+    font-size: 0.9rem;
+    margin: 0;
+    line-height: 1.4;
+  }
+  
+  /* Close button */
+  .notification-close {
+    flex-shrink: 0;
+    margin-left: 16px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+  }
+  .notification-close:hover {
+    opacity: 1;
+  }
+  
+  /* --- Notification Types (Colors) --- */
+  
+  /* Success (Green) */
+  .notification.success {
+    background-color: #f0fdf4; /* Light green */
+    border-color: #22c55e; /* Darker green */
+    color: #15803d; /* Text color */
+  }
+  .notification.success .notification-close {
+    color: #15803d;
+  }
+  
+  /* Error (Red) */
+  .notification.error {
+    background-color: #fef2f2; /* Light red */
+    border-color: #ef4444; /* Darker red */
+    color: #b91c1c; /* Text color */
+  }
+  .notification.error .notification-close {
+    color: #b91c1c;
+  }
+  
+  /* --- Animations --- */
+  @keyframes slideInFromRight {
+    from {
+      transform: translateX(120%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  .notification.exiting {
+    opacity: 0;
+    transform: scale(0.9);
+  }
   
   main {
     display: flex;

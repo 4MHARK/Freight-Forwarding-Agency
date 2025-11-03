@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FreightForward Dashboard</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
-  <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="ananytics.css">
+    <link rel="stylesheet" href="settings.css">
 </head>
+
 <body>
     <div class="dashboard-layout">
         <!-- Sidebar -->
@@ -72,10 +77,14 @@
                 </div>
 
                 <div class="header-actions">
-                    <button class="notification-btn">
-                        <span class="material-symbols-outlined">notifications</span>
-                    </button>
-                    <div class="user-avatar"></div>
+                    <a href="../notification/notification.html">
+                        <button class="notification-btn">
+                            <span class="material-symbols-outlined">notifications</span>
+                        </button>
+                    </a>
+                    <a href="../profile/profile.html">
+                        <div class="user-avatar"></div>
+                    </a>
                 </div>
             </header>
 
@@ -171,7 +180,8 @@
                                 <h2>Pending Tasks</h2>
                                 <div>
                                     <div class="task-item">
-                                        <span class="material-symbols-outlined task-icon" style="color: #F39C12;">error</span>
+                                        <span class="material-symbols-outlined task-icon"
+                                            style="color: #F39C12;">error</span>
                                         <div class="task-content">
                                             <p>Submit Bill of Lading for #SH12345</p>
                                             <span>Due in 2 days</span>
@@ -179,7 +189,8 @@
                                     </div>
 
                                     <div class="task-item">
-                                        <span class="material-symbols-outlined task-icon" style="color: var(--primary);">check_circle</span>
+                                        <span class="material-symbols-outlined task-icon"
+                                            style="color: var(--primary);">check_circle</span>
                                         <div class="task-content">
                                             <p>Confirm Delivery for #SH67890</p>
                                             <span>Awaiting Confirmation</span>
@@ -187,7 +198,8 @@
                                     </div>
 
                                     <div class="task-item">
-                                        <span class="material-symbols-outlined task-icon" style="color: var(--danger);">gavel</span>
+                                        <span class="material-symbols-outlined task-icon"
+                                            style="color: var(--danger);">gavel</span>
                                         <div class="task-content">
                                             <p>Address Customs Query for #SH54321</p>
                                             <span>Action Required</span>
@@ -281,7 +293,8 @@
                                     <span class="material-symbols-outlined upload-icon">cloud_upload</span>
                                     <p class="dropzone-text"><strong>Click to upload</strong> or drag and drop</p>
                                     <p class="dropzone-subtext">PDF, JPG, PNG (MAX. 10MB)</p>
-                                    <input type="file" id="file-input-upload" hidden accept=".pdf,.jpg,.jpeg,.png,.docx,.doc">
+                                    <input type="file" id="file-input-upload" hidden
+                                        accept=".pdf,.jpg,.jpeg,.png,.docx,.doc">
                                 </div>
 
                                 <div id="upload-file-details" class="upload-details hidden">
@@ -325,7 +338,8 @@
                     <div id="doc-replace-view" class="doc-view">
                         <div class="doc-alert-banner">
                             <span class="material-symbols-outlined">error</span>
-                            <span><strong>Attention required:</strong> <span id="rejected-count">3</span> document(s) have been rejected. Please review and re-upload.</span>
+                            <span><strong>Attention required:</strong> <span id="rejected-count">3</span> document(s)
+                                have been rejected. Please review and re-upload.</span>
                         </div>
 
                         <div class="doc-header">
@@ -348,7 +362,8 @@
                                     <span class="material-symbols-outlined upload-icon">cloud_upload</span>
                                     <p class="dropzone-text"><strong>Click to upload</strong> or drag and drop</p>
                                     <p class="dropzone-subtext">PDF, JPG, PNG (MAX. 10MB)</p>
-                                    <input type="file" id="file-input-replace" hidden accept=".pdf,.jpg,.jpeg,.png,.docx,.doc">
+                                    <input type="file" id="file-input-replace" hidden
+                                        accept=".pdf,.jpg,.jpeg,.png,.docx,.doc">
                                 </div>
 
                                 <div id="replace-file-details" class="upload-details">
@@ -365,7 +380,8 @@
                                     <div class="feedback-section">
                                         <h3>Feedback & Notes</h3>
                                         <div class="feedback-content rejected-feedback">
-                                            <p><strong>Reason for rejection:</strong> Signature is missing from the bottom of page 2. Please sign and re-upload.</p>
+                                            <p><strong>Reason for rejection:</strong> Signature is missing from the
+                                                bottom of page 2. Please sign and re-upload.</p>
                                         </div>
                                     </div>
 
@@ -394,15 +410,340 @@
             </section>
 
             <!-- Analytics Section -->
+            <!-- Analytics Section -->
             <section id="analytics-section" class="section hidden">
-                <div class="page-content">
-                    <h1>Analytics & Reports</h1>
-                    <p>Review shipping trends and performance insights.</p>
-                    <div class="card">
-                        <h2>Analytics Dashboard</h2>
-                        <p>Charts and graphs coming soon...</p>
+                <!-- Analytics Top Navigation Bar -->
+                <div class="analytics-top-nav">
+                    <div class="analytics-nav-item active" data-analytics-section="overview">
+                        <span class="material-symbols-outlined">dashboard</span>
+                        <p>Overview</p>
+                    </div>
+                    <div class="analytics-nav-item" data-analytics-section="shipping-performance">
+                        <span class="material-symbols-outlined">speed</span>
+                        <p>Shipping Performance</p>
+                    </div>
+                    <div class="analytics-nav-item" data-analytics-section="financial-reports">
+                        <span class="material-symbols-outlined">account_balance</span>
+                        <p>Financial Reports</p>
+                    </div>
+                    <div class="analytics-nav-item" data-analytics-section="trends">
+                        <span class="material-symbols-outlined">trending_up</span>
+                        <p>Trends</p>
+                    </div>
+                    <div class="analytics-nav-item" data-analytics-section="settings">
+                        <span class="material-symbols-outlined">
+                            settings
+                        </span>
+                        <p>Settings</p>
                     </div>
                 </div>
+
+                <!-- Overview Sub-section -->
+                <div id="overview-subsection" class="analytics-subsection active-subsection">
+                    <div class="page-content">
+                        <div class="page-header">
+                            <h1>Welcome back, David <span class="material-symbols-outlined">
+                                    waving_hand
+                                </span></h1>
+                            <p>Here is your performance overview for today</p>
+                        </div>
+                        <!-- STATS GRID -->
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <p class="stat-label">Total Sessions</p>
+                                <p class="stat-value">128</p>
+                                <p class="stat-change positive">+12 vs last month</p>
+                            </div>
+
+                            <div class="stat-card">
+                                <p class="stat-label">Avg. Active Time</p>
+                                <p class="stat-value">2h 15m</p>
+                                <p class="stat-change positive">-1.2% vs last month</p>
+                            </div>
+
+                            <div class="stat-card">
+                                <p class="stat-label">engagement Score</p>
+                                <p class="stat-value">88%</p>
+                                <p class="stat-change negative">+2.1 vs last month</p>
+                            </div>
+
+                            <div class="stat-card">
+                                <p class="stat-label">Growth Rate</p>
+                                <p class="stat-value">15.2%</p>
+                                <p class="stat-change positive">+3.0% vs last month</p>
+                            </div>
+                        </div>
+
+                        <div class="charts-grid">
+                            <!-- Line Chart -->
+                            <div class="chart-card">
+                                <div class="chart-header">
+                                    <h3 class="chart-title">Performance Over Time</h3>
+                                    <div class="chart-filter">
+                                        Last 30 Days
+                                        <span class="material-symbols-outlined">expand_more</span>
+                                    </div>
+                                </div>
+                                <svg class="chart-svg" viewBox="-3 0 478 150">
+                                    <defs>
+                                        <linearGradient id="chartGradient" x1="236" y1="1" x2="236" y2="149"
+                                            gradientUnits="userSpaceOnUse">
+                                            <stop offset="0%" stop-color="#0df259" stop-opacity="0.3" />
+                                            <stop offset="100%" stop-color="#0df259" stop-opacity="0" />
+                                        </linearGradient>
+                                    </defs>
+                                    <path class="chart-fill"
+                                        d="M0 109C18.1538 109 18.1538 21 36.3077 21C54.4615 21 54.4615 41 72.6154 41C90.7692 41 90.7692 93 108.923 93C127.077 93 127.077 33 145.231 33C163.385 33 163.385 101 181.538 101C199.692 101 199.692 61 217.846 61C236 61 236 45 254.154 45C272.308 45 272.308 121 290.462 121C308.615 121 308.615 149 326.769 149C344.923 149 344.923 1 363.077 1C381.231 1 381.231 81 399.385 81C417.538 81 417.538 129 435.692 129C453.846 129 453.846 25 472 25V149H0V109Z"
+                                        fill="url(#chartGradient)" />
+                                    <path class="chart-path"
+                                        d="M0 109C18.1538 109 18.1538 21 36.3077 21C54.4615 21 54.4615 41 72.6154 41C90.7692 41 90.7692 93 108.923 93C127.077 93 127.077 33 145.231 33C163.385 33 163.385 101 181.538 101C199.692 101 199.692 61 217.846 61C236 61 236 45 254.154 45C272.308 45 272.308 121 290.462 121C308.615 121 308.615 149 326.769 149C344.923 149 344.923 1 363.077 1C381.231 1 381.231 81 399.385 81C417.538 81 417.538 129 435.692 129C453.846 129 453.846 25 472 25"
+                                        stroke="#0df259" stroke-width="3" stroke-linecap="round" fill="none" />
+                                </svg>
+                            </div>
+
+                            <!-- Donut Chart -->
+                            <div class="chart-card">
+                                <div class="chart-header">
+                                    <h3 class="chart-title">Engagement Distribution</h3>
+                                </div>
+                                <div class="donut-container">
+                                    <svg class="donut-chart" width="192" height="192" viewBox="0 0 36 36">
+                                        <circle cx="18" cy="18" r="15.9155" fill="none" stroke="var(--hover-bg)"
+                                            stroke-width="3.8" />
+                                        <circle class="donut-segment" cx="18" cy="18" r="15.9155" fill="none"
+                                            stroke="var(--primary)" stroke-width="3.8" stroke-dasharray="40, 100"
+                                            stroke-linecap="round" />
+                                        <circle class="donut-segment" cx="18" cy="18" r="15.9155" fill="none"
+                                            stroke="var(--text-muted)" stroke-width="3.8" stroke-dasharray="30, 100"
+                                            stroke-linecap="round" transform="rotate(144 18 18)" />
+                                        <circle class="donut-segment" cx="18" cy="18" r="15.9155" fill="none"
+                                            stroke="#0bda43" stroke-width="3.8" stroke-dasharray="20, 100"
+                                            stroke-linecap="round" transform="rotate(252 18 18)" />
+                                    </svg>
+                                    <div class="donut-center">
+                                        <div class="donut-label">Total Time</div>
+                                        <div class="donut-value">4h 30m</div>
+                                    </div>
+                                </div>
+                                <div class="chart-legend">
+                                    <div class="legend-item">
+                                        <div class="legend-dot" style="background: var(--primary);"></div>
+                                        <span>Tracking</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <div class="legend-dot" style="background: var(--text-muted);"></div>
+                                        <span>Quotes</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <div class="legend-dot" style="background: #0bda43;"></div>
+                                        <span>Reporting</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="activity-header">
+                                    <h2>Activity Log</h2>
+                                    <p>A record of significant actions and events on your account.</p>
+                                </div>
+                            </div>
+
+                            <div class="activity-card">
+                                <h3 class="activity-title">Recent Activity</h3>
+                                <div class="activity-list">
+                                    <div class="activity-item">
+                                        <div class="activity-content">
+                                            <div class="activity-icon">
+                                                <span class="material-symbols-outlined">add_circle</span>
+                                            </div>
+                                            <div class="activity-text">
+                                                <strong>New shipment created:</strong>
+                                                <span class="activity-id">#SHP-2024-001</span>
+                                            </div>
+                                        </div>
+                                        <div class="activity-time">2 min ago</div>
+                                    </div>
+
+                                    <div class="activity-item">
+                                        <div class="activity-content">
+                                            <div class="activity-icon">
+                                                <span class="material-symbols-outlined">download</span>
+                                            </div>
+                                            <div class="activity-text">
+                                                <strong>Report downloaded:</strong>
+                                                <span class="activity-id">Monthly_Performance_May.pdf</span>
+                                            </div>
+                                        </div>
+                                        <div class="activity-time">1 hour ago</div>
+                                    </div>
+
+                                    <div class="activity-item">
+                                        <div class="activity-content">
+                                            <div class="activity-icon">
+                                                <span class="material-symbols-outlined">person</span>
+                                            </div>
+                                            <div class="activity-text">
+                                                <strong>User profile updated:</strong>
+                                                <span class="activity-id">Contact information</span>
+                                            </div>
+                                        </div>
+                                        <div class="activity-time">5 hours ago</div>
+                                    </div>
+
+                                    <div class="activity-item">
+                                        <div class="activity-content">
+                                            <div class="activity-icon">
+                                                <span class="material-symbols-outlined">paid</span>
+                                            </div>
+                                            <div class="activity-text">
+                                                <strong>New invoice generated:</strong>
+                                                <span class="activity-id">#INV-2024-076</span>
+                                            </div>
+                                        </div>
+                                        <div class="activity-time">Yesterday</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Shipping Performance Sub-section -->
+                 <div id="shipping-performance-subsection" class="analytics-subsection">
+                    <div class="page-content">
+                        <div class="page-header">
+                            <h1>Good Morning David!</h1>
+                            <p>Keep Pushing Boundries</p>
+                        </div>
+                        <div class="card">
+                            <h2>Performance Metrics</h2>
+                            <p>Performance charts and data coming soon...</p>
+                        </div>
+                    </div>
+                </div> 
+
+                <!-- Financial Reports Sub-section -->
+                <div id="financial-reports-subsection" class="analytics-subsection">
+                    <div class="page-content">
+                        <h1>Financial Reports</h1>
+                        <p>Comprehensive financial analytics and cost breakdowns.</p>
+                        <div class="card">
+                            <h2>Financial Dashboard</h2>
+                            <p>Financial reports coming soon...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trends Sub-section -->
+                <div id="trends-subsection" class="analytics-subsection">
+                    <div class="page-content">
+                        <h1>Trends Analysis</h1>
+                        <p>Historical trends and predictive insights.</p>
+                        <div class="card">
+                            <h2>Trends Dashboard</h2>
+                            <p>Trend analysis coming soon...</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div id="settings-subsection" class="analytics-subsection">
+                    <div class="page-content">
+                        <h1>Settings Management</h1> 
+                        <p>Manage user preferences and application configurations.</p>
+                        <div class="container">
+                            <h1>Analytics Preferences</h1>
+                            <div class="grid">
+                              <!-- Data Settings -->
+                              <div class="card">
+                                <h2>Data Settings</h2>
+                                <label>Data Range</label>
+                                <div class="btn-group" id="dataRange">
+                                  <button data-value="7days">Past 7 Days</button>
+                                  <button data-value="month" class="active">This Month</button>
+                                  <button data-value="custom">Custom</button>
+                                </div>
+                                <label>Refresh Interval</label>
+                                <select id="refreshInterval">
+                                  <option>Automatic</option>
+                                  <option>Every 5 mins</option>
+                                  <option>Every 15 mins</option>
+                                  <option>Manual</option>
+                                </select>
+                              </div>
+                        
+                              <!-- Display Options -->
+                              <div class="card">
+                                <h2>Display Options</h2>
+                                <div class="toggle">
+                                  <span>Show Line Charts</span>
+                                  <label class="switch">
+                                    <input type="checkbox" id="showLine" checked />
+                                    <span class="slider"></span>
+                                  </label>
+                                </div>
+                                <div class="toggle">
+                                  <span>Enable Bar Graphs</span>
+                                  <label class="switch">
+                                    <input type="checkbox" id="showBar" />
+                                    <span class="slider"></span>
+                                  </label>
+                                </div>
+                                <div class="toggle">
+                                  <span>Engagement Metrics</span>
+                                  <label class="switch">
+                                    <input type="checkbox" id="engagement" checked />
+                                    <span class="slider"></span>
+                                  </label>
+                                </div>
+                                <div class="toggle">
+                                  <span>Growth Metrics</span>
+                                  <label class="switch">
+                                    <input type="checkbox" id="growth" checked />
+                                    <span class="slider"></span>
+                                  </label>
+                                </div>
+                              </div>
+                        
+                              <!-- Privacy Controls -->
+                              <div class="card">
+                                <h2>Privacy Controls</h2>
+                                <div class="toggle">
+                                  <span>Enable data sharing</span>
+                                  <label class="switch">
+                                    <input type="checkbox" id="dataSharing" />
+                                    <span class="slider"></span>
+                                  </label>
+                                </div>
+                                <div class="toggle">
+                                  <span>Make profile public</span>
+                                  <label class="switch">
+                                    <input type="checkbox" id="profilePublic" checked />
+                                    <span class="slider"></span>
+                                  </label>
+                                </div>
+                              </div>
+                        
+                              <!-- Export Options -->
+                              <div class="card">
+                                <h2>Export Options</h2>
+                                <div class="export-buttons">
+                                  <button id="exportPDF">Export as PDF</button>
+                                  <button id="exportCSV">Export as CSV</button>
+                                </div>
+                              </div>
+                            </div>
+                        
+                            <!-- Footer -->
+                            <div class="footer">
+                              <span>Reset to Default</span>
+                              <button id="saveSettings">Save Settings</button>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+
             </section>
 
             <!-- Settings Section -->
@@ -410,6 +751,7 @@
                 <div class="page-content">
                     <h1>Settings</h1>
                     <p>Manage your preferences and account details.</p>
+
                     <div class="card">
                         <button class="btn-upload-new">Change Password</button>
                     </div>
@@ -417,7 +759,9 @@
             </section>
         </div>
     </div>
+    <script src="dashboard.js"></script>
+    <!-- <script src="chart.js"></script> -->
 
- <script src="dashboard.js"></script>
 </body>
+
 </html>

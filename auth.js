@@ -139,11 +139,11 @@ document.addEventListener("DOMContentLoaded", () => {
         setSession(user);
   
         // --- NEW: The Login Checkpoint ---
-        let redirectUrl = "dashboard.html"; // Default redirect location
+        let redirectUrl = "./User-Dashboard/dashboard.html"; // Default redirect location
         let welcomeMessage = `Welcome back, ${user.companyName}!`;
   
         if (user.status === "NEEDS_FORM_SUBMISSION") {
-          redirectUrl = "digital-form-sub.html";
+          redirectUrl = "./digital-form-submission/digital-form-sub.html";
           welcomeMessage = "Welcome! Please complete your profile.";
         }
         // You can add more else-if checks here later for other statuses like 'NEEDS_DOCUMENTS'

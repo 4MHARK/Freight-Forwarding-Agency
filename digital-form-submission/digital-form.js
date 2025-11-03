@@ -187,7 +187,7 @@ document.addEventListener("DOMContentLoaded", () => {
           3000
         );
         setTimeout(() => {
-          window.location.href = "dashboard.html";
+          window.location.href = "../User-Dashboard/dashboard.html";
         }, 3000);
       } else {
         // This is an edge case, but good to handle.

@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
         // --- FIXED: Redirect to the correct onboarding step ---
         setTimeout(() => {
-          window.location.href = "digital-form-sub.html"; // Redirect to form submission
+          window.location.href = "./digital-form-submission/digital-form-sub.html"; // Redirect to form submission
         }, 3000);
       });
     }

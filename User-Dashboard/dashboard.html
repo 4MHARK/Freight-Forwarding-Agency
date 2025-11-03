@@ -10,7 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
     <link rel="stylesheet" href="dashboard.css">
     <link rel="stylesheet" href="ananytics.css">
-    <link rel="stylesheet" href="settings.css">
+    <!-- <link rel="stylesheet" href="settings.css"> -->
+    <link rel="stylesheet" href="shipping.css">
 </head>
 
 <body>
@@ -59,12 +60,14 @@
                         <span class="material-symbols-outlined">help</span>
                         <p>Help</p>
                     </div>
-                    <div class="nav-item">
+                    <div class="nav-item" id="logoutBtn">
                         <span class="material-symbols-outlined">logout</span>
                         <p>Logout</p>
-                    </div>
+                      </div>
                 </div>
+                
             </div>
+            
         </div>
 
         <!-- Main Content -->
@@ -610,18 +613,175 @@
                 </div>
 
                 <!-- Shipping Performance Sub-section -->
-                 <div id="shipping-performance-subsection" class="analytics-subsection">
+                <div id="shipping-performance-subsection" class="analytics-subsection">
                     <div class="page-content">
-                        <div class="page-header">
-                            <h1>Good Morning David!</h1>
-                            <p>Keep Pushing Boundries</p>
-                        </div>
-                        <div class="card">
-                            <h2>Performance Metrics</h2>
-                            <p>Performance charts and data coming soon...</p>
-                        </div>
+                        <main class="main-content">
+                            <div class="container">
+                                <!-- Page Header -->
+                                <header class="page-header">
+                                    <h1 class="greeting">Good Morning, Alex!</h1>
+                                    <p class="subheading">Keep pushing boundaries!</p>
+                                </header>
+
+                                <!-- Chart Card -->
+                                <section class="chart-card">
+                                    <div class="chart-header">
+                                        <div>
+                                            <p class="chart-title">Shipment Volume Trend</p>
+                                            <div class="chart-value">
+                                                <span id="chartValue">0</span>
+                                                <div class="chart-change">
+                                                    <span class="material-symbols-outlined">arrow_upward</span>
+                                                    <span>+12.5%</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="filter-chips">
+                                            <button class="chip active">Last 7 Days</button>
+                                            <button class="chip">Last 30 Days</button>
+                                            <button class="chip">Last 90 Days</button>
+                                        </div>
+                                    </div>
+
+                                    <svg class="chart-svg" viewBox="-3 0 478 150" preserveAspectRatio="none">
+                                        <defs>
+                                            <linearGradient id="chartGradient" x1="236" y1="1" x2="236" y2="149"
+                                                gradientUnits="userSpaceOnUse">
+                                                <stop offset="0%" stop-color="#23482f" />
+                                                <stop offset="100%" stop-color="#23482f" stop-opacity="0" />
+                                            </linearGradient>
+                                        </defs>
+                                        <path class="chart-path-fill"
+                                            d="M0 109C18.1538 109 18.1538 21 36.3077 21C54.4615 21 54.4615 41 72.6154 41C90.7692 41 90.7692 93 108.923 93C127.077 93 127.077 33 145.231 33C163.385 33 163.385 101 181.538 101C199.692 101 199.692 61 217.846 61C236 61 236 45 254.154 45C272.308 45 272.308 121 290.462 121C308.615 121 308.615 149 326.769 149C344.923 149 344.923 1 363.077 1C381.231 1 381.231 81 399.385 81C417.538 81 417.538 129 435.692 129C453.846 129 453.846 25 472 25V149H326.769H0V109Z"
+                                            fill="url(#chartGradient)" />
+                                        <path class="chart-path-stroke"
+                                            d="M0 109C18.1538 109 18.1538 21 36.3077 21C54.4615 21 54.4615 41 72.6154 41C90.7692 41 90.7692 93 108.923 93C127.077 93 127.077 33 145.231 33C163.385 33 163.385 101 181.538 101C199.692 101 199.692 61 217.846 61C236 61 236 45 254.154 45C272.308 45 272.308 121 290.462 121C308.615 121 308.615 149 326.769 149C344.923 149 344.923 1 363.077 1C381.231 1 381.231 81 399.385 81C417.538 81 417.538 129 435.692 129C453.846 129 453.846 25 472 25"
+                                            stroke="#13ec5b" stroke-width="3" stroke-linecap="round" fill="none" />
+                                    </svg>
+                                </section>
+
+                                <!-- Stats Grid -->
+                                <section class="stats-grid">
+                                    <!-- Progress Circle -->
+                                    <div class="progress-card">
+                                        <h2 class="progress-title">Weekly Goal Progress</h2>
+                                        <div class="progress-circle-container">
+                                            <div class="progress-circle">
+                                                <svg class="progress-ring" width="192" height="192" viewBox="0 0 36 36">
+                                                    <circle class="progress-ring-bg" cx="18" cy="18" r="16" fill="none"
+                                                        stroke-width="3" />
+                                                    <circle class="progress-ring-fill" cx="18" cy="18" r="16"
+                                                        fill="none" stroke-width="3" stroke-linecap="round" />
+                                                </svg>
+                                                <div class="progress-label">
+                                                    <div class="progress-value">85%</div>
+                                                    <div class="progress-subtext">85/100 Shipments</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Performance Cards -->
+                                    <div class="performance-grid">
+                                        <div class="performance-card">
+                                            <h3 class="performance-title">This Week's Performance</h3>
+                                            <div>
+                                                <div class="stat-row">
+                                                    <span class="stat-label">Total Shipments</span>
+                                                    <span class="stat-value">25</span>
+                                                </div>
+                                                <div class="stat-row">
+                                                    <span class="stat-label">Revenue</span>
+                                                    <span class="stat-value">$15,400</span>
+                                                </div>
+                                                <div class="stat-row">
+                                                    <span class="stat-label">On-Time Rate</span>
+                                                    <span class="stat-value">98%</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="performance-card">
+                                            <h3 class="performance-title">Last Week's Performance</h3>
+                                            <div>
+                                                <div class="stat-row">
+                                                    <span class="stat-label">Total Shipments</span>
+                                                    <div class="stat-value">
+                                                        22
+                                                        <span class="stat-badge">(+13.6%)</span>
+                                                    </div>
+                                                </div>
+                                                <div class="stat-row">
+                                                    <span class="stat-label">Revenue</span>
+                                                    <div class="stat-value">
+                                                        $14,100
+                                                        <span class="stat-badge">(+9.2%)</span>
+                                                    </div>
+                                                </div>
+                                                <div class="stat-row">
+                                                    <span class="stat-label">On-Time Rate</span>
+                                                    <div class="stat-value">
+                                                        96%
+                                                        <span class="stat-badge">(+2%)</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <!-- Achievements -->
+                                <section class="achievements-section">
+                                    <h2 class="section-title">Your Achievements</h2>
+                                    <div class="achievements-grid">
+                                        <div class="achievement">
+                                            <div class="achievement-badge">
+                                                <span class="material-symbols-outlined">military_tech</span>
+                                            </div>
+                                            <p class="achievement-name">Efficiency Master</p>
+                                        </div>
+
+                                        <div class="achievement">
+                                            <div class="achievement-badge">
+                                                <span class="material-symbols-outlined">trending_up</span>
+                                            </div>
+                                            <p class="achievement-name">Volume Leader</p>
+                                        </div>
+
+                                        <div class="achievement">
+                                            <div class="achievement-badge">
+                                                <span class="material-symbols-outlined">social_distance</span>
+                                            </div>
+                                            <p class="achievement-name">500 Shipments</p>
+                                        </div>
+
+                                        <div class="achievement locked">
+                                            <div class="achievement-badge">
+                                                <span class="material-symbols-outlined">lock</span>
+                                            </div>
+                                            <p class="achievement-name">Top Performer</p>
+                                        </div>
+
+                                        <div class="achievement locked">
+                                            <div class="achievement-badge">
+                                                <span class="material-symbols-outlined">lock</span>
+                                            </div>
+                                            <p class="achievement-name">Global Connector</p>
+                                        </div>
+
+                                        <div class="achievement locked">
+                                            <div class="achievement-badge">
+                                                <span class="material-symbols-outlined">lock</span>
+                                            </div>
+                                            <p class="achievement-name">Peak Season Pro</p>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </main>
                     </div>
-                </div> 
+                </div>
 
                 <!-- Financial Reports Sub-section -->
                 <div id="financial-reports-subsection" class="analytics-subsection">
@@ -650,104 +810,104 @@
 
                 <div id="settings-subsection" class="analytics-subsection">
                     <div class="page-content">
-                        <h1>Settings Management</h1> 
+                        <h1>Settings Management</h1>
                         <p>Manage user preferences and application configurations.</p>
                         <div class="container">
                             <h1>Analytics Preferences</h1>
                             <div class="grid">
-                              <!-- Data Settings -->
-                              <div class="card">
-                                <h2>Data Settings</h2>
-                                <label>Data Range</label>
-                                <div class="btn-group" id="dataRange">
-                                  <button data-value="7days">Past 7 Days</button>
-                                  <button data-value="month" class="active">This Month</button>
-                                  <button data-value="custom">Custom</button>
+                                <!-- Data Settings -->
+                                <div class="card">
+                                    <h2>Data Settings</h2>
+                                    <label>Data Range</label>
+                                    <div class="btn-group" id="dataRange">
+                                        <button data-value="7days">Past 7 Days</button>
+                                        <button data-value="month" class="active">This Month</button>
+                                        <button data-value="custom">Custom</button>
+                                    </div>
+                                    <label>Refresh Interval</label>
+                                    <select id="refreshInterval">
+                                        <option>Automatic</option>
+                                        <option>Every 5 mins</option>
+                                        <option>Every 15 mins</option>
+                                        <option>Manual</option>
+                                    </select>
                                 </div>
-                                <label>Refresh Interval</label>
-                                <select id="refreshInterval">
-                                  <option>Automatic</option>
-                                  <option>Every 5 mins</option>
-                                  <option>Every 15 mins</option>
-                                  <option>Manual</option>
-                                </select>
-                              </div>
-                        
-                              <!-- Display Options -->
-                              <div class="card">
-                                <h2>Display Options</h2>
-                                <div class="toggle">
-                                  <span>Show Line Charts</span>
-                                  <label class="switch">
-                                    <input type="checkbox" id="showLine" checked />
-                                    <span class="slider"></span>
-                                  </label>
+
+                                <!-- Display Options -->
+                                <div class="card">
+                                    <h2>Display Options</h2>
+                                    <div class="toggle">
+                                        <span>Show Line Charts</span>
+                                        <label class="switch">
+                                            <input type="checkbox" id="showLine" checked />
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                    <div class="toggle">
+                                        <span>Enable Bar Graphs</span>
+                                        <label class="switch">
+                                            <input type="checkbox" id="showBar" />
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                    <div class="toggle">
+                                        <span>Engagement Metrics</span>
+                                        <label class="switch">
+                                            <input type="checkbox" id="engagement" checked />
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                    <div class="toggle">
+                                        <span>Growth Metrics</span>
+                                        <label class="switch">
+                                            <input type="checkbox" id="growth" checked />
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
                                 </div>
-                                <div class="toggle">
-                                  <span>Enable Bar Graphs</span>
-                                  <label class="switch">
-                                    <input type="checkbox" id="showBar" />
-                                    <span class="slider"></span>
-                                  </label>
+
+                                <!-- Privacy Controls -->
+                                <div class="card">
+                                    <h2>Privacy Controls</h2>
+                                    <div class="toggle">
+                                        <span>Enable data sharing</span>
+                                        <label class="switch">
+                                            <input type="checkbox" id="dataSharing" />
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                    <div class="toggle">
+                                        <span>Make profile public</span>
+                                        <label class="switch">
+                                            <input type="checkbox" id="profilePublic" checked />
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
                                 </div>
-                                <div class="toggle">
-                                  <span>Engagement Metrics</span>
-                                  <label class="switch">
-                                    <input type="checkbox" id="engagement" checked />
-                                    <span class="slider"></span>
-                                  </label>
+
+                                <!-- Export Options -->
+                                <div class="card">
+                                    <h2>Export Options</h2>
+                                    <div class="export-buttons">
+                                        <button id="exportPDF">Export as PDF</button>
+                                        <button id="exportCSV">Export as CSV</button>
+                                    </div>
                                 </div>
-                                <div class="toggle">
-                                  <span>Growth Metrics</span>
-                                  <label class="switch">
-                                    <input type="checkbox" id="growth" checked />
-                                    <span class="slider"></span>
-                                  </label>
-                                </div>
-                              </div>
-                        
-                              <!-- Privacy Controls -->
-                              <div class="card">
-                                <h2>Privacy Controls</h2>
-                                <div class="toggle">
-                                  <span>Enable data sharing</span>
-                                  <label class="switch">
-                                    <input type="checkbox" id="dataSharing" />
-                                    <span class="slider"></span>
-                                  </label>
-                                </div>
-                                <div class="toggle">
-                                  <span>Make profile public</span>
-                                  <label class="switch">
-                                    <input type="checkbox" id="profilePublic" checked />
-                                    <span class="slider"></span>
-                                  </label>
-                                </div>
-                              </div>
-                        
-                              <!-- Export Options -->
-                              <div class="card">
-                                <h2>Export Options</h2>
-                                <div class="export-buttons">
-                                  <button id="exportPDF">Export as PDF</button>
-                                  <button id="exportCSV">Export as CSV</button>
-                                </div>
-                              </div>
                             </div>
-                        
+
                             <!-- Footer -->
                             <div class="footer">
-                              <span>Reset to Default</span>
-                              <button id="saveSettings">Save Settings</button>
+                                <span>Reset to Default</span>
+                                <button id="saveSettings">Save Settings</button>
                             </div>
-                          </div>
+                        </div>
                     </div>
                 </div>
 
             </section>
 
             <!-- Settings Section -->
-            <section id="settings-section" class="section hidden">
+            <!-- <section id="settings-section" class="section hidden">
                 <div class="page-content">
                     <h1>Settings</h1>
                     <p>Manage your preferences and account details.</p>
@@ -756,11 +916,12 @@
                         <button class="btn-upload-new">Change Password</button>
                     </div>
                 </div>
-            </section>
+            </section> -->
         </div>
     </div>
     <script src="dashboard.js"></script>
-    <!-- <script src="chart.js"></script> -->
+    <script src="chart.js"></script>
+    <script src="../auth.js"></script>
 
 </body>
 

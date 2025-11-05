@@ -1,0 +1,2729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CRFFN Portal - Professional license renewal system for freight forwarding agencies">
+    <title>CRFFN Portal - License Renewal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1736cf;
+            --primary-dark: #0f28a8;
+            --primary-light: #eff1ff;
+            --secondary: #FFD700;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --text-primary: #111218;
+            --text-secondary: #666;
+            --text-tertiary: #999;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f6f6f8;
+            --border: #dcdde5;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --radius: 12px;
+            --radius-sm: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Accessibility */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+
+        :focus-visible {
+            outline: 3px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            box-shadow: var(--shadow-md);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            width: 36px;
+            height: 36px;
+            fill: var(--primary);
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            transform: rotate(10deg);
+        }
+
+        .logo-text {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.02em;
+        }
+
+        nav {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-size: 0.9375rem;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+            border-radius: 3px 3px 0 0;
+        }
+
+        nav a:hover::after,
+        nav a.active::after {
+            width: 100%;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--primary);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .notification-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius-sm);
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            position: relative;
+            font-size: 1.25rem;
+        }
+
+        .notification-btn:hover {
+            background: var(--primary-light);
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 8px;
+            height: 8px;
+            background: var(--danger);
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+
+        .user-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), #3b5bdb);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1rem;
+            border: 3px solid white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .user-avatar:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem 4rem;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .page-header {
+            margin-bottom: 2.5rem;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            letter-spacing: -0.03em;
+        }
+
+        .page-subtitle {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        /* Progress Stepper */
+        .progress-container {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+        }
+
+        .progress-stepper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            margin: 1rem 0;
+        }
+
+        .step {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+            cursor: default;
+        }
+
+        .step-circle {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            border: 3px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .step.active .step-circle {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: scale(1.15);
+            box-shadow: 0 0 0 6px rgba(23, 54, 207, 0.1);
+        }
+
+        .step.completed .step-circle {
+            background: var(--secondary);
+            color: var(--primary);
+            border-color: var(--secondary);
+        }
+
+        .step.completed .step-circle::after {
+            content: '✓';
+            position: absolute;
+            font-weight: 900;
+            font-size: 1.25rem;
+        }
+
+        .step-content {
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        .step-label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            transition: var(--transition);
+            margin-bottom: 0.25rem;
+        }
+
+        .step-description {
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+        }
+
+        .step.active .step-label {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .step.completed .step-label {
+            color: var(--text-primary);
+        }
+
+        .progress-line {
+            position: absolute;
+            top: 24px;
+            left: 5%;
+            right: 5%;
+            height: 4px;
+            background: var(--border);
+            z-index: 0;
+            border-radius: 2px;
+        }
+
+        .progress-line-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 0%;
+            border-radius: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-line-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.3),
+                transparent
+            );
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Form Card */
+        .form-card {
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .form-section {
+            display: none;
+        }
+
+        .form-section.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .section-header {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--bg-secondary);
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .section-description {
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.75rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-size: 0.9375rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .required-star {
+            color: var(--danger);
+            font-size: 1rem;
+        }
+
+        .label-hint {
+            font-size: 0.75rem;
+            font-weight: 400;
+            color: var(--text-tertiary);
+            margin-left: auto;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 0.875rem 1.125rem;
+            border: 2px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-size: 0.9375rem;
+            font-family: inherit;
+            transition: var(--transition);
+            background: white;
+            color: var(--text-primary);
+        }
+
+        input:hover, select:hover, textarea:hover {
+            border-color: var(--text-tertiary);
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(23, 54, 207, 0.1);
+        }
+
+        input:disabled, select:disabled, textarea:disabled {
+            background: var(--bg-secondary);
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        input.error {
+            border-color: var(--danger);
+            background: #fef2f2;
+        }
+
+        input.success {
+            border-color: var(--success);
+        }
+
+        .input-icon {
+            position: relative;
+        }
+
+        .input-icon input {
+            padding-left: 3rem;
+        }
+
+        .input-icon-left {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.25rem;
+            color: var(--text-tertiary);
+        }
+
+        .error-message {
+            color: var(--danger);
+            font-size: 0.8125rem;
+            margin-top: 0.5rem;
+            display: none;
+            font-weight: 500;
+        }
+
+        .error-message.show {
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
+            animation: shake 0.3s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-8px); }
+            75% { transform: translateX(8px); }
+        }
+
+        .success-message {
+            color: var(--success);
+            font-size: 0.8125rem;
+            margin-top: 0.5rem;
+            display: none;
+            font-weight: 500;
+        }
+
+        .success-message.show {
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
+        }
+
+        .helper-text {
+            font-size: 0.8125rem;
+            color: var(--text-tertiary);
+            margin-top: 0.5rem;
+        }
+
+        /* File Upload */
+        .file-upload-area {
+            border: 3px dashed var(--border);
+            border-radius: var(--radius);
+            padding: 3rem 2rem;
+            text-align: center;
+            background: var(--bg-secondary);
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .file-upload-area:hover {
+            border-color: var(--primary);
+            background: var(--primary-light);
+            transform: translateY(-2px);
+        }
+
+        .file-upload-area.dragover {
+            border-color: var(--primary);
+            background: var(--primary-light);
+            transform: scale(1.02);
+            box-shadow: 0 0 0 4px rgba(23, 54, 207, 0.1);
+        }
+
+        .file-upload-area.has-file {
+            border-color: var(--success);
+            background: #f0fdf4;
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .upload-text {
+            margin-bottom: 0.5rem;
+        }
+
+        .upload-text strong {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .upload-hint {
+            font-size: 0.8125rem;
+            color: var(--text-tertiary);
+        }
+
+        .file-preview {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: white;
+            border-radius: var(--radius-sm);
+            display: none;
+            align-items: center;
+            gap: 1rem;
+            border: 2px solid var(--success);
+        }
+
+        .file-preview.show {
+            display: flex;
+        }
+
+        .file-icon {
+            font-size: 2rem;
+        }
+
+        .file-info {
+            flex: 1;
+            text-align: left;
+        }
+
+        .file-name {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .file-size {
+            font-size: 0.8125rem;
+            color: var(--text-tertiary);
+        }
+
+        .file-remove {
+            padding: 0.5rem;
+            background: #fef2f2;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            color: var(--danger);
+            font-size: 1.25rem;
+            transition: var(--transition);
+        }
+
+        .file-remove:hover {
+            background: var(--danger);
+            color: white;
+        }
+
+        /* Payment Section */
+        .payment-summary {
+            background: linear-gradient(135deg, var(--primary), #3b5bdb);
+            color: white;
+            padding: 2.5rem;
+            border-radius: var(--radius);
+            text-align: center;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .payment-amount {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .payment-label {
+            font-size: 1.125rem;
+            opacity: 0.95;
+        }
+
+        .security-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 1rem;
+            background: #f0fdf4;
+            border: 2px solid var(--success);
+            border-radius: var(--radius-sm);
+            margin-bottom: 2rem;
+            color: var(--success);
+            font-weight: 600;
+        }
+
+        .security-icon {
+            font-size: 1.5rem;
+        }
+
+        /* Review Section */
+        .review-card {
+            background: var(--bg-secondary);
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border: 2px solid var(--border);
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .review-icon {
+            font-size: 1.5rem;
+        }
+
+        .review-title {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--text-primary);
+        }
+
+        .review-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+            gap: 2rem;
+        }
+
+        .review-item:last-child {
+            border-bottom: none;
+        }
+
+        .review-label {
+            font-weight: 600;
+            color: var(--text-secondary);
+            min-width: 180px;
+        }
+
+        .review-value {
+            color: var(--text-primary);
+            font-weight: 500;
+            text-align: right;
+            word-break: break-word;
+        }
+
+        .edit-button {
+            color: var(--primary);
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+        }
+
+        .edit-button:hover {
+            text-decoration: underline;
+        }
+
+        /* Buttons */
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 2.5rem;
+            padding-top: 2rem;
+            border-top: 2px solid var(--bg-secondary);
+        }
+
+        button {
+            padding: 1rem 2.5rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.9375rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-family: inherit;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.625rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        button:active::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--text-primary);
+            border: 2px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-secondary);
+            border-color: var(--text-primary);
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 12px rgba(23, 54, 207, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(23, 54, 207, 0.4);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-primary:disabled {
+            background: var(--text-tertiary);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+            opacity: 0.6;
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #059669;
+            transform: translateY(-2px);
+        }
+
+        .btn-icon {
+            font-size: 1.125rem;
+        }
+
+        /* Loading States */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .loading-overlay.show {
+            display: flex;
+        }
+
+        .loading-content {
+            background: white;
+            padding: 2.5rem;
+            border-radius: var(--radius);
+            text-align: center;
+            max-width: 400px;
+        }
+
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 5px solid var(--bg-secondary);
+            border-top: 5px solid var(--primary);
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .loading-subtext {
+            color: var(--text-tertiary);
+            font-size: 0.875rem;
+        }
+
+        /* Table */
+        .table-card {
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            animation: fadeInUp 0.6s ease 0.2s both;
+        }
+
+        .table-header {
+            padding: 2rem 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            border-bottom: 2px solid var(--bg-secondary);
+        }
+
+        .table-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .search-box {
+            position: relative;
+            flex: 1;
+            max-width: 350px;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.125rem;
+            color: var(--text-tertiary);
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 3rem;
+            border: 2px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-size: 0.9375rem;
+            background: var(--bg-secondary);
+            transition: var(--transition);
+        }
+
+        .search-input:hover {
+            border-color: var(--text-tertiary);
+        }
+
+        .search-input:focus {
+            background: white;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(23, 54, 207, 0.1);
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: var(--bg-secondary);
+        }
+
+        th {
+            text-align: left;
+            padding: 1rem 2rem;
+            font-size: 0.8125rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            letter-spacing: 0.05em;
+        }
+
+        td {
+            padding: 1.25rem 2rem;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.9375rem;
+        }
+
+        tbody tr {
+            transition: var(--transition);
+        }
+
+        tbody tr:hover {
+            background: var(--bg-secondary);
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+
+        .status-approved {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .status-rejected {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .status-pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .status-icon {
+            font-size: 0.875rem;
+        }
+
+        .table-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+        }
+
+        .table-link:hover {
+            text-decoration: underline;
+            gap: 0.625rem;
+        }
+
+        /* Success Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            animation: fadeIn 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        .modal {
+            background: white;
+            border-radius: var(--radius);
+            padding: 3rem;
+            max-width: 480px;
+            width: 90%;
+            text-align: center;
+            animation: scaleIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: var(--shadow-lg);
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .success-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--secondary), #ffc107);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 3rem;
+            animation: bounceIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+        }
+
+        @keyframes bounceIn {
+            0% { 
+                transform: scale(0);
+                opacity: 0;
+            }
+            50% { 
+                transform: scale(1.2);
+            }
+            100% { 
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .modal h3 {
+            color: var(--primary);
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .modal p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .reference-number {
+            background: var(--primary-light);
+            padding: 1rem;
+            border-radius: var(--radius-sm);
+            margin-bottom: 1.5rem;
+        }
+
+        .reference-label {
+            font-size: 0.8125rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.375rem;
+        }
+
+        .reference-value {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+            font-family: 'Courier New', monospace;
+        }
+
+        /* Alert Box */
+        .alert {
+            padding: 1rem 1.25rem;
+            border-radius: var(--radius-sm);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+        }
+
+        .alert-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .alert-content {
+            flex: 1;
+        }
+
+        .alert-title {
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .alert-info {
+            background: #eff6ff;
+            border: 2px solid #3b82f6;
+            color: #1e40af;
+        }
+
+        .alert-warning {
+            background: #fffbeb;
+            border: 2px solid var(--warning);
+            color: #92400e;
+        }
+
+        .alert-success {
+            background: #f0fdf4;
+            border: 2px solid var(--success);
+            color: #065f46;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: white;
+            padding: 1.25rem 1.5rem;
+            border-radius: var(--radius-sm);
+            box-shadow: var(--shadow-lg);
+            display: none;
+            align-items: center;
+            gap: 1rem;
+            min-width: 320px;
+            z-index: 10000;
+            animation: slideInRight 0.4s ease;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .toast.show {
+            display: flex;
+        }
+
+        .toast-icon {
+            font-size: 1.5rem;
+        }
+
+        .toast-content {
+            flex: 1;
+        }
+
+        .toast-title {
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .toast-message {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .toast-close {
+            background: none;
+            border: none;
+            font-size: 1.25rem;
+            cursor: pointer;
+            color: var(--text-tertiary);
+            padding: 0.25rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .header-container {
+                padding: 0 1.25rem;
+            }
+
+            nav {
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 1.25rem;
+            }
+
+            .form-card {
+                padding: 1.5rem;
+            }
+
+            .progress-container {
+                padding: 1.5rem;
+            }
+
+            .step-circle {
+                width: 40px;
+                height: 40px;
+                font-size: 0.875rem;
+            }
+
+            .step-label {
+                font-size: 0.75rem;
+            }
+
+            .step-description {
+                display: none;
+            }
+
+            .button-group {
+                flex-direction: column-reverse;
+            }
+
+            button {
+                width: 100%;
+            }
+
+            .table-header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .search-box {
+                max-width: 100%;
+            }
+
+            th, td {
+                padding: 0.875rem 1rem;
+                font-size: 0.875rem;
+            }
+
+            .modal {
+                width: 95%;
+                padding: 2rem 1.5rem;
+            }
+
+            .toast {
+                left: 1rem;
+                right: 1rem;
+                min-width: auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.375rem;
+            }
+
+            .payment-amount {
+                font-size: 2.5rem;
+            }
+
+            .progress-line {
+                left: 10%;
+                right: 10%;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            header, .button-group, .table-card, .toast {
+                display: none !important;
+            }
+
+            .form-card {
+                box-shadow: none;
+                border: 1px solid #000;
+            }
+
+            .page-title {
+                color: #000;
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Selection */
+        ::selection {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-tertiary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <div class="loading-text">Processing your request...</div>
+            <div class="loading-subtext">Please do not close this window</div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <div class="toast-icon">ℹ️</div>
+        <div class="toast-content">
+            <div class="toast-title" id="toastTitle">Notification</div>
+            <div class="toast-message" id="toastMessage">Message</div>
+        </div>
+        <button class="toast-close" onclick="hideToast()">✕</button>
+    </div>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="header-container">
+            <div class="logo-section">
+                <svg class="logo" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-label="CRFFN Logo">
+                    <path d="M39.475 21.6262C40.358 21.4363 40.6863 21.5589 40.7581 21.5934C40.7876 21.655 40.8547 21.857 40.8082 22.3336C40.7408 23.0255 40.4502 24.0046 39.8572 25.2301C38.6799 27.6631 36.5085 30.6631 33.5858 33.5858C30.6631 36.5085 27.6632 38.6799 25.2301 39.8572C24.0046 40.4502 23.0255 40.7407 22.3336 40.8082C21.8571 40.8547 21.6551 40.7875 21.5934 40.7581C21.5589 40.6863 21.4363 40.358 21.6262 39.475C21.8562 38.4054 22.4689 36.9657 23.5038 35.2817C24.7575 33.2417 26.5497 30.9744 28.7621 28.762C30.9744 26.5497 33.2417 24.7574 35.2817 23.5037C36.9657 22.4689 38.4054 21.8562 39.475 21.6262ZM4.41189 29.2403L18.7597 43.5881C19.8813 44.7097 21.4027 44.9179 22.7217 44.7893C24.0585 44.659 25.5148 44.1631 26.9723 43.4579C29.9052 42.0387 33.2618 39.5667 36.4142 36.4142C39.5667 33.2618 42.0387 29.9052 43.4579 26.9723C44.1631 25.5148 44.659 24.0585 44.7893 22.7217C44.9179 21.4027 44.7097 19.8813 43.5881 18.7597L29.2403 4.41187C27.8527 3.02428 25.8765 3.02573 24.2861 3.36776C22.6081 3.72863 20.7334 4.58419 18.8396 5.74801C16.4978 7.18716 13.9881 9.18353 11.5858 11.5858C9.18354 13.988 7.18717 16.4978 5.74802 18.8396C4.58421 20.7334 3.72865 22.6081 3.36778 24.2861C3.02574 25.8765 3.02429 27.8527 4.41189 29.2403Z"/>
+                </svg>
+                <h1 class="logo-text">CRFFN Portal</h1>
+            </div>
+            <div class="header-actions">
+                <nav role="navigation">
+                    <a href="#" tabindex="0">Dashboard</a>
+                    <a href="#" class="active" tabindex="0" aria-current="page">Renewals</a>
+                    <a href="#" tabindex="0">Profile</a>
+                </nav>
+                <button class="notification-btn" aria-label="Notifications" tabindex="0">
+                    🔔
+                    <span class="notification-badge" aria-label="New notifications"></span>
+                </button>
+                <div class="user-avatar" role="button" tabindex="0" aria-label="User menu">
+                    JD
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main role="main">
+        <div class="page-header">
+            <h1 class="page-title">License Renewal Application</h1>
+            <p class="page-subtitle">Complete the form below to renew your freight forwarding license</p>
+        </div>
+
+        <!-- Progress Stepper -->
+        <div class="progress-container" role="navigation" aria-label="Application progress">
+            <div class="progress-stepper">
+                <div class="progress-line" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-line-fill" id="progressFill"></div>
+                </div>
+                <div class="step active" data-step="1">
+                    <div class="step-circle" aria-label="Step 1">1</div>
+                    <div class="step-content">
+                        <div class="step-label">Application</div>
+                        <div class="step-description">Basic details</div>
+                    </div>
+                </div>
+                <div class="step" data-step="2">
+                    <div class="step-circle" aria-label="Step 2">2</div>
+                    <div class="step-content">
+                        <div class="step-label">Payment</div>
+                        <div class="step-description">Secure checkout</div>
+                    </div>
+                </div>
+                <div class="step" data-step="3">
+                    <div class="step-circle" aria-label="Step 3">3</div>
+                    <div class="step-content">
+                        <div class="step-label">Review</div>
+                        <div class="step-description">Verify information</div>
+                    </div>
+                </div>
+                <div class="step" data-step="4">
+                    <div class="step-circle" aria-label="Step 4">4</div>
+                    <div class="step-content">
+                        <div class="step-label">Confirmation</div>
+                        <div class="step-description">Get approved</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Card -->
+        <div class="form-card">
+            <!-- Step 1: Application -->
+            <div class="form-section active" id="step1" role="form">
+                <div class="section-header">
+                    <h2 class="section-title">📋 Application Details</h2>
+                    <p class="section-description">Please provide accurate information for your license renewal</p>
+                </div>
+
+                <div class="alert alert-info">
+                    <div class="alert-icon">ℹ️</div>
+                    <div class="alert-content">
+                        <div class="alert-title">Required Documents</div>
+                        Please ensure all documents are clear, valid, and in PDF, PNG, or JPG format (max 5MB)
+                    </div>
+                </div>
+
+                <form id="applicationForm" novalidate>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="agencyName">
+                                Agency Name
+                                <span class="required-star" aria-label="required">*</span>
+                            </label>
+                            <input 
+                                type="text" 
+                                id="agencyName" 
+                                value="Global Freight Logistics Inc." 
+                                required
+                                aria-required="true"
+                                aria-describedby="agencyNameError"
+                            >
+                            <span class="error-message" id="agencyNameError">⚠️ Agency name is required</span>
+                            <span class="success-message">✓ Looks good!</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="regNumber">
+                                Registration Number
+                                <span class="required-star" aria-label="required">*</span>
+                            </label>
+                            <input 
+                                type="text" 
+                                id="regNumber" 
+                                value="CRFFN/2023/1089" 
+                                required
+                                aria-required="true"
+                                aria-describedby="regNumberError"
+                                pattern="CRFFN/\d{4}/\d{4}"
+                            >
+                            <span class="error-message" id="regNumberError">⚠️ Valid registration number required (Format: CRFFN/YYYY/NNNN)</span>
+                            <span class="success-message">✓ Looks good!</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="expiryDate">
+                                Current License Expiry Date
+                                <span class="required-star" aria-label="required">*</span>
+                            </label>
+                            <input 
+                                type="date" 
+                                id="expiryDate" 
+                                value="2024-12-31" 
+                                required
+                                aria-required="true"
+                                aria-describedby="expiryDateError"
+                            >
+                            <span class="error-message" id="expiryDateError">⚠️ Expiry date is required</span>
+                            <span class="success-message">✓ Looks good!</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contactPerson">
+                                Contact Person
+                                <span class="required-star" aria-label="required">*</span>
+                            </label>
+                            <input 
+                                type="text" 
+                                id="contactPerson" 
+                                value="Jane Doe" 
+                                required
+                                aria-required="true"
+                                aria-describedby="contactPersonError"
+                            >
+                            <span class="error-message" id="contactPersonError">⚠️ Contact person is required</span>
+                            <span class="success-message">✓ Looks good!</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">
+                                Email Address
+                                <span class="required-star" aria-label="required">*</span>
+                            </label>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                placeholder="contact@company.com" 
+                                required
+                                aria-required="true"
+                                aria-describedby="emailError"
+                            >
+                            <span class="error-message" id="emailError">⚠️ Valid email address is required</span>
+                            <span class="success-message">✓ Looks good!</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">
+                                Phone Number
+                                <span class="required-star" aria-label="required">*</span>
+                            </label>
+                            <input 
+                                type="tel" 
+                                id="phone" 
+                                placeholder="+234 800 000 0000" 
+                                required
+                                aria-required="true"
+                                aria-describedby="phoneError"
+                            >
+                            <span class="error-message" id="phoneError">⚠️ Valid phone number is required</span>
+                            <span class="success-message">✓ Looks good!</span>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="fileUpload">
+                                Upload Required Documents
+                                <span class="required-star" aria-label="required">*</span>
+                                <span class="label-hint">Supported: PDF, PNG, JPG (Max 5MB)</span>
+                            </label>
+                            <div 
+                                class="file-upload-area" 
+                                id="fileUploadArea" 
+                                tabindex="0"
+                                role="button"
+                                aria-label="Upload documents"
+                            >
+                                <div class="upload-icon">📄</div>
+                                <p class="upload-text"><strong>Click to upload</strong> or drag and drop</p>
+                                <p class="upload-hint">PDF, PNG, JPG (MAX. 5MB)</p>
+                            </div>
+                            <input 
+                                type="file" 
+                                id="fileUpload" 
+                                accept=".pdf,.png,.jpg,.jpeg" 
+                                style="display: none;"
+                                aria-describedby="fileUploadError"
+                            >
+                            <div class="file-preview" id="filePreview">
+                                <div class="file-icon">📎</div>
+                                <div class="file-info">
+                                    <div class="file-name" id="fileName"></div>
+                                    <div class="file-size" id="fileSize"></div>
+                                </div>
+                                <button 
+                                    type="button" 
+                                    class="file-remove" 
+                                    id="fileRemove"
+                                    aria-label="Remove file"
+                                >
+                                    🗑️
+                                </button>
+                            </div>
+                            <span class="error-message" id="fileUploadError">⚠️ Document upload is required</span>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="button" class="btn-secondary" onclick="saveDraft()">
+                            <span class="btn-icon">💾</span>
+                            Save as Draft
+                        </button>
+                        <button type="button" class="btn-primary" onclick="nextStep()">
+                            <span>Save and Continue</span>
+                            <span class="btn-icon">→</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Step 2: Payment -->
+            <div class="form-section" id="step2">
+                <div class="section-header">
+                    <h2 class="section-title">💳 Payment Information</h2>
+                    <p class="section-description">Secure payment processing for your license renewal</p>
+                </div>
+
+                <div class="payment-summary">
+                    <div class="payment-amount">₦50,000</div>
+                    <div class="payment-label">Annual License Renewal Fee</div>
+                </div>
+
+                <div class="security-badge">
+                    <span class="security-icon">🔒</span>
+                    <span>Your payment information is secure and encrypted</span>
+                </div>
+
+                <form id="paymentForm" novalidate>
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label for="cardName">
+                                Cardholder Name
+                                <span class="required-star" aria-label="required">*</span>
+                            </label>
+                            <input 
+                                type="text" 
+                                id="cardName" 
+                                placeholder="John Doe" 
+                                required
+                                aria-required="true"
+                                aria-describedby="cardNameError"
+                            >
+                            <span class="error-message" id="cardNameError">⚠️ Cardholder name is required</span>
+                            <span class="success-message">✓ Looks good!</span>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="cardNumber">
+                                Card Number
+                                <span class="required-star" aria-label="required">*</span>
+                            </label>
+                            <input 
+                                type="text" 
+                                id="cardNumber" 
+                                placeholder="1234 5678 9012 3456" 
+                                maxlength="19" 
+                                required
+                                aria-required="true"
+                                aria-describedby="cardNumberError"
+                                inputmode="numeric"
+                            >
+                            <span class="error-message" id="cardNumberError">⚠️ Valid card number is required (16 digits)</span>
+                            <span class="success-message">✓ Valid card number</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="expiryMonth">
+                                Expiry Date
+                                <span class="required-star" aria-label="required">*</span>
+                            </label>
+                            <input 
+                                type="text" 
+                                id="expiryMonth" 
+                                placeholder="MM/YY" 
+                                maxlength="5" 
+                                required
+                                aria-required="true"
+                                aria-describedby="expiryMonthError"
+                                inputmode="numeric"
+                            >
+                            <span class="error-message" id="expiryMonthError">⚠️ Valid expiry date required (MM/YY)</span>
+                            <span class="success-message">✓ Looks good!</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cvv">
+                                CVV
+                                <span class="required-star" aria-label="required">*</span>
+                            </label>
+                            <input 
+                                type="text" 
+                                id="cvv" 
+                                placeholder="123" 
+                                maxlength="4" 
+                                required
+                                aria-required="true"
+                                aria-describedby="cvvError"
+                                inputmode="numeric"
+                            >
+                            <span class="error-message" id="cvvError">⚠️ CVV is required (3-4 digits)</span>
+                            <span class="success-message">✓ Looks good!</span>
+                            <span class="helper-text">3 or 4 digits on the back of your card</span>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="button" class="btn-secondary" onclick="prevStep()">
+                            <span class="btn-icon">←</span>
+                            Back
+                        </button>
+                        <button type="button" class="btn-primary" onclick="nextStep()">
+                            <span class="btn-icon">🔒</span>
+                            <span>Process Payment</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Step 3: Review -->
+            <div class="form-section" id="step3">
+                <div class="section-header">
+                    <h2 class="section-title">✓ Review Application</h2>
+                    <p class="section-description">Please verify all information before submitting</p>
+                </div>
+
+                <div class="alert alert-warning">
+                    <div class="alert-icon">⚠️</div>
+                    <div class="alert-content">
+                        <div class="alert-title">Review Carefully</div>
+                        Please ensure all information is correct. Changes after submission may delay processing.
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <span class="review-icon">📋</span>
+                        <h3 class="review-title">Application Details</h3>
+                        <a href="#" class="edit-button" onclick="goToStep(1); return false;">
+                            ✏️ Edit
+                        </a>
+                    </div>
+                    <div class="review-item">
+                        <span class="review-label">Agency Name:</span>
+                        <span class="review-value" id="reviewAgency"></span>
+                    </div>
+                    <div class="review-item">
+                        <span class="review-label">Registration Number:</span>
+                        <span class="review-value" id="reviewReg"></span>
+                    </div>
+                    <div class="review-item">
+                        <span class="review-label">License Expiry:</span>
+                        <span class="review-value" id="reviewExpiry"></span>
+                    </div>
+                    <div class="review-item">
+                        <span class="review-label">Contact Person:</span>
+                        <span class="review-value" id="reviewContact"></span>
+                    </div>
+                    <div class="review-item">
+                        <span class="review-label">Email Address:</span>
+                        <span class="review-value" id="reviewEmail"></span>
+                    </div>
+                    <div class="review-item">
+                        <span class="review-label">Phone Number:</span>
+                        <span class="review-value" id="reviewPhone"></span>
+                    </div>
+                    <div class="review-item">
+                        <span class="review-label">Document:</span>
+                        <span class="review-value" id="reviewDoc"></span>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <span class="review-icon">💳</span>
+                        <h3 class="review-title">Payment Information</h3>
+                        <a href="#" class="edit-button" onclick="goToStep(2); return false;">
+                            ✏️ Edit
+                        </a>
+                    </div>
+                    <div class="review-item">
+                        <span class="review-label">Amount:</span>
+                        <span class="review-value" style="font-size: 1.25rem; font-weight: 700; color: var(--primary);">₦50,000</span>
+                    </div>
+                    <div class="review-item">
+                        <span class="review-label">Cardholder:</span>
+                        <span class="review-value" id="reviewCardName"></span>
+                    </div>
+                    <div class="review-item">
+                        <span class="review-label">Card Number:</span>
+                        <span class="review-value" id="reviewCardNum"></span>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="btn-secondary" onclick="prevStep()">
+                        <span class="btn-icon">←</span>
+                        Back
+                    </button>
+                    <button type="button" class="btn-success" onclick="submitApplication()">
+                        <span class="btn-icon">✓</span>
+                        <span>Submit Application</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 4: Processing -->
+            <div class="form-section" id="step4">
+                <div class="section-header">
+                    <h2 class="section-title">⏳ Processing Application</h2>
+                    <p class="section-description">Please wait while we process your application</p>
+                </div>
+
+                <div style="text-align: center; padding: 3rem 0;">
+                    <div class="spinner"></div>
+                    <p style="color: var(--text-secondary); margin-top: 1.5rem; font-weight: 600;">
+                        Verifying documents and processing payment...
+                    </p>
+                    <p style="color: var(--text-tertiary); font-size: 0.875rem; margin-top: 0.5rem;">
+                        This may take a few moments. Please do not refresh the page.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Renewal History Table -->
+        <div class="table-card">
+            <div class="table-header">
+                <h2 class="table-title">📜 My Renewal History</h2>
+                <div class="search-box">
+                    <span class="search-icon">🔍</span>
+                    <input 
+                        type="text" 
+                        class="search-input" 
+                        id="searchInput" 
+                        placeholder="Search by Request ID..."
+                        aria-label="Search renewal history"
+                    >
+                </div>
+            </div>
+            <div class="table-wrapper">
+                <table role="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Request ID</th>
+                            <th scope="col">Submission Date</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <tr>
+                            <td><strong>REN-2023-015</strong></td>
+                            <td>November 20, 2023</td>
+                            <td>
+                                <span class="status-badge status-approved">
+                                    <span class="status-icon">✓</span>
+                                    Approved
+                                </span>
+                            </td>
+                            <td>
+                                <a href="#" class="table-link">
+                                    View Details
+                                    <span>→</span>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>REN-2022-012</strong></td>
+                            <td>November 18, 2022</td>
+                            <td>
+                                <span class="status-badge status-approved">
+                                    <span class="status-icon">✓</span>
+                                    Approved
+                                </span>
+                            </td>
+                            <td>
+                                <a href="#" class="table-link">
+                                    View Details
+                                    <span>→</span>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>REN-2021-009</strong></td>
+                            <td>November 22, 2021</td>
+                            <td>
+                                <span class="status-badge status-rejected">
+                                    <span class="status-icon">✕</span>
+                                    Rejected
+                                </span>
+                            </td>
+                            <td>
+                                <a href="#" class="table-link">
+                                    View Details
+                                    <span>→</span>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>REN-2020-007</strong></td>
+                            <td>November 15, 2020</td>
+                            <td>
+                                <span class="status-badge status-approved">
+                                    <span class="status-icon">✓</span>
+                                    Approved
+                                </span>
+                            </td>
+                            <td>
+                                <a href="#" class="table-link">
+                                    View Details
+                                    <span>→</span>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- Success Modal -->
+    <div class="modal-overlay" id="successModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal">
+            <div class="success-icon" aria-hidden="true">✓</div>
+            <h3 id="modalTitle">Submission Complete!</h3>
+            <p>Your license renewal application has been successfully submitted. You will receive a confirmation email shortly.</p>
+            
+            <div class="reference-number">
+                <div class="reference-label">Reference Number</div>
+                <div class="reference-value" id="referenceNumber">REN-2024-XXX</div>
+            </div>
+
+            <div class="alert alert-success">
+                <div class="alert-icon">✓</div>
+                <div class="alert-content">
+                    <div class="alert-title">What's Next?</div>
+                    We'll review your application within 3-5 business days. Check your email for updates.
+                </div>
+            </div>
+
+            <button class="btn-primary" onclick="closeModal()" style="width: 100%;">
+                <span>Return to Dashboard</span>
+                <span class="btn-icon">→</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // ============================================
+        // STATE MANAGEMENT
+        // ============================================
+        let currentStep = 1;
+        const formData = {
+            application: {},
+            payment: {},
+            file: null
+        };
+
+        // ============================================
+        // INITIALIZATION
+        // ============================================
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeEventListeners();
+            loadDraftFromStorage();
+            updateProgress();
+        });
+
+        // ============================================
+        // EVENT LISTENERS
+        // ============================================
+        function initializeEventListeners() {
+            // Header scroll effect
+            window.addEventListener('scroll', handleScroll);
+
+            // File upload
+            const fileUploadArea = document.getElementById('fileUploadArea');
+            const fileInput = document.getElementById('fileUpload');
+
+            fileUploadArea.addEventListener('click', () => fileInput.click());
+            fileUploadArea.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    fileInput.click();
+                }
+            });
+
+            fileInput.addEventListener('change', handleFileSelect);
+            
+            // Drag and drop
+            fileUploadArea.addEventListener('dragover', handleDragOver);
+            fileUploadArea.addEventListener('dragleave', handleDragLeave);
+            fileUploadArea.addEventListener('drop', handleFileDrop);
+
+            // File remove
+            document.getElementById('fileRemove').addEventListener('click', removeFile);
+
+            // Card formatting
+            document.getElementById('cardNumber').addEventListener('input', formatCardNumber);
+            document.getElementById('expiryMonth').addEventListener('input', formatExpiryDate);
+            document.getElementById('cvv').addEventListener('input', formatCVV);
+            document.getElementById('phone').addEventListener('input', formatPhoneNumber);
+
+            // Real-time validation
+            setupRealtimeValidation();
+
+            // Search functionality
+            document.getElementById('searchInput').addEventListener('input', handleSearch);
+
+            // Auto-save draft
+            setInterval(autoSaveDraft, 30000); // Every 30 seconds
+        }
+
+        // ============================================
+        // HEADER FUNCTIONALITY
+        // ============================================
+        function handleScroll() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 10) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        }
+
+        // ============================================
+        // FILE UPLOAD
+        // ============================================
+        function handleFileSelect(e) {
+            const file = e.target.files[0];
+            if (file) {
+                validateAndDisplayFile(file);
+            }
+        }
+
+        function handleDragOver(e) {
+            e.preventDefault();
+            e.currentTarget.classList.add('dragover');
+        }
+
+        function handleDragLeave(e) {
+            e.currentTarget.classList.remove('dragover');
+        }
+
+        function handleFileDrop(e) {
+            e.preventDefault();
+            const fileUploadArea = document.getElementById('fileUploadArea');
+            fileUploadArea.classList.remove('dragover');
+            
+            const file = e.dataTransfer.files[0];
+            if (file) {
+                validateAndDisplayFile(file);
+            }
+        }
+
+        function validateAndDisplayFile(file) {
+            const fileUploadArea = document.getElementById('fileUploadArea');
+            const filePreview = document.getElementById('filePreview');
+            const fileName = document.getElementById('fileName');
+            const fileSize = document.getElementById('fileSize');
+            const errorMsg = document.getElementById('fileUploadError');
+
+            // Validate file type
+            const allowedTypes = ['application/pdf', 'image/png', 'image/jpeg', 'image/jpg'];
+            if (!allowedTypes.includes(file.type)) {
+                showToast('Error', 'Please upload a PDF, PNG, or JPG file', '❌');
+                return;
+            }
+
+            // Validate file size (5MB)
+            const maxSize = 5 * 1024 * 1024;
+            if (file.size > maxSize) {
+                showToast('Error', 'File size must be less than 5MB', '❌');
+                return;
+            }
+
+            // Display file
+            formData.file = file;
+            fileName.textContent = file.name;
+            fileSize.textContent = formatFileSize(file.size);
+            filePreview.classList.add('show');
+            fileUploadArea.classList.add('has-file');
+            errorMsg.classList.remove('show');
+
+            showToast('Success', 'File uploaded successfully', '✓');
+        }
+
+        function removeFile() {
+            const fileInput = document.getElementById('fileUpload');
+            const fileUploadArea = document.getElementById('fileUploadArea');
+            const filePreview = document.getElementById('filePreview');
+
+            fileInput.value = '';
+            formData.file = null;
+            filePreview.classList.remove('show');
+            fileUploadArea.classList.remove('has-file');
+        }
+
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
+        }
+
+        // ============================================
+        // INPUT FORMATTING
+        // ============================================
+        function formatCardNumber(e) {
+            let value = e.target.value.replace(/\s/g, '');
+            value = value.replace(/(\d{4})(?=\d)/g, '$1 ');
+            e.target.value = value;
+            validateCardNumber(e.target);
+        }
+
+        function formatExpiryDate(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length >= 2) {
+                value = value.slice(0, 2) + '/' + value.slice(2, 4);
+            }
+            e.target.value = value;
+            validateExpiryDate(e.target);
+        }
+
+        function formatCVV(e) {
+            e.target.value = e.target.value.replace(/\D/g, '');
+            validateCVV(e.target);
+        }
+
+        function formatPhoneNumber(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 0 && !value.startsWith('234')) {
+                value = '234' + value;
+            }
+            if (value.length > 3) {
+                value = '+' + value.slice(0, 3) + ' ' + value.slice(3, 6) + ' ' + value.slice(6, 9) + ' ' + value.slice(9, 13);
+            }
+            e.target.value = value;
+        }
+
+        // ============================================
+        // VALIDATION
+        // ============================================
+        function setupRealtimeValidation() {
+            const inputs = document.querySelectorAll('input[required]');
+            inputs.forEach(input => {
+                if (input.type !== 'file') {
+                    input.addEventListener('blur', () => validateInput(input));
+                    input.addEventListener('input', () => {
+                        if (input.classList.contains('error')) {
+                            validateInput(input);
+                        }
+                    });
+                }
+            });
+        }
+
+        function validateInput(input) {
+            const errorMsg = input.nextElementSibling;
+            const successMsg = errorMsg?.nextElementSibling;
+
+            // Clear previous states
+            input.classList.remove('error', 'success');
+            errorMsg?.classList.remove('show');
+            successMsg?.classList.remove('show');
+
+            if (!input.value.trim()) {
+                if (input.hasAttribute('required')) {
+                    input.classList.add('error');
+                    errorMsg?.classList.add('show');
+                    return false;
+                }
+                return true;
+            }
+
+            // Specific validations
+            if (input.type === 'email' && !isValidEmail(input.value)) {
+                input.classList.add('error');
+                errorMsg?.classList.add('show');
+                return false;
+            }
+
+            if (input.id === 'regNumber' && !isValidRegNumber(input.value)) {
+                input.classList.add('error');
+                errorMsg?.classList.add('show');
+                return false;
+            }
+
+            if (input.id === 'cardNumber' && !isValidCardNumber(input.value)) {
+                input.classList.add('error');
+                errorMsg?.classList.add('show');
+                return false;
+            }
+
+            if (input.id === 'expiryMonth' && !isValidExpiryDate(input.value)) {
+                input.classList.add('error');
+                errorMsg?.classList.add('show');
+                return false;
+            }
+
+            if (input.id === 'cvv' && (input.value.length < 3 || input.value.length > 4)) {
+                input.classList.add('error');
+                errorMsg?.classList.add('show');
+                return false;
+            }
+
+            // Success state
+            input.classList.add('success');
+            successMsg?.classList.add('show');
+            return true;
+        }
+
+        function validateCardNumber(input) {
+            const value = input.value.replace(/\s/g, '');
+            const errorMsg = document.getElementById('cardNumberError');
+            const successMsg = errorMsg.nextElementSibling;
+
+            input.classList.remove('error', 'success');
+            errorMsg.classList.remove('show');
+            successMsg.classList.remove('show');
+
+            if (value.length === 16 && luhnCheck(value)) {
+                input.classList.add('success');
+                successMsg.classList.add('show');
+            } else if (value.length > 0) {
+                input.classList.add('error');
+                errorMsg.classList.add('show');
+            }
+        }
+
+        function validateExpiryDate(input) {
+            const errorMsg = document.getElementById('expiryMonthError');
+            const successMsg = errorMsg.nextElementSibling;
+
+            input.classList.remove('error', 'success');
+            errorMsg.classList.remove('show');
+            successMsg.classList.remove('show');
+
+            if (isValidExpiryDate(input.value)) {
+                input.classList.add('success');
+                successMsg.classList.add('show');
+            } else if (input.value.length >= 5) {
+                input.classList.add('error');
+                errorMsg.classList.add('show');
+            }
+        }
+
+        function validateCVV(input) {
+            const errorMsg = document.getElementById('cvvError');
+            const successMsg = errorMsg.nextElementSibling;
+
+            input.classList.remove('error', 'success');
+            errorMsg.classList.remove('show');
+            successMsg.classList.remove('show');
+
+            if (input.value.length >= 3 && input.value.length <= 4) {
+                input.classList.add('success');
+                successMsg.classList.add('show');
+            } else if (input.value.length > 0) {
+                input.classList.add('error');
+                errorMsg.classList.add('show');
+            }
+        }
+
+        function isValidEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        function isValidRegNumber(regNumber) {
+            return /^CRFFN\/\d{4}\/\d{4}$/.test(regNumber);
+        }
+
+        function isValidCardNumber(cardNumber) {
+            const digits = cardNumber.replace(/\s/g, '');
+            return digits.length === 16 && luhnCheck(digits);
+        }
+
+        function isValidExpiryDate(expiry) {
+            if (!/^\d{2}\/\d{2}$/.test(expiry)) return false;
+            
+            const [month, year] = expiry.split('/').map(Number);
+            if (month < 1 || month > 12) return false;
+
+            const now = new Date();
+            const currentYear = now.getFullYear() % 100;
+            const currentMonth = now.getMonth() + 1;
+
+            if (year < currentYear) return false;
+            if (year === currentYear && month < currentMonth) return false;
+
+            return true;
+        }
+
+        // Luhn algorithm for card validation
+        function luhnCheck(cardNumber) {
+            let sum = 0;
+            let isEven = false;
+
+            for (let i = cardNumber.length - 1; i >= 0; i--) {
+                let digit = parseInt(cardNumber[i]);
+
+                if (isEven) {
+                    digit *= 2;
+                    if (digit > 9) {
+                        digit -= 9;
+                    }
+                }
+
+                sum += digit;
+                isEven = !isEven;
+            }
+
+            return sum % 10 === 0;
+        }
+
+        function validateStep() {
+            const currentSection = document.getElementById(`step${currentStep}`);
+            const inputs = currentSection.querySelectorAll('input[required]');
+            let isValid = true;
+
+            inputs.forEach(input => {
+                if (input.type === 'file') {
+                    const errorMsg = document.getElementById('fileUploadError');
+                    if (!formData.file) {
+                        errorMsg.classList.add('show');
+                        isValid = false;
+                    } else {
+                        errorMsg.classList.remove('show');
+                    }
+                } else {
+                    if (!validateInput(input)) {
+                        isValid = false;
+                    }
+                }
+            });
+
+            if (!isValid) {
+                showToast('Validation Error', 'Please fill in all required fields correctly', '⚠️');
+            }
+
+            return isValid;
+        }
+
+        // ============================================
+        // NAVIGATION
+        // ============================================
+        function nextStep() {
+            if (!validateStep()) {
+                return;
+            }
+
+            // Save data from current step
+            saveStepData();
+
+            // Show loading for payment processing
+            if (currentStep === 2) {
+                showLoading();
+                setTimeout(() => {
+                    hideLoading();
+                    proceedToNextStep();
+                }, 2000);
+                return;
+            }
+
+            proceedToNextStep();
+        }
+
+        function proceedToNextStep() {
+            document.getElementById(`step${currentStep}`).classList.remove('active');
+            currentStep++;
+            document.getElementById(`step${currentStep}`).classList.add('active');
+            
+            // Populate review if moving to step 3
+            if (currentStep === 3) {
+                populateReview();
+            }
+
+            updateProgress();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            saveDraft(); // Auto-save
+        }
+
+        function prevStep() {
+            document.getElementById(`step${currentStep}`).classList.remove('active');
+            currentStep--;
+            document.getElementById(`step${currentStep}`).classList.add('active');
+            updateProgress();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function goToStep(step) {
+            document.getElementById(`step${currentStep}`).classList.remove('active');
+            currentStep = step;
+            document.getElementById(`step${currentStep}`).classList.add('active');
+            updateProgress();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function saveStepData() {
+            if (currentStep === 1) {
+                formData.application = {
+                    agency: document.getElementById('agencyName').value,
+                    regNumber: document.getElementById('regNumber').value,
+                    expiryDate: document.getElementById('expiryDate').value,
+                    contactPerson: document.getElementById('contactPerson').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value
+                };
+            } else if (currentStep === 2) {
+                formData.payment = {
+                    cardName: document.getElementById('cardName').value,
+                    cardNumber: document.getElementById('cardNumber').value,
+                    expiry: document.getElementById('expiryMonth').value,
+                    cvv: document.getElementById('cvv').value
+                };
+            }
+        }
+
+        function populateReview() {
+            document.getElementById('reviewAgency').textContent = formData.application.agency;
+            document.getElementById('reviewReg').textContent = formData.application.regNumber;
+            document.getElementById('reviewExpiry').textContent = new Date(formData.application.expiryDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+            document.getElementById('reviewContact').textContent = formData.application.contactPerson;
+            document.getElementById('reviewEmail').textContent = formData.application.email;
+            document.getElementById('reviewPhone').textContent = formData.application.phone;
+            document.getElementById('reviewDoc').textContent = formData.file ? formData.file.name : 'No file uploaded';
+            
+            document.getElementById('reviewCardName').textContent = formData.payment.cardName;
+            document.getElementById('reviewCardNum').textContent = '**** **** **** ' + formData.payment.cardNumber.slice(-4);
+        }
+
+        // ============================================
+        // PROGRESS BAR
+        // ============================================
+        function updateProgress() {
+            const steps = document.querySelectorAll('.step');
+            const progressFill = document.getElementById('progressFill');
+            const progressBar = progressFill.parentElement;
+            
+            steps.forEach((step, index) => {
+                const stepNum = index + 1;
+                step.classList.remove('active', 'completed');
+                
+                if (stepNum < currentStep) {
+                    step.classList.add('completed');
+                } else if (stepNum === currentStep) {
+                    step.classList.add('active');
+                }
+            });
+
+            const progress = ((currentStep - 1) / 3) * 100;
+            progressFill.style.width = progress + '%';
+            progressBar.setAttribute('aria-valuenow', progress);
+        }
+
+        // ============================================
+        // SUBMISSION
+        // ============================================
+        function submitApplication() {
+            showLoading();
+
+            // Simulate processing
+            setTimeout(() => {
+                hideLoading();
+                document.getElementById(`step${currentStep}`).classList.remove('active');
+                currentStep = 4;
+                document.getElementById('step4').classList.add('active');
+                updateProgress();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                // Show success modal after processing
+                setTimeout(() => {
+                    const refNumber = 'REN-' + new Date().getFullYear() + '-' + Math.floor(Math.random() * 1000).toString().padStart(3, '0');
+                    document.getElementById('referenceNumber').textContent = refNumber;
+                    document.getElementById('successModal').classList.add('show');
+                    clearDraftFromStorage();
+                }, 3000);
+            }, 2000);
+        }
+
+        // ============================================
+        // MODAL
+        // ============================================
+        function closeModal() {
+            document.getElementById('successModal').classList.remove('show');
+            
+            // Reset form
+            resetForm();
+            
+            // Show success toast
+            showToast('Success', 'Application submitted successfully!', '✓');
+        }
+
+        function resetForm() {
+            // Reset to step 1
+            document.getElementById(`step${currentStep}`).classList.remove('active');
+            currentStep = 1;
+            document.getElementById('step1').classList.add('active');
+            updateProgress();
+            
+            // Clear form data
+            formData.application = {};
+            formData.payment = {};
+            formData.file = null;
+            
+            // Reset file upload
+            removeFile();
+            
+            // Clear payment fields
+            document.getElementById('cardName').value = '';
+            document.getElementById('cardNumber').value = '';
+            document.getElementById('expiryMonth').value = '';
+            document.getElementById('cvv').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('phone').value = '';
+            
+            // Remove validation states
+            document.querySelectorAll('input').forEach(input => {
+                input.classList.remove('error', 'success');
+            });
+            document.querySelectorAll('.error-message, .success-message').forEach(msg => {
+                msg.classList.remove('show');
+            });
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ============================================
+        // DRAFT MANAGEMENT
+        // ============================================
+        function saveDraft() {
+            saveStepData();
+            localStorage.setItem('crffn_draft', JSON.stringify({
+                step: currentStep,
+                data: formData,
+                timestamp: new Date().toISOString()
+            }));
+            showToast('Draft Saved', 'Your progress has been saved', '💾');
+        }
+
+        function autoSaveDraft() {
+            if (currentStep < 4) {
+                saveStepData();
+                localStorage.setItem('crffn_draft', JSON.stringify({
+                    step: currentStep,
+                    data: formData,
+                    timestamp: new Date().toISOString()
+                }));
+            }
+        }
+
+        function loadDraftFromStorage() {
+            const draft = localStorage.getItem('crffn_draft');
+            if (draft) {
+                try {
+                    const { step, data, timestamp } = JSON.parse(draft);
+                    
+                    // Check if draft is less than 7 days old
+                    const draftDate = new Date(timestamp);
+                    const now = new Date();
+                    const daysDiff = (now - draftDate) / (1000 * 60 * 60 * 24);
+                    
+                    if (daysDiff < 7) {
+                        // Restore data
+                        formData.application = data.application || {};
+                        formData.payment = data.payment || {};
+                        
+                        if (formData.application.agency) {
+                            document.getElementById('agencyName').value = formData.application.agency;
+                        }
+                        if (formData.application.regNumber) {
+                            document.getElementById('regNumber').value = formData.application.regNumber;
+                        }
+                        if (formData.application.expiryDate) {
+                            document.getElementById('expiryDate').value = formData.application.expiryDate;
+                        }
+                        if (formData.application.contactPerson) {
+                            document.getElementById('contactPerson').value = formData.application.contactPerson;
+                        }
+                        
+                        showToast('Draft Loaded', 'Your previous progress has been restored', 'ℹ️');
+                    }
+                } catch (e) {
+                    console.error('Error loading draft:', e);
+                }
+            }
+        }
+
+        function clearDraftFromStorage() {
+            localStorage.removeItem('crffn_draft');
+        }
+
+        // ============================================
+        // SEARCH
+        // ============================================
+        function handleSearch(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const rows = document.querySelectorAll('#tableBody tr');
+            
+            rows.forEach(row => {
+                const requestId = row.cells[0].textContent.toLowerCase();
+                if (requestId.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        // ============================================
+        // UI UTILITIES
+        // ============================================
+        function showLoading() {
+            document.getElementById('loadingOverlay').classList.add('show');
+        }
+
+        function hideLoading() {
+            document.getElementById('loadingOverlay').classList.remove('show');
+        }
+
+        function showToast(title, message, icon = 'ℹ️') {
+            const toast = document.getElementById('toast');
+            const toastIcon = toast.querySelector('.toast-icon');
+            const toastTitle = document.getElementById('toastTitle');
+            const toastMessage = document.getElementById('toastMessage');
+
+            toastIcon.textContent = icon;
+            toastTitle.textContent = title;
+            toastMessage.textContent = message;
+
+            toast.classList.add('show');
+
+            setTimeout(() => {
+                hideToast();
+            }, 5000);
+        }
+
+        function hideToast() {
+            document.getElementById('toast').classList.remove('show');
+        }
+    </script>
+</body>
+</html>

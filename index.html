@@ -30,7 +30,6 @@
             <div class="logo"></div>
             <h2 class="logo-text">CRFFN</h2>
         </div>
-        <button class="btn-signin">Sign-Up</button>
     </header>
 
     <main>
@@ -142,6 +141,9 @@
         <button type="submit" class="btn-submit">
           <span>Create Account</span>
         </button>
+        <p class="form-link">
+          Log in as an <a href="#" id="goToAdmin">Admin</a>
+        </p>
   
         <p class="form-link">
           Already have an account? <a href="#" id="goToLogin">Sign In</a>
@@ -192,9 +194,60 @@
         </button>
   
         <p class="form-link">
-          Don't have an account? <a href="#" id="goToRegistration">Register</a>
+          Don't have an account? <a href="#" id="goToRegistrationFromLogin">Register</a>
         </p>
       </form>
+
+       <!-- LOGIN FORM (SLIDE 3) -->
+      <!-- ADMIN LOGIN -->
+        <form id="adminForm" class="form">
+          <h1 class="form-title">Admin Login</h1>
+          <p class="form-subtitle">
+            Sign in to manage your freighters
+          </p>
+    
+          <div class="form-group full-width">
+            <label for="loginEmail">Email or Username</label>
+            <input
+              type="text"
+              id="adminEmail"
+              placeholder="Enter your email or username"
+              required
+            />
+          </div>
+    
+          <div class="form-group full-width">
+            <label for="loginPassword">Password</label>
+            <div class="password-wrapper">
+              <input
+                type="password"
+                id="adminPassword"
+                placeholder="Enter your password"
+                required
+              />
+              <button
+                type="button"
+                class="password-toggle"
+                onclick="togglePassword('loginPassword')"
+              >
+                <span class="material-symbols-outlined">visibility_off</span>
+              </button>
+            </div>
+          </div>
+    
+          <a href="./Forgot-Password/for-pass.html" class="form-link-alt">Forgot Password?</a>
+    
+          <button type="submit" class="btn-submit">
+            <span>Login</span>
+          </button>
+    
+          <!-- <p class="form-link">
+            Don't have an account? <a href="#" id="goToRegistration">Register</a>
+          </p> -->
+          <p class="form-link">
+            Not an Admin? <a href="#" id="goToRegistrationFromAdmin">Register</a>
+          </p>
+        </form>
     </div>
   </div>
        
@@ -215,6 +268,9 @@
     </footer>
 <script src="index.js"></script>
 <script src="auth.js"></script>
+<script src="/digital-form-submission/digital-form.js"></script>
+<script src="/auth.js"></script>
+<!-- <script src="loader.js"></script> -->
 </body>
 
 </html>

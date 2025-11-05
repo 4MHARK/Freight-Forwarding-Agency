@@ -172,5 +172,19 @@ document.addEventListener('keydown', (e) => {
         searchBar.focus();
     }
 });
-
+document.addEventListener("DOMContentLoaded", () => {
+    const userData = JSON.parse(localStorage.getItem("sessionUser"));
+    if (!userData) {
+      window.location.href = "../index.html"; // safety redirect
+      return;
+    }
+    
+    document.getElementById("userName").textContent = userData.companyName;
+    document.getElementById("userStatus").textContent = userData.status;
+  
+    // Optional: display success notification
+    if (userData.status === "ACTIVE") {
+      console.log("✅ User is active and dashboard loaded successfully.");
+    }
+  });
 console.log('CRFFN Admin Portal loaded successfully! 🚀');

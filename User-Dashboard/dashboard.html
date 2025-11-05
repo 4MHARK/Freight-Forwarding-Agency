@@ -17,11 +17,11 @@
 </head>
 
 <body>
-      <!-- Loading Overlay -->
-      <div class="loading-overlay">
+    <!-- Loading Overlay -->
+    <div class="loading-overlay">
         <div class="loader"></div>
     </div>
-    
+
     <div class="dashboard-layout">
         <!--- Sidebar --->
         <div class="sidebar">
@@ -29,8 +29,7 @@
                 <div class="logo-section">
                     <div class="logo"></div>
                     <div class="logo-text">
-                        <h1>FreightForward</h1>
-                        <p>Global Logistics</p>
+                        <h1>CRFFN</h1>
                     </div>
                 </div>
 
@@ -50,7 +49,7 @@
                     <div class="nav-item" data-section="License">
                         <span class="material-symbols-outlined">
                             license
-                            </span>
+                        </span>
                         <p>License Renewals</p>
                     </div>
                     <div class="nav-item" data-section="analytics">
@@ -61,7 +60,7 @@
                         <span class="material-symbols-outlined">settings</span>
                         <p>Settings</p>
                     </div>
-                    
+
                 </nav>
             </div>
 
@@ -77,11 +76,11 @@
                     <div class="nav-item" id="logoutBtn">
                         <span class="material-symbols-outlined">logout</span>
                         <p>Logout</p>
-                      </div>
+                    </div>
                 </div>
-                
+
             </div>
-            
+
         </div>
 
         <!-- Main Content -->
@@ -109,7 +108,8 @@
             <section id="dashboard-section" class="section visible">
                 <main class="page-content">
                     <div class="page-header">
-                        <h1>Welcome back, David!</h1>
+                        <h2>Welcome, <span id="userName"></span></h2>
+                        <p>Status: <span id="userStatus"></span></p>
                         <p>Here's a summary of your freight operations for today.</p>
                     </div>
 
@@ -427,40 +427,40 @@
                 </div>
             </section>
 
-<section id="License-section" class="section hidden">
-<main>
-   <div class="page-content">
-    <h1 class="page-header">
-        License Renewal Application
-    </h1>
-   </div>
+            <section id="License-section" class="section hidden">
+                <main>
+                    <div class="page-content">
+                        <h1 class="page-header">
+                            License Renewal Application
+                        </h1>
+                    </div>
 
-       <!-- Progress Stepper -->
-       <div class="progress-container">
-        <div class="progress-stepper">
-            <div class="progress-line">
-                <div class="progress-line-fill" id="progressFill"></div>
-            </div>
-            <div class="step active" data-step="1">
-                <div class="step-circle">1</div>
-                <div class="step-label">Application</div>
-            </div>
-            <div class="step" data-step="2">
-                <div class="step-circle">2</div>
-                <div class="step-label">Payment</div>
-            </div>
-            <div class="step" data-step="3">
-                <div class="step-circle">3</div>
-                <div class="step-label">Review</div>
-            </div>
-            <div class="step" data-step="4">
-                <div class="step-circle">4</div>
-                <div class="step-label">Approval</div>
-            </div>
-        </div>
-    </div>
-</main>
-</section>
+                    <!-- Progress Stepper -->
+                    <div class="progress-container">
+                        <div class="progress-stepper">
+                            <div class="progress-line">
+                                <div class="progress-line-fill" id="progressFill"></div>
+                            </div>
+                            <div class="step active" data-step="1">
+                                <div class="step-circle">1</div>
+                                <div class="step-label">Application</div>
+                            </div>
+                            <div class="step" data-step="2">
+                                <div class="step-circle">2</div>
+                                <div class="step-label">Payment</div>
+                            </div>
+                            <div class="step" data-step="3">
+                                <div class="step-circle">3</div>
+                                <div class="step-label">Review</div>
+                            </div>
+                            <div class="step" data-step="4">
+                                <div class="step-circle">4</div>
+                                <div class="step-label">Approval</div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </section>
 
 
             <!-- Analytics Section -->
@@ -683,7 +683,7 @@
                             <div class="container">
                                 <!-- Page Header -->
                                 <header class="page-header">
-                                   
+
                                     <p class="subheading">Keep pushing boundaries!</p>
                                 </header>
 
@@ -994,6 +994,7 @@
     <script src="dashboard.js"></script>
     <script src="chart.js"></script>
     <script src="../auth.js"></script>
+    <script src="../digital-form-submission/digital-form.js"></script>
     <script src="../Media Query/sidebar.js"></script>
 
 </body>

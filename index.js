@@ -1,104 +1,110 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // --- Element Selection ---
-    const formContainer = document.getElementById("formContainer");
-    const formFlipper = document.querySelector(".form-flipper");
-    const goToRegistration = document.getElementById("goToRegistration");
-    const goToLogin = document.getElementById("goToLogin");
-    const registrationForm = document.getElementById("registrationForm");
-    const loginForm = document.getElementById("loginForm");
-    const allInputs = document.querySelectorAll("input, textarea");
-  
-    // --- Functions ---
-  
-    /**
-     * Toggles the visibility of a password field.
-     * @param {string} inputId The ID of the password input field.
-     */
-    function togglePassword(inputId) {
-      const input = document.getElementById(inputId);
-      if (!input) return;
-      const icon =
-        input.nextElementSibling?.querySelector(".material-symbols-outlined");
-      if (!icon) return;
-  
-      if (input.type === "password") {
-        input.type = "text";
-        icon.textContent = "visibility"; // Show 'eye' icon
-      } else {
-        input.type = "password";
-        icon.textContent = "visibility_off"; // Show 'slashed eye' icon
-      }
+  // --- Element Selection ---
+  const formContainer = document.getElementById("formContainer");
+  const formFlipper = document.querySelector(".form-flipper");
+
+  // Buttons for switching forms
+  const goToLogin = document.getElementById("goToLogin");
+  const goToAdmin = document.getElementById("goToAdmin");
+  const goToRegistrationFromLogin = document.getElementById("goToRegistrationFromLogin");
+  const goToRegistrationFromAdmin = document.getElementById("goToRegistrationFromAdmin");
+
+  // Forms
+  const registrationForm = document.getElementById("registrationForm");
+  const loginForm = document.getElementById("loginForm");
+  const adminForm = document.getElementById("adminForm");
+
+  const allInputs = document.querySelectorAll("input, textarea");
+
+  // --- Functions ---
+  function togglePassword(inputId) {
+    const input = document.getElementById(inputId);
+    if (!input) return;
+
+    const icon =
+      input.nextElementSibling?.querySelector(".material-symbols-outlined");
+    if (!icon) return;
+
+    if (input.type === "password") {
+      input.type = "text";
+      icon.textContent = "visibility";
+    } else {
+      input.type = "password";
+      icon.textContent = "visibility_off";
     }
-  
-    /**
-     * Adjusts the container height to smoothly fit the currently active form.
-     * @param {HTMLElement} activeForm The form element that is currently visible.
-     */
-    function adjustContainerHeight(activeForm) {
-      if (formContainer && activeForm) {
-        formContainer.style.height = `${activeForm.offsetHeight}px`;
-      }
+  }
+
+  function adjustContainerHeight(activeForm) {
+    if (formContainer && activeForm) {
+      formContainer.style.height = `${activeForm.offsetHeight}px`;
     }
-  
-    // --- Initial Setup ---
-  
-    // Set initial height based on the default visible form (registration)
-    // Use a small timeout to ensure all assets are rendered before calculating height
-    setTimeout(() => {
+  }
+
+  // --- Initial Setup ---
+  setTimeout(() => adjustContainerHeight(registrationForm), 150);
+
+  // --- Form Navigation ---
+
+  // Go to Login
+  if (goToLogin) {
+    goToLogin.addEventListener("click", (e) => {
+      e.preventDefault();
+      formFlipper.classList.remove("show-admin");
+      formFlipper.classList.add("show-login");
+      adjustContainerHeight(loginForm);
+    });
+  }
+
+  // Go to Admin
+  if (goToAdmin) {
+    goToAdmin.addEventListener("click", (e) => {
+      e.preventDefault();
+      formFlipper.classList.remove("show-login");
+      formFlipper.classList.add("show-admin");
+      adjustContainerHeight(adminForm);
+    });
+  }
+
+  // Go back to Registration from Login
+  if (goToRegistrationFromLogin) {
+    goToRegistrationFromLogin.addEventListener("click", (e) => {
+      e.preventDefault();
+      formFlipper.classList.remove("show-login", "show-admin");
       adjustContainerHeight(registrationForm);
-    }, 100);
-  
-    // --- Event Listeners ---
-  
-    // Switch to Login Form
-    if (goToLogin) {
-      goToLogin.addEventListener("click", (e) => {
-        e.preventDefault();
-        formFlipper.classList.add("show-login");
-        adjustContainerHeight(loginForm);
-      });
-    }
-  
-    // Switch to Registration Form
-    if (goToRegistration) {
-      goToRegistration.addEventListener("click", (e) => {
-        e.preventDefault();
-        formFlipper.classList.remove("show-login");
-        adjustContainerHeight(registrationForm);
-      });
-    }
-  
-    // Re-adjust height on window resize to ensure responsiveness
-    window.addEventListener("resize", () => {
-      if (formFlipper.classList.contains("show-login")) {
-        adjustContainerHeight(loginForm);
-      } else {
-        adjustContainerHeight(registrationForm);
-      }
     });
-  
-    // Make the togglePassword function globally accessible for the `onclick` attribute
-    window.togglePassword = togglePassword;
-  
-    // --- UX Enhancements ---
-  
-    // Parallax effect for background particles
-    document.addEventListener("mousemove", (e) => {
-      const particles = document.querySelectorAll(".particle");
-      const x = e.clientX / window.innerWidth;
-      const y = e.clientY / window.innerHeight;
-      particles.forEach((p, i) => {
-        const speed = (i + 1) * 15;
-        p.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
-      });
+  }
+
+  // Go back to Registration from Admin
+  if (goToRegistrationFromAdmin) {
+    goToRegistrationFromAdmin.addEventListener("click", (e) => {
+      e.preventDefault();
+      formFlipper.classList.remove("show-login", "show-admin");
+      adjustContainerHeight(registrationForm);
     });
-  
-    // Friendly input focus scale effect
-    allInputs.forEach((input) => {
-      const parent = input.closest(".form-group") || input.closest(".password-wrapper");
-      if (parent) {
-        input.addEventListener("focus", () => parent.classList.add("focused"));
-        input.addEventListener("blur", () => parent.classList.remove("focused"));
-      }
-    });
+  }
+
+  // --- Prevent default form submissions ---
+  [registrationForm, loginForm, adminForm].forEach((form) => {
+    if (form) form.addEventListener("submit", (e) => e.preventDefault());
   });
+
+  // --- Password toggle click handler ---
+  allInputs.forEach((input) => {
+    const icon =
+      input.nextElementSibling?.querySelector(".material-symbols-outlined");
+    if (icon) icon.addEventListener("click", () => togglePassword(input.id));
+  });
+
+  // --- Height adjustment on resize ---
+  window.addEventListener("resize", () => {
+    if (formFlipper.classList.contains("show-login")) {
+      adjustContainerHeight(loginForm);
+    } else if (formFlipper.classList.contains("show-admin")) {
+      adjustContainerHeight(adminForm);
+    } else {
+      adjustContainerHeight(registrationForm);
+    }
+  });
+
+  window.togglePassword = togglePassword;
+});

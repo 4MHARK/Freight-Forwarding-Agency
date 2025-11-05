@@ -31,7 +31,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 13px 80px;
-    background-color: white;
+    background-color: #D6F4E4;
     border-bottom: 1px solid rgba(220, 221, 229, 0.6);
     position: sticky;
     top: 0;
@@ -243,6 +243,7 @@
     font-size: 20px;
     color: var(--text-secondary);
     line-height: 1.8;
+    margin-top:20px;
   }
   
   /* --- FORM SLIDER & CONTAINER STYLES --- */
@@ -265,6 +266,10 @@
   .form-flipper.show-login {
     transform: translateX(-50%);
   }
+   .form-flipper.show-admin {
+    transform: translateX(-100%);
+  }
+
   .form {
     width: 50%;
     flex-shrink: 0;
@@ -380,6 +385,8 @@
     font-weight: 500;
     margin-bottom: 8px;
     color: var(--text-primary);
+    animation: fadeInUp 0.5s ease forwards;
+    line-height: 30px;
   }
   input,
   textarea {
@@ -530,6 +537,8 @@
     font-size: 14px;
     color: var(--text-secondary);
     animation: fadeInUp 0.5s ease 0.6s both;
+    /* display: flex; */
+    /* flex-direction: column; */
   }
   .form-link a {
     color: var(--primary);

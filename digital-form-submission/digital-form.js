@@ -1,9 +1,12 @@
+// =====================================================
+// DIGITAL-FORM.JS — Prefills, handles uploads, and submits application
+// =====================================================
+
 document.addEventListener("DOMContentLoaded", () => {
   // =================================================================
   // ==           SECTION 1: HELPER FUNCTIONS
   // =================================================================
 
-  // --- DATABASE & SESSION HELPERS ---
   const DB_KEY = "users";
   const SESSION_KEY = "sessionUser";
 
@@ -18,22 +21,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // --- NOTIFICATION FUNCTION ---
-  /**
-   * Shows a styled notification on the page.
-   * @param {string} title - The main title of the notification.
-   * @param {string} message - The detailed message.
-   * @param {string} type - The type ('success' or 'error').
-   * @param {number} duration - How long to display in ms.
-   */
-  function showNotification(
-    title,
-    message,
-    type = "success",
-    duration = 5000
-  ) {
+  function showNotification(title, message, type = "success", duration = 4000) {
     const container = document.getElementById("notification-container");
     if (!container) {
-      console.error("Notification container not found!");
+      alert(`${title}: ${message}`);
       return;
     }
 
@@ -41,55 +32,58 @@ document.addEventListener("DOMContentLoaded", () => {
     notification.className = `notification ${type}`;
     notification.innerHTML = `
       <div class="notification-icon">
-        ${
-          type === "success"
-            ? `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>`
-            : `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" /></svg>`
-        }
+        <span class="material-symbols-outlined">
+          ${type === "success" ? "check_circle" : "error"}
+        </span>
       </div>
       <div class="notification-content">
         <p class="notification-title">${title}</p>
         <p class="notification-message">${message}</p>
       </div>
-      <button class="notification-close">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/></svg>
-      </button>
+      <button class="notification-close">&times;</button>
     `;
 
     container.appendChild(notification);
-    const removeNotification = () => {
-      notification.classList.add("exiting");
-      notification.addEventListener("transitionend", () => notification.remove());
-    };
-    let timer;
-    if (duration > 0) timer = setTimeout(removeNotification, duration);
+
+    const removeNotification = () => notification.remove();
     notification
       .querySelector(".notification-close")
-      .addEventListener("click", () => {
-        clearTimeout(timer);
-        removeNotification();
-      });
+      .addEventListener("click", removeNotification);
+    setTimeout(removeNotification, duration);
   }
 
   // =================================================================
-  // ==           SECTION 2: PAGE INITIALIZATION & PROTECTION
+  // ==           SECTION 2: PAGE INITIALIZATION & PREFILL
   // =================================================================
 
   const sessionUser = getSession();
   if (!sessionUser) {
-    // Route Protection: If no one is logged in, redirect them.
-    window.location.href = "login.html";
-    return; // Stop the script from running further
+    // Route Protection
+    window.location.href = "../index.html";
+    return;
   }
 
-  // Set user profile picture (optional but professional touch)
+  // ✅ Prefill company data using IDs with hyphens
+  const prefillMap = [
+    ["company-name", sessionUser.companyName],
+    ["rc-number", sessionUser.rcNumber],
+    ["email", sessionUser.email],
+    ["phone", sessionUser.phone],
+    ["address", sessionUser.address],
+  ];
+  prefillMap.forEach(([id, value]) => {
+    const el = document.getElementById(id);
+    if (el && value) el.value = value;
+  });
+
+  // Optional: profile picture avatar
   const profilePic = document.getElementById("user-profile-picture");
   if (profilePic) {
     profilePic.style.backgroundImage = `url('https://avatar.vercel.sh/${sessionUser.email}.svg')`;
   }
 
   // =================================================================
-  // ==           SECTION 3: DYNAMIC FILE UPLOAD LOGIC
+  // ==           SECTION 3: FILE UPLOAD LOGIC (UNCHANGED)
   // =================================================================
 
   const dropZone = document.getElementById("drop-zone");
@@ -97,32 +91,32 @@ document.addEventListener("DOMContentLoaded", () => {
   const fileListContainer = document.getElementById("file-list-container");
   const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
 
-  // Highlight drop zone on drag over
-  dropZone.addEventListener("dragover", (e) => {
-    e.preventDefault();
-    dropZone.classList.add("is-active");
-  });
-  dropZone.addEventListener("dragleave", () => {
-    dropZone.classList.remove("is-active");
-  });
+  if (dropZone && fileInput && fileListContainer) {
+    dropZone.addEventListener("dragover", (e) => {
+      e.preventDefault();
+      dropZone.classList.add("is-active");
+    });
 
-  // Handle file drop
-  dropZone.addEventListener("drop", (e) => {
-    e.preventDefault();
-    dropZone.classList.remove("is-active");
-    handleFiles(e.dataTransfer.files);
-  });
+    dropZone.addEventListener("dragleave", () =>
+      dropZone.classList.remove("is-active")
+    );
 
-  // Handle file selection from browse button
-  fileInput.addEventListener("change", (e) => handleFiles(e.target.files));
+    dropZone.addEventListener("drop", (e) => {
+      e.preventDefault();
+      dropZone.classList.remove("is-active");
+      handleFiles(e.dataTransfer.files);
+    });
+
+    fileInput.addEventListener("change", (e) => handleFiles(e.target.files));
+  }
 
   function handleFiles(files) {
     for (const file of files) {
       if (file.size > MAX_FILE_SIZE) {
         addFileToList(file, "error", "File is too large (max 5MB).");
       } else {
-        const sizeInMB = (file.size / 1024 / 1024).toFixed(2);
-        addFileToList(file, "success", `${sizeInMB} MB - Upload complete`);
+        const sizeMB = (file.size / 1024 / 1024).toFixed(2);
+        addFileToList(file, "success", `${sizeMB} MB - Upload complete`);
       }
     }
   }
@@ -130,21 +124,22 @@ document.addEventListener("DOMContentLoaded", () => {
   function addFileToList(file, status, message) {
     const fileItem = document.createElement("div");
     fileItem.className = `file-item ${status}`;
-    let icon = status === "success" ? "task_alt" : status === "error" ? "error" : "description";
-    let buttonIcon = status === "error" ? "refresh" : "delete";
-
+    const icon = status === "success" ? "task_alt" : "error";
     fileItem.innerHTML = `
-      <div class="file-icon"><span class="material-symbols-outlined">${icon}</span></div>
+      <div class="file-icon">
+        <span class="material-symbols-outlined">${icon}</span>
+      </div>
       <div class="file-details">
         <p class="file-name">${file.name}</p>
-        <p class="file-status ${status === 'error' ? 'error-message' : ''}">${message}</p>
+        <p class="file-status ${status === "error" ? "error-message" : ""}">
+          ${message}
+        </p>
       </div>
       <button type="button" class="file-action-btn">
-        <span class="material-symbols-outlined">${buttonIcon}</span>
+        <span class="material-symbols-outlined">delete</span>
       </button>
     `;
     fileListContainer.appendChild(fileItem);
-
     fileItem.querySelector(".file-action-btn").addEventListener("click", () => {
       fileItem.remove();
     });
@@ -159,48 +154,47 @@ document.addEventListener("DOMContentLoaded", () => {
     digitalForm.addEventListener("submit", (e) => {
       e.preventDefault();
 
+      // Get users db + current user record
       const users = getUsers();
-      const currentUserEmail = sessionUser.email;
-      const userIndex = users.findIndex((u) => u.email === currentUserEmail);
+      const idx = users.findIndex((u) => u.email === sessionUser.email);
 
-      if (userIndex !== -1) {
-        // --- THIS IS THE CRITICAL STEP ---
-        // 1. Update the user's status to show they've completed this step.
-        users[userIndex].status = "NEEDS_ADMIN_APPROVAL";
-
-        // 2. Add all the detailed form data to the user's object.
-        users[userIndex].companyDetails = {
-          rcNumber: document.getElementById("rc-number").value,
-          incorporationDate: document.getElementById("incorporation-date").value,
-          phone: document.getElementById("phone").value,
-          address: document.getElementById("address").value,
-        };
-
-        // 3. Save the updated information back to our "database".
-        saveUsers(users);
-
-        // 4. Give the user clear feedback and redirect them.
-        showNotification(
-          "Application Submitted!",
-          "You will be redirected to your dashboard.",
-          "success",
-          3000
-        );
-        setTimeout(() => {
-          window.location.href = "../User-Dashboard/dashboard.html";
-        }, 3000);
-      } else {
-        // This is an edge case, but good to handle.
+      if (idx === -1) {
         showNotification(
           "Session Error",
           "Could not find your user session. Please log in again.",
-          "error",
-          4000
+          "error"
         );
-        setTimeout(() => {
-          window.location.href = "login.html";
-        }, 4000);
+        setTimeout(() => (window.location.href = "../index.html"), 2000);
+        return;
       }
+
+      // ✅ Update and sync new company data
+      const updatedUser = {
+        ...users[idx],
+        companyName: document.getElementById("company-name").value.trim(),
+        rcNumber: document.getElementById("rc-number").value.trim(),
+        incorporationDate:
+          document.getElementById("incorporation-date").value.trim() || "",
+        phone: document.getElementById("phone").value.trim(),
+        address: document.getElementById("address").value.trim(),
+        status: "ACTIVE",
+        updatedAt: new Date().toISOString(),
+      };
+
+      users[idx] = updatedUser;
+      saveUsers(users);
+      localStorage.setItem(SESSION_KEY, JSON.stringify(updatedUser));
+
+      showNotification(
+        "Application Submitted!",
+        "Redirecting you to your dashboard...",
+        "success",
+        2500
+      );
+
+      setTimeout(() => {
+        window.location.href = "../User-Dashboard/dashboard.html";
+      }, 2500);
     });
   }
 });

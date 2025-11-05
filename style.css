@@ -5,13 +5,14 @@
   }
   
   :root {
-    --primary: #1736cf;
-    --secondary: #daa520;
-    --bg-light: #f6f6f8;
-    --text-primary: #111218;
-    --text-secondary: #636988;
-    --border-color: #dcdde5;
-  }
+    /* CRFFN Color Scheme */
+    --primary: #00A757;          /* Brand Green */
+    --secondary: #005F38;        /* Darker Green Accent */
+    --bg-light: #F8F9FA;         /* Soft Light Background */
+    --text-primary: #1A1A1A;     /* Main Text / Headings */
+    --text-secondary: #333333;   /* Secondary Text / Subheadings */
+    --border-color: #CCCCCC;     /* Neutral Border / Divider */
+}
   
   body {
     font-family: "Public Sans", sans-serif;

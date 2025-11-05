@@ -12,11 +12,17 @@
     <link rel="stylesheet" href="ananytics.css">
     <!-- <link rel="stylesheet" href="settings.css"> -->
     <link rel="stylesheet" href="shipping.css">
+    <!-- <link rel="stylesheet" href="../Media Query/dashboard.css"> -->
 </head>
 
 <body>
+      <!-- Loading Overlay -->
+      <div class="loading-overlay">
+        <div class="loader"></div>
+    </div>
+    
     <div class="dashboard-layout">
-        <!-- Sidebar -->
+        <!--- Sidebar --->
         <div class="sidebar">
             <div>
                 <div class="logo-section">
@@ -186,7 +192,7 @@
                                         <span class="material-symbols-outlined task-icon"
                                             style="color: #F39C12;">error</span>
                                         <div class="task-content">
-                                            <p>Submit Bill of Lading for #SH12345</p>
+                                            <p>Submit Bill of Landing for #SH12345</p>
                                             <span>Due in 2 days</span>
                                         </div>
                                     </div>
@@ -269,6 +275,7 @@
                                         <th>ACTIONS</th>
                                     </tr>
                                 </thead>
+                                <!-- SHIPMENTS -->
                                 <tbody id="doc-table-body"></tbody>
                             </table>
                         </div>
@@ -284,7 +291,7 @@
                             <button id="btn-submit-review" class="btn-submit-review">Submit for Review</button>
                         </div>
 
-                        <div class="doc-upload-grid">
+                        <di v class="doc-upload-grid">
                             <div class="doc-required-panel">
                                 <h2>Required Documents</h2>
                                 <ul id="required-docs-list"></ul>
@@ -305,7 +312,7 @@
                                     <div id="upload-file-info" class="file-info-box"></div>
                                 </div>
                             </div>
-                        </div>
+                        </di>
                     </div>
 
                     <!-- VIEW 3: View Document (Read-Only) -->
@@ -406,7 +413,7 @@
                     <p>Upload and verify your shipping documents here.</p>
                     <div class="card">
                         <h2>Uploaded Documents</h2>
-                        <p>- Bill of Lading.pdf (Verified)</p>
+                        <p>- Bill of Loading.pdf (Verified)</p>
                         <p>- Invoice.pdf (Pending)</p>
                     </div>
                 </div>
@@ -438,6 +445,12 @@
                             settings
                         </span>
                         <p>Settings</p>
+                    </div>
+                    <div class="analytics-nav-item" data-analytics-section="">
+                        <span class="material-symbols-outlined">
+                            settings
+                        </span>
+                        <p>ship</p>
                     </div>
                 </div>
 
@@ -502,6 +515,14 @@
                                         d="M0 109C18.1538 109 18.1538 21 36.3077 21C54.4615 21 54.4615 41 72.6154 41C90.7692 41 90.7692 93 108.923 93C127.077 93 127.077 33 145.231 33C163.385 33 163.385 101 181.538 101C199.692 101 199.692 61 217.846 61C236 61 236 45 254.154 45C272.308 45 272.308 121 290.462 121C308.615 121 308.615 149 326.769 149C344.923 149 344.923 1 363.077 1C381.231 1 381.231 81 399.385 81C417.538 81 417.538 129 435.692 129C453.846 129 453.846 25 472 25"
                                         stroke="#0df259" stroke-width="3" stroke-linecap="round" fill="none" />
                                 </svg>
+                                <div class="chart-labels">
+                                    <span class="chart-label">Jan</span>
+                                    <span class="chart-label">Feb</span>
+                                    <span class="chart-label">Mar</span>
+                                    <span class="chart-label">Apr</span>
+                                    <span class="chart-label">May</span>
+                                    <span class="chart-label">Jun</span>
+                                </div>
                             </div>
 
                             <!-- Donut Chart -->
@@ -511,7 +532,7 @@
                                 </div>
                                 <div class="donut-container">
                                     <svg class="donut-chart" width="192" height="192" viewBox="0 0 36 36">
-                                        <circle cx="18" cy="18" r="15.9155" fill="none" stroke="var(--hover-bg)"
+                                        <circle cx="18" cy="18" r="15.9155" fill="none" stroke="var(--card-light)"
                                             stroke-width="3.8" />
                                         <circle class="donut-segment" cx="18" cy="18" r="15.9155" fill="none"
                                             stroke="var(--primary)" stroke-width="3.8" stroke-dasharray="40, 100"
@@ -659,6 +680,14 @@
                                             d="M0 109C18.1538 109 18.1538 21 36.3077 21C54.4615 21 54.4615 41 72.6154 41C90.7692 41 90.7692 93 108.923 93C127.077 93 127.077 33 145.231 33C163.385 33 163.385 101 181.538 101C199.692 101 199.692 61 217.846 61C236 61 236 45 254.154 45C272.308 45 272.308 121 290.462 121C308.615 121 308.615 149 326.769 149C344.923 149 344.923 1 363.077 1C381.231 1 381.231 81 399.385 81C417.538 81 417.538 129 435.692 129C453.846 129 453.846 25 472 25"
                                             stroke="#13ec5b" stroke-width="3" stroke-linecap="round" fill="none" />
                                     </svg>
+                                    <div class="chart-labels">
+                                        <span class="chart-label">Jan</span>
+                                        <span class="chart-label">Feb</span>
+                                        <span class="chart-label">Mar</span>
+                                        <span class="chart-label">Apr</span>
+                                        <span class="chart-label">May</span>
+                                        <span class="chart-label">Jun</span>
+                                    </div>
                                 </section>
 
                                 <!-- Stats Grid -->
@@ -922,6 +951,7 @@
     <script src="dashboard.js"></script>
     <script src="chart.js"></script>
     <script src="../auth.js"></script>
+    <script src="../Media Query/sidebar.js"></script>
 
 </body>
 

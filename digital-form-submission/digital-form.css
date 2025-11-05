@@ -1,16 +1,15 @@
 /* --- CSS VARIABLES & BASE STYLES --- */
 :root {
-    --primary: #1736cf;
-    --accent: #d4af37;
-    --background-light: #f6f6f8;
-    --background-dark: #111421;
-    --text-light: #111218;
-    --text-dark-mode: #f6f6f8;
-    /* Renamed to avoid confusion */
-    --text-muted-light: #636988;
-    --text-muted-dark: #a0aec0;
-    --border-light: #dcdde5;
-    --border-dark: #2d3748;
+    --primary: #00A757;
+    --accent: #33C67A; /* Using primary-light for a secondary/accent role */
+    --background-light: #33C67A; /* Using bg-light */
+    --background-dark: #E8F0EC; /* Using bg-dark */
+    --text-light: #1A1F1B; /* Using text-primary */
+    --text-dark-mode: #E8F0EC; /* Using bg-dark as a very light text color */
+    --text-muted-light: #4F5B56; /* Using text-muted */
+    --text-muted-dark: #4F5B56; /* Using text-muted */
+    --border-light: #C5D1C8; /* Using border-color */
+    --border-dark: #153715; /* Using sidebar-bg for a dark border/divider */
 }
 
 * {

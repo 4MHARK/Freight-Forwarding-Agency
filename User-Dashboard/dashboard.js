@@ -44,7 +44,7 @@ const documentsData = [
 
 const requiredDocuments = [
     { id: 1, name: 'Commercial Invoice', status: 'rejected', icon: 'description' },
-    { id: 2, name: 'Bill of Lading', status: 'verified', icon: 'description' },
+    { id: 2, name: 'Bill of Loading', status: 'verified', icon: 'description' },
     { id: 3, name: 'Packing List', status: 'pending', icon: 'description' },
     { id: 4, name: 'Certificate of Origin', status: 'missing', icon: 'description' }
 ];

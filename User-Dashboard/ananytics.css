@@ -1,4 +1,25 @@
 
+
+:root {
+  /* 🌿 CRFFN Balanced Corporate Theme (with soft light base) */
+  --primary: #00A757;          /* CRFFN Green */
+  --primary-light: #33C67A;    /* Softer green for hover and accents */
+--text-muted:#153715;
+  --bg-light: #33C67A;         /* Gentle light grey-green (not white) */
+  --bg-dark: #E8F0EC;          /* For dark mode sections if needed */
+  --card-bg: #F4F7F5;          /* Light neutral cards with green tint */
+  --sidebar-bg: #153715;       /* Deep muted grey-green sidebar */
+  --border-color: #C5D1C8;     /* Neutral divider that blends smoothly */
+
+  --hover-bg: #00C263;         /* Lively green hover */
+  --text-primary: #1A1F1B;     /* Deep charcoal text */
+  --text-muted: #4F5B56;       /* Calm muted grey text */
+
+  --success: #00A757;          /* Brand green for success */
+  --warning: #E6B800;          /* Deep gold, not too bright */
+  --danger: #D64545;           /* Controlled red tone */
+}
+
 /* Analytics Top Navigation */
 .analytics-top-nav {
     display: none;
@@ -97,8 +118,8 @@
   }
 
   .chart-card {
-    background: rgba(26, 29, 33, 0.3);
-    border: 1px solid var(--border-green);
+    /* background: rgba(26, 29, 33, 0.3); */
+    border: 1px solid var(--sidebar-bg);
     border-radius: 12px;
     padding: 24px;
     animation: fadeIn 0.8s ease 0.8s both;
@@ -144,6 +165,7 @@
   .chart-svg {
     width: 100%;
     height: 250px;
+    
   }
 
   .chart-path {
@@ -309,7 +331,7 @@
       .activity-icon {
         width: 40px;
         height: 40px;
-        background: var(--hover-bg);
+        background: white;
         border-radius: 50%;
         display: flex;
         align-items: center;

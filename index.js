@@ -80,25 +80,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // Make the togglePassword function globally accessible for the `onclick` attribute
     window.togglePassword = togglePassword;
   
-    // --- Form Submission / Validation ---
-    if (registrationForm) {
-      registrationForm.addEventListener("submit", function (e) {
-        e.preventDefault();
-        // Your existing validation and submission logic here...
-        console.log("Registration form submitted!");
-        alert("Registration form submitted!");
-      });
-    }
-  
-    if (loginForm) {
-      loginForm.addEventListener("submit", function (e) {
-        e.preventDefault();
-        // Add login validation and submission logic here...
-        console.log("Login form submitted!");
-        alert("Login form submitted!");
-      });
-    }
-  
     // --- UX Enhancements ---
   
     // Parallax effect for background particles

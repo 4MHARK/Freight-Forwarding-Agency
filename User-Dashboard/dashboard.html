@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="ananytics.css">
     <!-- <link rel="stylesheet" href="settings.css"> -->
     <link rel="stylesheet" href="shipping.css">
+    <link rel="stylesheet" href="license-renew.css">
     <!-- <link rel="stylesheet" href="../Media Query/dashboard.css"> -->
 </head>
 
@@ -46,6 +47,12 @@
                         <span class="material-symbols-outlined">folder_open</span>
                         <p>Documents</p>
                     </div>
+                    <div class="nav-item" data-section="License">
+                        <span class="material-symbols-outlined">
+                            license
+                            </span>
+                        <p>License Renewals</p>
+                    </div>
                     <div class="nav-item" data-section="analytics">
                         <span class="material-symbols-outlined">analytics</span>
                         <p>Analytics</p>
@@ -54,6 +61,7 @@
                         <span class="material-symbols-outlined">settings</span>
                         <p>Settings</p>
                     </div>
+                    
                 </nav>
             </div>
 
@@ -419,7 +427,42 @@
                 </div>
             </section>
 
-            <!-- Analytics Section -->
+<section id="License-section" class="section hidden">
+<main>
+   <div class="page-content">
+    <h1 class="page-header">
+        License Renewal Application
+    </h1>
+   </div>
+
+       <!-- Progress Stepper -->
+       <div class="progress-container">
+        <div class="progress-stepper">
+            <div class="progress-line">
+                <div class="progress-line-fill" id="progressFill"></div>
+            </div>
+            <div class="step active" data-step="1">
+                <div class="step-circle">1</div>
+                <div class="step-label">Application</div>
+            </div>
+            <div class="step" data-step="2">
+                <div class="step-circle">2</div>
+                <div class="step-label">Payment</div>
+            </div>
+            <div class="step" data-step="3">
+                <div class="step-circle">3</div>
+                <div class="step-label">Review</div>
+            </div>
+            <div class="step" data-step="4">
+                <div class="step-circle">4</div>
+                <div class="step-label">Approval</div>
+            </div>
+        </div>
+    </div>
+</main>
+</section>
+
+
             <!-- Analytics Section -->
             <section id="analytics-section" class="section hidden">
                 <!-- Analytics Top Navigation Bar -->
@@ -640,7 +683,7 @@
                             <div class="container">
                                 <!-- Page Header -->
                                 <header class="page-header">
-                                    <h1 class="greeting">Good Morning, Alex!</h1>
+                                   
                                     <p class="subheading">Keep pushing boundaries!</p>
                                 </header>
 
@@ -936,7 +979,7 @@
             </section>
 
             <!-- Settings Section -->
-            <!-- <section id="settings-section" class="section hidden">
+            <section id="settings-section" class="section hidden">
                 <div class="page-content">
                     <h1>Settings</h1>
                     <p>Manage your preferences and account details.</p>
@@ -945,7 +988,7 @@
                         <button class="btn-upload-new">Change Password</button>
                     </div>
                 </div>
-            </section> -->
+            </section>
         </div>
     </div>
     <script src="dashboard.js"></script>

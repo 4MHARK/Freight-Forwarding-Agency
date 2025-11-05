@@ -116,13 +116,7 @@
     animation: fadeIn 1s ease 1.5s forwards;
 }
 
-/* Stats Grid */
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 32px;
-    margin-bottom: 32px;
-}
+
 
 /* Progress Circle */
 .progress-card {

@@ -1,19 +1,19 @@
 /* --- CSS VARIABLES & BASE STYLES --- */
 :root {
-    --primary: #001f3f;
-    --background-light: #f8f9fa;
-    --background-dark: #111421;
-    --text-dark: #333333;
-    --text-light: #e5e7eb;
-    --gold: #d4af37;
-    --error: #dc3545;
-    --gray-300: #d1d5db;
-    --gray-400: #9ca3af;
-    --gray-500: #6b7280;
-    --slate-600: #475569;
-    --slate-700: #334155;
-    --slate-800: #1e293b;
-  }
+  --primary: #00A757;          /* Mapped to new --primary */
+  --background-light: #F8F9FA; /* Mapped to new --bg-light */
+  --background-dark: #005F38;  /* Mapped to new --secondary (a dark color for background-dark) */
+  --text-dark: #1A1A1A;        /* Mapped to new --text-primary (darkest text) */
+  --text-light: #F8F9FA;       /* Mapped to new --bg-light (a very light color for light text) */
+  --gold: #00A757;             /* Using new --primary for a key accent color */
+  --error: #1A1A1A;            /* Using new --text-primary (no dedicated error color, use a dark neutral) */
+  --gray-300: #CCCCCC;         /* Mapped to new --border-color */
+  --gray-400: #333333;         /* Mapped to new --text-secondary */
+  --gray-500: #333333;         /* Mapped to new --text-secondary */
+  --slate-600: #005F38;        /* Mapped to new --secondary */
+  --slate-700: #005F38;        /* Mapped to new --secondary */
+  --slate-800: #005F38;        /* Mapped to new --secondary */
+}
   
   * {
     margin: 0;
@@ -46,7 +46,7 @@
     color: var(--gray-400);
   }
   html.dark .form-label {
-    color: var(--text-light);
+    color: var(--primary);
   }
   html.dark .form-input {
     background-color: var(--slate-700);
@@ -89,9 +89,12 @@
     gap: 0.75rem;
   }
   .logo {
-    width: 2.5rem;
-    height: 2.5rem;
-  }
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: url(https://crffn.gov.ng/wp-content/uploads/2024/05/1578995471crffn-logo.png)  center/cover;
+    cursor: pointer;
+}
   .logo-title {
     color: var(--primary);
     font-size: 1.5rem;
@@ -176,6 +179,7 @@
     font-size: 0.875rem;
     font-weight: 500;
     padding-bottom: 0.5rem;
+    color: var(--primary);
   }
   .input-wrapper {
     position: relative;
@@ -240,9 +244,9 @@
     color: white;
   }
   .btn-primary:hover {
-    background-color: #003366; /* A slightly lighter shade of primary */
+    background-color: var(--primary); /* A slightly lighter shade of primary */
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 31, 63, 0.2);
+    box-shadow: 0 4px 12px rgba(8, 190, 78, 0.742);
   }
   
   /* --- FOOTER --- */

@@ -61,7 +61,9 @@
   .logo {
     width: 40px;
     height: 40px;
-  }
+    border-radius: 50%;
+    background: url(https://crffn.gov.ng/wp-content/uploads/2024/05/1578995471crffn-logo.png)  center/cover;
+}
   .logo-text {
     font-size: 25px;
     font-weight: 500;

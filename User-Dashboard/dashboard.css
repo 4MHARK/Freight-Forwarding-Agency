@@ -846,7 +846,7 @@ td:first-child {
 }
 
 .doc-table thead {
-    background: var(--bg-light);
+    background: var(--sidebar-bg);
 }
 
 .doc-table th {
@@ -899,7 +899,7 @@ td:first-child {
 
 .status-rejected {
     background: rgba(239, 68, 68, 0.15);
-    color: #ef4444;
+    color: red;
 }
 
 .status-pending {
@@ -908,8 +908,8 @@ td:first-child {
 }
 
 .status-review {
-    background: rgba(234, 179, 8, 0.15);
-    color: #eab308;
+    background: rgba(66, 50, 2, 0.747);
+    color: #ffbf00;
 }
 
 .status-missing {
@@ -935,8 +935,15 @@ td:first-child {
 }
 
 .doc-action-btn.btn-replace {
-    color: var(--danger);
-    border-color: 1px solid var(--danger);
+    padding: 6px 16px;
+    background: transparent;
+    color:var(--danger);
+    border: 1px solid var(--danger);
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .doc-action-btn.btn-replace:hover {

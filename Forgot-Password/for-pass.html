@@ -1,103 +1,73 @@
 <!DOCTYPE html>
 <html class="light" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>CRFFN - Reset Password</title>
-    <!-- Google Fonts -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700;900&amp;display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
-      rel="stylesheet"
-    />
-    <!-- Custom Stylesheet -->
-    <link rel="stylesheet" href="for-pass.css" />
-  </head>
-  <body>
-    <div class="page-wrapper">
-      <header class="page-header" data-animate>
-        <div class="logo-container">
-          <div class="logo">
-            <svg
-              fill="none"
-              viewBox="0 0 48 48"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g clip-path="url(#clip0_6_543)">
-                <path
-                  class="crffn-logo-path-accent"
-                  fill="currentColor"
-                ></path>
-                <path
-                  class="crffn-logo-path"
-                  clip-rule="evenodd"
-                  fill="currentColor"
-                  fill-rule="evenodd"
-                ></path>
-              </g>
-              <defs>
-                <clipPath id="clip0_6_543">
-                  <rect fill="white" height="48" width="48"></rect>
-                </clipPath>
-              </defs>
-            </svg>
-          </div>
-          <h1 class="logo-title">FFA</h1>
-        </div>
-      </header>
 
-      <main class="page-main">
-        <div class="content-container">
-          <div class="card" data-animate>
-            <div class="card-header">
-              <h2 class="card-title">Forgot Password?</h2>
-              <p class="card-subtitle">
-                Enter your email address below, and we'll send you a link to
-                reset your password.
-              </p>
-            </div>
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>CRFFN - Reset Password</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700;900&amp;display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="for-pass.css" />
+</head>
 
-            <div class="form-wrapper">
-              <label class="form-group">
-                <p class="form-label">Email Address</p>
-                <div class="input-wrapper">
-                  <input
-                    class="form-input"
-                    placeholder="Enter your email address"
-                    type="email"
-                  />
-                  <div class="input-icon-wrapper">
-                    <span class="material-symbols-outlined">mail</span>
-                  </div>
-                </div>
-              </label>
+<body>
+  <div class="page-wrapper">
+    <header class="page-header" data-animate>
+      <div class="logo-container">
+        <div class="logo"></div>
+        <h1 class="logo-title">CRFFN</h1>
+      </div>
+    </header>
 
-              <button class="btn btn-primary">
-                <span>Send Reset Link</span>
-              </button>
-            </div>
-
-            <div class="card-footer-link">
-              <a href="#">Back to Login</a>
-            </div>
-            <p class="card-footer-note">
-              If an account with this email exists, you will receive a reset
-              link shortly.
+    <main class="page-main">
+      <div class="content-container">
+        <div class="card" data-animate>
+          <div class="card-header">
+            <h2 class="card-title">Forgot Password?</h2>
+            <p class="card-subtitle">
+              Enter your email address below, and we'll send you a link to
+              reset your password.
             </p>
           </div>
-        </div>
-      </main>
 
-      <footer class="page-footer" data-animate>
-        <p>
-          © 2025 FFA. All rights reserved. | <a href="#">Help</a>
-        </p>
-      </footer>
-    </div>
-    <!-- Custom Script -->
-    <script src="for-pass.js"></script>
-  </body>
+          <div class="form-wrapper">
+            <label class="form-group">
+              <p class="form-label">Email Address</p>
+              <div class="input-wrapper">
+                <input class="form-input" placeholder="Enter your email address" type="email" />
+                <div class="input-icon-wrapper">
+                  <span class="material-symbols-outlined">mail</span>
+                </div>
+              </div>
+            </label>
+
+            <button class="btn btn-primary">
+              <span>Send Reset Link</span>
+            </button>
+          </div>
+
+          <div class="card-footer-link">
+            <a href="../index.html">Back to Login</a>
+          </div>
+          <p class="card-footer-note">
+            If an account with this email exists, you will receive a reset
+            link shortly.
+          </p>
+        </div>
+      </div>
+    </main>
+
+    <footer class="page-footer" data-animate>
+      <p>
+        © 2025 FFA. All rights reserved. | <a href="#">Help</a>
+      </p>
+    </footer>
+  </div>
+  <!-- Custom Script -->
+  <script src="for-pass.js"></script>
+</body>
+
 </html>

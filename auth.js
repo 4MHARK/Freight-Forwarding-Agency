@@ -87,6 +87,8 @@ document.addEventListener("DOMContentLoaded", () => {
       if (users.some((u) => u.email === email))
         return showNotification("Signup Error", "An account with this email already exists.", "error");
 
+      if (users.some((u) => u.rcNumber === rcNumber))
+        return showNotification("Signup Error", "A company with this RC Number already exists.", "error");
       const newUser = {
         companyName,
         email,

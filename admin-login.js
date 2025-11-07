@@ -1,16 +1,17 @@
 document.addEventListener("DOMContentLoaded", () => {
   const adminForm = document.getElementById("adminForm");
-  const accounts = [{ email: "Gloria", password: "gloria123" }];
+  if (!adminForm) return;
 
   adminForm.addEventListener("submit", (e) => {
     e.preventDefault();
+
     const email = document.getElementById("adminEmail").value.trim();
     const password = document.getElementById("adminPassword").value.trim();
 
-    const validAdmin = accounts.find(
-      (a) =>
-        a.email.toLowerCase() === email.toLowerCase() &&
-        a.password === password
+    const adminAccounts = [{ email: "Gloria", password: "gloria123" }];
+
+    const validAdmin = adminAccounts.find(
+      (admin) => admin.email === email && admin.password === password
     );
 
     if (validAdmin) {
@@ -18,10 +19,26 @@ document.addEventListener("DOMContentLoaded", () => {
         "adminSession",
         JSON.stringify({ email, role: "admin", loggedIn: true })
       );
-      alert("Login success! Redirecting...");
-      window.location.href = "../Admin/dashboard.html";
+
+      // ✅ replace alert with showNotification
+      showNotification(
+        "Login Successful",
+        "Welcome back, Gloria! Redirecting to Admin Dashboard...",
+        "success",
+        2000
+      );
+
+      setTimeout(() => {
+        window.location.href = "Admin/dashboard.html";
+      }, 2000);
     } else {
-      alert("Invalid email or password. Please try again.");
+      // ❌ invalid credentials → notification instead of alert
+      showNotification(
+        "Login Failed",
+        "Invalid email or password. Please try again.",
+        "error",
+        4000
+      );
     }
   });
 });

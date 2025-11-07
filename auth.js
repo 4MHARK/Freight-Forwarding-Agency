@@ -64,9 +64,18 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem(DB_KEY, JSON.stringify(users));
   }
   function setSession(user) {
-    const { companyName, email } = user;
-    localStorage.setItem(SESSION_KEY, JSON.stringify({ companyName, email }));
-  }
+  const sessionData = {
+    companyName: user.companyName || "",
+    email: user.email || "",
+    rcNumber: user.rcNumber || "",
+    phone: user.phone || "",
+    address: user.address || "",
+    status: user.status || "",
+    createdAt: user.createdAt || "",
+  };
+  localStorage.setItem(SESSION_KEY, JSON.stringify(sessionData));
+}
+
 
   // =================================================================
   // ==           SIGNUP FORM LOGIC (Runs on Login/Registration Page)

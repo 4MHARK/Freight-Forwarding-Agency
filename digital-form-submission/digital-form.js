@@ -52,35 +52,54 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(removeNotification, duration);
   }
 
-  // =================================================================
-  // ==           SECTION 2: PAGE INITIALIZATION & PREFILL
-  // =================================================================
+ // =================================================================
+// ==           SECTION 2: PAGE INITIALIZATION & PREFILL
+// =================================================================
 
-  const sessionUser = getSession();
-  if (!sessionUser) {
-    // Route Protection
-    window.location.href = "../index.html";
-    return;
+const sessionUser = getSession();
+
+// If there's no session user, safely handle it
+if (!sessionUser) {
+
+  // Only redirect if not already on the login page
+  const currentPage = window.location.pathname;
+  const isLoginPage = currentPage.includes("index.html");
+
+  if (!isLoginPage) {
+    showNotification(
+      "Session Expired",
+      "Please log in again to continue.",
+      "error",
+      3000
+    );
+
+    setTimeout(() => {
+      window.location.href = "../index.html";
+    }, 2500);
   }
 
-  // ✅ Prefill company data using IDs with hyphens
-  const prefillMap = [
-    ["company-name", sessionUser.companyName],
-    ["rc-number", sessionUser.rcNumber],
-    ["email", sessionUser.email],
-    ["phone", sessionUser.phone],
-    ["address", sessionUser.address],
-  ];
-  prefillMap.forEach(([id, value]) => {
-    const el = document.getElementById(id);
-    if (el && value) el.value = value;
-  });
+  // Stop further execution (avoids null errors)
+  return;
+}
 
-  // Optional: profile picture avatar
-  const profilePic = document.getElementById("user-profile-picture");
-  if (profilePic) {
-    profilePic.style.backgroundImage = `url('https://avatar.vercel.sh/${sessionUser.email}.svg')`;
-  }
+// ✅ Prefill company data using IDs with hyphens
+const prefillMap = [
+  ["company-name", sessionUser.companyName],
+  ["rc-number", sessionUser.rcNumber],
+  ["email", sessionUser.email],
+  ["phone", sessionUser.phone],
+  ["address", sessionUser.address],
+];
+
+prefillMap.forEach(([id, value]) => {
+  const el = document.getElementById(id);
+  if (el && value) el.value = value;
+});
+
+const profilePic = document.getElementById("user-profile-picture");
+if (profilePic) {
+  profilePic.style.backgroundImage = `url('https://avatar.vercel.sh/${sessionUser.email}.svg')`;
+}
 
   // =================================================================
   // ==           SECTION 3: FILE UPLOAD LOGIC (UNCHANGED)

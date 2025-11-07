@@ -1,3 +1,24 @@
+document.addEventListener("DOMContentLoaded", () => {
+  const sessionUser = JSON.parse(localStorage.getItem("sessionUser"));
+
+  if (!sessionUser) {
+    window.location.href = "../index.html";
+    return;
+  }
+
+  const companyNameEl = document.getElementById("companyName");
+  const statusEl = document.getElementById("status");
+
+  if (companyNameEl) companyNameEl.textContent = sessionUser.companyName || "Unknown";
+  if (statusEl) statusEl.textContent = sessionUser.status || "Pending";
+
+  const profilePic = document.getElementById("user-profile-picture");
+  if (profilePic && sessionUser.email) {
+    profilePic.style.backgroundImage = `url('https://avatar.vercel.sh/${sessionUser.email}.svg')`;
+  }
+});
+
+
 // Sample document data
 const documentsData = [
     {

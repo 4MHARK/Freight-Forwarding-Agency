@@ -60,7 +60,10 @@
                         <span class="material-symbols-outlined">settings</span>
                         <p>Settings</p>
                     </div>
-
+                    <div class="nav-item" data-section="help">
+                        <span class="material-symbols-outlined">help</span>
+                        <p>Help</p>
+                    </div>
                 </nav>
             </div>
 
@@ -69,10 +72,7 @@
                     <span>New Shipment</span>
                 </button>
                 <div style="display: flex; flex-direction: column; gap: 4px;">
-                    <div class="nav-item">
-                        <span class="material-symbols-outlined">help</span>
-                        <p>Help</p>
-                    </div>
+                    
                     <div class="nav-item" id="logoutBtn">
                         <span class="material-symbols-outlined">logout</span>
                         <p>Logout</p>
@@ -108,8 +108,8 @@
             <section id="dashboard-section" class="section visible">
                 <main class="page-content">
                     <div class="page-header">
-                        <h2>Welcome, <span id="userName"></span></h2>
-                        <p>Status: <span id="userStatus"></span></p>
+                        <h2>Welcome, <span id="companyName"></span></h2>
+                        <p>Status: <span id="status"></span></p>
                         <p>Here's a summary of your freight operations for today.</p>
                     </div>
 
@@ -161,28 +161,48 @@
                                             <td>#SH12345</td>
                                             <td>Shanghai, CN</td>
                                             <td>Los Angeles, US</td>
-                                            <td><span class="status-badge status-transit">In Transit</span></td>
+                                            <td>
+                                                <span class="status-badge status-approved">
+                                                
+                                                    Approved
+                                                </span>
+                                            </td>
                                             <td>2023-10-25</td>
                                         </tr>
                                         <tr>
                                             <td>#SH67890</td>
                                             <td>Rotterdam, NL</td>
                                             <td>New York, US</td>
-                                            <td><span class="status-badge status-delivered">Delivered</span></td>
+                                            <td>
+                                                <span class="status-badge status-transit">
+                                                
+                                                    In Transit
+                                                </span>
+                                            </td>
                                             <td>2023-10-18</td>
                                         </tr>
                                         <tr>
                                             <td>#SH54321</td>
                                             <td>Singapore, SG</td>
                                             <td>Felixstowe, UK</td>
-                                            <td><span class="status-badge status-hold">Customs Hold</span></td>
+                                            <td>
+                                                <span class="status-badge status-rejected">
+                                                    <span class="status-icon"></span>
+                                                    Rejected
+                                                </span>
+                                            </td>
                                             <td>2023-10-28</td>
                                         </tr>
                                         <tr>
                                             <td>#SH98765</td>
                                             <td>Hamburg, DE</td>
                                             <td>Dubai, AE</td>
-                                            <td><span class="status-badge status-delayed">Delayed</span></td>
+                                            <td>
+                                                <span class="status-badge status-hold">
+                                                    <span class="status-icon">
+                                                    Delayed
+                                                </span>
+                                            </td>
                                             <td>2023-10-22</td>
                                         </tr>
                                     </tbody>
@@ -1548,6 +1568,57 @@
                     </div>
                 </div>
             </section>
+
+            <!-- Customer Care Section -->
+            <section id="help-section" class="section hidden">
+            <div class="page-content">
+                <h1>Customer Care</h1>
+                <p>Need help? Submit your complaint or request below and our support team will get back to you.</p>
+
+                <div class="card">
+                <form id="complaintForm">
+                    <div class="form-group">
+                    <label for="subject" class="form-label">Subject <span class="required">*</span></label>
+                    <input type="text" id="subject" name="subject" class="form-input" placeholder="Enter a brief subject" required />
+                    </div>
+
+                    <div class="form-group">
+                    <label for="category" class="form-label">Category <span class="required">*</span></label>
+                    <select id="category" name="category" class="form-input" required>
+                        <option value="">Select category</option>
+                        <option value="login">Login Issue</option>
+                        <option value="application">Application Problem</option>
+                        <option value="payment">Payment Related</option>
+                        <option value="profile">Profile Update</option>
+                        <option value="others">Others</option>
+                    </select>
+                    </div>
+
+                    <div class="form-group">
+                    <label for="message" class="form-label">Message <span class="required">*</span></label>
+                    <textarea id="message" name="message" class="form-textarea" placeholder="Describe your issue in detail..." rows="5" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                    <button type="submit" class="btn btn-primary">
+                        <span>Submit Complaint</span>
+                        <span class="material-symbols-outlined">send</span>
+                    </button>
+                    </div>
+                </form>
+                </div>
+
+                <div id="complaint-history" class="card mt-4">
+                <h3>Previous Complaints</h3>
+                <div id="complaints-list">
+                    <p>No complaints filed yet.</p>
+                </div>
+                </div>
+            </div>
+            </section>
+
+
+
         </div>
     </div>
     <script src="dashboard.js"></script>

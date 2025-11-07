@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreightForward - Support Center</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #101622;
+            color: white;
+            min-height: 100vh;
+        }
+        
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(16, 22, 34, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.75rem 2.5rem;
+            animation: slideDown 0.5s ease;
+        }
+        
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1536px;
+            margin: 0 auto;
+        }
+        
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .logo {
+            width: 24px;
+            height: 24px;
+            color: #0d59f2;
+        }
+        
+        .brand-name {
+            font-size: 1.125rem;
+            font-weight: 700;
+        }
+        
+        nav {
+            display: flex;
+            gap: 2.25rem;
+        }
+        
+        nav a {
+            color: #9ca3af;
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover, nav a.active {
+            color: #0d59f2;
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .icon-btn {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            font-size: 20px;
+            transition: all 0.3s;
+        }
+        
+        .icon-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.05);
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #0d59f2, #4a90ff);
+        }
+        
+        /* Main Content */
+        main {
+            max-width: 1536px;
+            margin: 0 auto;
+            padding: 2.5rem;
+            animation: fadeIn 0.6s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .page-title {
+            font-size: 2.25rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+        }
+        
+        .page-subtitle {
+            color: #9ca3af;
+            font-size: 1rem;
+        }
+        
+        .create-ticket-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: #0d59f2;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .create-ticket-btn:hover {
+            background: #0b4cd6;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(13, 89, 242, 0.4);
+        }
+        
+        /* Search */
+        .search-container {
+            margin-bottom: 2rem;
+        }
+        
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            height: 56px;
+            transition: all 0.3s;
+        }
+        
+        .search-box:focus-within {
+            box-shadow: 0 0 0 3px rgba(13, 89, 242, 0.2);
+        }
+        
+        .search-icon {
+            padding: 0 1rem;
+            color: #9ca3af;
+            font-size: 24px;
+        }
+        
+        .search-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: white;
+            font-size: 1rem;
+            padding-right: 1rem;
+        }
+        
+        .search-input::placeholder {
+            color: #6b7280;
+        }
+        
+        /* Quick Access Cards */
+        .quick-access {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .access-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            animation: slideUp 0.5s ease;
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .access-card:nth-child(2) { animation-delay: 0.1s; }
+        .access-card:nth-child(3) { animation-delay: 0.2s; }
+        .access-card:nth-child(4) { animation-delay: 0.3s; }
+        
+        .access-card:hover {
+            transform: translateY(-5px);
+            border-color: #0d59f2;
+            box-shadow: 0 10px 30px rgba(13, 89, 242, 0.2);
+        }
+        
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(13, 89, 242, 0.1);
+            color: #0d59f2;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 1rem;
+        }
+        
+        .card-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .card-desc {
+            color: #9ca3af;
+            font-size: 0.875rem;
+        }
+        
+        .online-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #10b981;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        /* Ticket Filters */
+        .tickets-section {
+            margin-bottom: 2rem;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .section-title {
+            font-size: 1.375rem;
+            font-weight: 700;
+        }
+        
+        .filter-tabs {
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.25rem;
+            border-radius: 8px;
+        }
+        
+        .filter-tab {
+            padding: 0.5rem 1rem;
+            background: transparent;
+            border: none;
+            color: #9ca3af;
+            font-weight: 600;
+            font-size: 0.875rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .filter-tab:hover {
+            color: white;
+        }
+        
+        .filter-tab.active {
+            background: #0d59f2;
+            color: white;
+        }
+        
+        /* Tickets Table */
+        .tickets-table {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        thead {
+            background: rgba(255, 255, 255, 0.02);
+        }
+        
+        th {
+            text-align: left;
+            padding: 1rem 1.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #9ca3af;
+        }
+        
+        tbody tr {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        tbody tr:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        td {
+            padding: 1rem 1.5rem;
+            font-size: 0.875rem;
+            color: #d1d5db;
+        }
+        
+        .ticket-id {
+            font-family: 'Courier New', monospace;
+            font-size: 0.75rem;
+            color: #9ca3af;
+        }
+        
+        .ticket-subject {
+            color: white;
+            font-weight: 600;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 0.375rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .status-open { background: rgba(59, 130, 246, 0.2); color: #60a5fa; }
+        .status-progress { 
+            background: rgba(249, 115, 22, 0.2); 
+            color: #fb923c;
+            animation: glow 2s infinite;
+        }
+        .status-closed { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+        
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 5px rgba(249, 115, 22, 0.5); }
+            50% { box-shadow: 0 0 15px rgba(249, 115, 22, 0.8); }
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .contact-item h3 {
+            font-size: 1.125rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .contact-item p {
+            color: #9ca3af;
+            font-size: 0.875rem;
+        }
+        
+        .contact-link {
+            color: #0d59f2;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .contact-link:hover {
+            text-decoration: underline;
+        }
+        
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .modal-overlay.show {
+            display: flex;
+        }
+        
+        .modal {
+            background: #1a233a;
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: slideUp 0.4s ease;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .close-btn {
+            background: transparent;
+            border: none;
+            color: #9ca3af;
+            font-size: 28px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .close-btn:hover {
+            color: white;
+            transform: rotate(90deg);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: white;
+            font-size: 0.875rem;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #0d59f2;
+            box-shadow: 0 0 0 3px rgba(13, 89, 242, 0.2);
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .file-upload {
+            border: 2px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .file-upload:hover {
+            border-color: #0d59f2;
+            background: rgba(13, 89, 242, 0.05);
+        }
+        
+        .file-upload input {
+            display: none;
+        }
+        
+        .file-name {
+            margin-top: 0.5rem;
+            color: #0d59f2;
+            font-size: 0.875rem;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: #0d59f2;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background: #0b4cd6;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(13, 89, 242, 0.4);
+        }
+        
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: #1a233a;
+            border-left: 4px solid #0d59f2;
+            border-radius: 8px;
+            padding: 1rem 1.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            display: none;
+            max-width: 400px;
+            z-index: 2000;
+            animation: slideInRight 0.4s ease;
+        }
+        
+        @keyframes slideInRight {
+            from { transform: translateX(400px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .notification.show {
+            display: block;
+        }
+        
+        .notification.success { border-left-color: #10b981; }
+        .notification.error { border-left-color: #ef4444; }
+        .notification.info { border-left-color: #0d59f2; }
+        
+        .notification-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .notification-body {
+            color: #9ca3af;
+            font-size: 0.875rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 0.75rem 1rem;
+            }
+        
+            main {
+                padding: 1rem;
+            }
+        
+            nav {
+                display: none;
+            }
+        
+            .page-header {
+                flex-direction: column;
+            }
+        
+            .filter-tabs {
+                overflow-x: auto;
+            }
+        
+            .tickets-table {
+                overflow-x: auto;
+            }
+        
+            .create-ticket-btn {
+                position: fixed;
+                bottom: 2rem;
+                right: 2rem;
+                z-index: 50;
+                box-shadow: 0 10px 30px rgba(13, 89, 242, 0.4);
+            }
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+        </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo-section">
+                <svg class="logo" fill="none" viewBox="0 0 48 48">
+                    <path d="M24 4H42V17.3333V30.6667H24V44H6V30.6667V17.3333H24V4Z" fill="currentColor"/>
+                </svg>
+                <span class="brand-name">FreightForward</span>
+            </div>
+            <nav>
+                <a href="#">Dashboard</a>
+                <a href="#">Shipments</a>
+                <a href="#">Analytics</a>
+                <a href="#" class="active">Support</a>
+            </nav>
+            <div class="header-actions">
+                <button class="icon-btn">🔔</button>
+                <button class="icon-btn">⚙️</button>
+                <div class="user-avatar"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Page Header -->
+        <div class="page-header">
+            <div>
+                <h1 class="page-title">Support Center</h1>
+                <p class="page-subtitle">How can we help you today?</p>
+            </div>
+            <button class="create-ticket-btn" onclick="openTicketModal()">
+                <span>+</span>
+                <span>Create Ticket</span>
+            </button>
+        </div>
+
+        <!-- Search -->
+        <div class="search-container">
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" class="search-input" placeholder="Search for articles, guides, and FAQs..." id="searchInput">
+            </div>
+        </div>
+
+        <!-- Quick Access -->
+        <div class="quick-access">
+            <div class="access-card">
+                <div class="card-icon">❓</div>
+                <h3 class="card-title">Frequently Asked Questions</h3>
+                <p class="card-desc">Get instant answers to common questions.</p>
+            </div>
+            <div class="access-card">
+                <div class="card-icon">📚</div>
+                <h3 class="card-title">Knowledge Base</h3>
+                <p class="card-desc">Browse our detailed guides and tutorials.</p>
+            </div>
+            <div class="access-card">
+                <div class="card-icon">🎫</div>
+                <h3 class="card-title">My Support Tickets</h3>
+                <p class="card-desc">View and manage your support requests.</p>
+            </div>
+            <div class="access-card" onclick="showNotification('Live Chat', 'Connecting to support agent...', 'info')">
+                <div class="card-icon">💬</div>
+                <h3 class="card-title">Live Chat</h3>
+                <div class="card-desc online-badge">
+                    <span class="status-dot"></span>
+                    <span>Agents are online</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tickets Section -->
+        <div class="tickets-section">
+            <div class="section-header">
+                <h2 class="section-title">My Recent Tickets</h2>
+                <div class="filter-tabs">
+                    <button class="filter-tab active" onclick="filterTickets('all')">All</button>
+                    <button class="filter-tab" onclick="filterTickets('open')">Open</button>
+                    <button class="filter-tab" onclick="filterTickets('progress')">In Progress</button>
+                    <button class="filter-tab" onclick="filterTickets('closed')">Closed</button>
+                </div>
+            </div>
+
+            <div class="tickets-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Ticket ID</th>
+                            <th>Subject</th>
+                            <th>Last Updated</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ticketsTableBody">
+                        <!-- Tickets will be inserted here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="contact-section">
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <h3>Need to speak with someone?</h3>
+                    <p>Our support team is here to help you.</p>
+                </div>
+                <div class="contact-item">
+                    <h3>📧 Email Us</h3>
+                    <a href="mailto:support@freightforward.com" class="contact-link">support@freightforward.com</a>
+                </div>
+                <div class="contact-item">
+                    <h3>📞 Call Us</h3>
+                    <p>+1 (800) 555-0123</p>
+                    <p style="font-size: 0.75rem;">Mon-Fri, 9am - 5pm EST</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Ticket Modal -->
+    <div class="modal-overlay" id="ticketModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title">Create Support Ticket</h2>
+                <button class="close-btn" onclick="closeTicketModal()">×</button>
+            </div>
+
+            <form id="ticketForm">
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="company">Company</label>
+                    <input type="text" id="company">
+                </div>
+
+                <div class="form-group">
+                    <label for="category">Issue Category *</label>
+                    <select id="category" required>
+                        <option value="">Select a category</option>
+                        <option value="Technical Issue">Technical Issue</option>
+                        <option value="Billing Inquiry">Billing Inquiry</option>
+                        <option value="Shipment Tracking">Shipment Tracking</option>
+                        <option value="Documentation">Documentation</option>
+                        <option value="Account Support">Account Support</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Subject *</label>
+                    <input type="text" id="subject" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description *</label>
+                    <textarea id="description" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Attach Files (Optional)</label>
+                    <div class="file-upload" onclick="document.getElementById('fileInput').click()">
+                        <div>📎 Click to attach files</div>
+                        <div class="file-name" id="fileName"></div>
+                        <input type="file" id="fileInput" multiple>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit Ticket</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <div class="notification-header">
+            <span id="notifIcon"></span>
+            <span id="notifTitle"></span>
+        </div>
+        <div class="notification-body" id="notifBody"></div>
+    </div>
+
+    <script>
+        // Initial tickets data
+        const defaultTickets = [
+            {
+                id: '#876321',
+                subject: 'Issue with customs declaration for EU shipment',
+                updated: '2 hours ago',
+                status: 'progress'
+            },
+            {
+                id: '#876198',
+                subject: 'Billing inquiry for invoice INV-12345',
+                updated: '1 day ago',
+                status: 'open'
+            },
+            {
+                id: '#875543',
+                subject: 'Tracking update requested for shipment ABC-XYZ',
+                updated: '3 days ago',
+                status: 'closed'
+            }
+        ];
+
+        // Load tickets from localStorage or use defaults
+        let tickets = JSON.parse(localStorage.getItem('tickets')) || defaultTickets;
+        let currentFilter = 'all';
+
+        // Render tickets
+        function renderTickets(filter = 'all') {
+            const tbody = document.getElementById('ticketsTableBody');
+            tbody.innerHTML = '';
+
+            const filtered = filter === 'all' 
+                ? tickets 
+                : tickets.filter(t => t.status === filter);
+
+            filtered.forEach((ticket, index) => {
+                const tr = document.createElement('tr');
+                tr.style.animationDelay = `${index * 0.1}s`;
+                
+                const statusClass = `status-${ticket.status}`;
+                const statusText = ticket.status === 'progress' ? 'In Progress' 
+                    : ticket.status.charAt(0).toUpperCase() + ticket.status.slice(1);
+
+                tr.innerHTML = `
+                    <td class="ticket-id">${ticket.id}</td>
+                    <td class="ticket-subject">${ticket.subject}</td>
+                    <td>${ticket.updated}</td>
+                    <td><span class="status-badge ${statusClass}">${statusText}</span></td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; padding: 2rem; color: #9ca3af;">No tickets found</td></tr>';
+            }
+        }
+
+        // Filter tickets
+        function filterTickets(status) {
+            currentFilter = status;
+            
+            // Update active tab
+            document.querySelectorAll('.filter-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            renderTickets(status);
+        }
+
+        // Open ticket modal
+        function openTicketModal() {
+            document.getElementById('ticketModal').classList.add('show');
+        }
+
+        // Close ticket modal
+        function closeTicketModal() {
+            document.getElementById('ticketModal').classList.remove('show');
+            document.getElementById('ticketForm').reset();
+            document.getElementById('fileName').textContent = '';
+        }
+
+        // File upload handler
+        document.getElementById('fileInput').addEventListener('change', (e) => {
+            const files = e.target.files;
+            if (files.length > 0) {
+                const fileNames = Array.from(files).map(f => f.name).join(', ');
+                document.getElementById('fileName').textContent = `📎 ${fileNames}`;
+            }
+        });
+
+        // Form submission
+        document.getElementById('ticketForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const formData = {
+                id: `#${Math.floor(Math.random() * 900000) + 100000}`,
+                subject: document.getElementById('subject').value,
+                updated: 'Just now',
+                status: 'open',
+                name: document.getElementById('name').value,
+                company: document.getElementById('company').value,
+                category: document.getElementById('category').value,
+                description: document.getElementById('description').value
+            };
+
+            // Add to tickets array
+            tickets.unshift(formData);
+
+            // Save to localStorage
+            localStorage.setItem('tickets', JSON.stringify(tickets));
+
+            // Close modal and show notification
+            closeTicketModal();
+            showNotification('Ticket Created', 'Support will respond shortly.', 'success');
+
+            // Re-render tickets
+            renderTickets(currentFilter);
+        });
+
+        // Show notification
+        function showNotification(title, body, type = 'info') {
+            const notification = document.getElementById('notification');
+            const icon = document.getElementById('notifIcon');
+            const titleEl = document.getElementById('notifTitle');
+            const bodyEl = document.getElementById('notifBody');
+
+            // Set icon based on type
+            const icons = {
+                success: '✅',
+                error: '❌',
+                info: '💬'
+            };
+
+            icon.textContent = icons[type] || icons.info;
+            titleEl.textContent = title;
+            bodyEl.textContent = body;
+
+            // Set notification type
+            notification.className = `notification ${type} show`;
+
+            // Auto hide after 5 seconds
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 5000);
+        }
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            
+            if (!searchTerm) {
+                renderTickets(currentFilter);
+                return;
+            }
+
+            const tbody = document.getElementById('ticketsTableBody');
+            tbody.innerHTML = '';
+
+            const filtered = tickets.filter(ticket => 
+                ticket.subject.toLowerCase().includes(searchTerm) ||
+                ticket.id.toLowerCase().includes(searchTerm)
+            );
+
+            filtered.forEach((ticket, index) => {
+                const tr = document.createElement('tr');
+                tr.style.animationDelay = `${index * 0.1}s`;
+                
+                const statusClass = `status-${ticket.status}`;
+                const statusText = ticket.status === 'progress' ? 'In Progress' 
+                    : ticket.status.charAt(0).toUpperCase() + ticket.status.slice(1);
+
+                tr.innerHTML = `
+                    <td class="ticket-id">${ticket.id}</td>
+                    <td class="ticket-subject">${ticket.subject}</td>
+                    <td>${ticket.updated}</td>
+                    <td><span class="status-badge ${statusClass}">${statusText}</span></td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; padding: 2rem; color: #9ca3af;">No results found</td></tr>';
+            }
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('ticketModal').addEventListener('click', (e) => {
+            if (e.target.id === 'ticketModal') {
+                closeTicketModal();
+            }
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            // ESC to close modal
+            if (e.key === 'Escape') {
+                closeTicketModal();
+            }
+            
+            // Ctrl/Cmd + K to focus search
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                e.preventDefault();
+                document.getElementById('searchInput').focus();
+            }
+        });
+
+        // Simulate live chat connection
+        function startLiveChat() {
+            showNotification('Live Chat', 'Connecting to support agent...', 'info');
+            
+            setTimeout(() => {
+                showNotification('Live Chat', "You're now chatting with a support agent.", 'success');
+            }, 2000);
+        }
+
+        // Add click handler to Live Chat card
+        document.querySelectorAll('.access-card')[3].addEventListener('click', startLiveChat);
+
+        // Add animation to status badges on hover
+        document.addEventListener('DOMContentLoaded', () => {
+            const style = document.createElement('style');
+            style.textContent = `
+                .status-badge:hover {
+                    transform: scale(1.1);
+                    transition: transform 0.2s ease;
+                }
+            `;
+            document.head.appendChild(style);
+        });
+
+        // Periodic ticket status updates (simulate backend)
+        setInterval(() => {
+            const progressTickets = tickets.filter(t => t.status === 'progress');
+            
+            if (progressTickets.length > 0 && Math.random() > 0.7) {
+                const ticket = progressTickets[Math.floor(Math.random() * progressTickets.length)];
+                const index = tickets.findIndex(t => t.id === ticket.id);
+                
+                if (index !== -1) {
+                    tickets[index].status = 'closed';
+                    tickets[index].updated = 'Just now';
+                    localStorage.setItem('tickets', JSON.stringify(tickets));
+                    renderTickets(currentFilter);
+                    showNotification('Ticket Updated', `${ticket.id} has been closed.`, 'success');
+                }
+            }
+        }, 30000); // Check every 30 seconds
+
+        // Add right-click context menu for tickets (optional enhancement)
+        document.getElementById('ticketsTableBody').addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            const row = e.target.closest('tr');
+            if (row) {
+                const ticketId = row.querySelector('.ticket-id').textContent;
+                showNotification('Ticket Action', `Right-clicked on ${ticketId}`, 'info');
+            }
+        });
+
+        // Export tickets functionality
+        function exportTickets() {
+            const dataStr = JSON.stringify(tickets, null, 2);
+            const dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
+            
+            const exportFileDefaultName = `tickets-${new Date().toISOString().split('T')[0]}.json`;
+            
+            const linkElement = document.createElement('a');
+            linkElement.setAttribute('href', dataUri);
+            linkElement.setAttribute('download', exportFileDefaultName);
+            linkElement.click();
+            
+            showNotification('Export Complete', 'Tickets exported successfully.', 'success');
+        }
+
+        // Clear all tickets (for testing)
+        function clearAllTickets() {
+            if (confirm('Are you sure you want to clear all tickets?')) {
+                tickets = defaultTickets;
+                localStorage.setItem('tickets', JSON.stringify(tickets));
+                renderTickets(currentFilter);
+                showNotification('Tickets Reset', 'All tickets have been reset to defaults.', 'info');
+            }
+        }
+
+        // Add keyboard shortcut info
+        console.log('%c🎫 FreightForward Support Center', 'color: #0d59f2; font-size: 16px; font-weight: bold;');
+        console.log('%cKeyboard Shortcuts:', 'color: #9ca3af; font-weight: bold;');
+        console.log('• ESC - Close modal');
+        console.log('• Ctrl/Cmd + K - Focus search');
+        console.log('%cFunctions available:', 'color: #9ca3af; font-weight: bold;');
+        console.log('• exportTickets() - Export all tickets to JSON');
+        console.log('• clearAllTickets() - Reset tickets to defaults');
+
+        // Initialize on page load
+        renderTickets();
+
+        // Add smooth scroll behavior to quick access cards
+        document.querySelectorAll('.access-card').forEach((card, index) => {
+            if (index === 2) { // "My Support Tickets" card
+                card.addEventListener('click', () => {
+                    document.querySelector('.tickets-section').scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'start' 
+                    });
+                });
+            }
+        });
+
+        // Add loading state for form submission
+        const originalSubmitHandler = document.getElementById('ticketForm').onsubmit;
+        document.getElementById('ticketForm').addEventListener('submit', function(e) {
+            const submitBtn = this.querySelector('.submit-btn');
+            submitBtn.textContent = 'Submitting...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                submitBtn.textContent = 'Submit Ticket';
+                submitBtn.disabled = false;
+            }, 1000);
+        });
+
+        // Add tooltip for status badges
+        document.addEventListener('mouseover', (e) => {
+            if (e.target.classList.contains('status-badge')) {
+                e.target.title = `Status: ${e.target.textContent}`;
+            }
+        });
+
+        // Animate ticket count
+        function animateCount() {
+            const counts = {
+                all: tickets.length,
+                open: tickets.filter(t => t.status === 'open').length,
+                progress: tickets.filter(t => t.status === 'progress').length,
+                closed: tickets.filter(t => t.status === 'closed').length
+            };
+
+            // Could add count badges to filter tabs
+            console.log('Ticket counts:', counts);
+        }
+
+        animateCount();
+
+        // Add visual feedback when clicking filter tabs
+        document.querySelectorAll('.filter-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 100);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -10,9 +10,9 @@
 </head>
 <body>
     <!-- Loading Overlay -->
-    <div class="loading-overlay">
+    <!-- <div class="loading-overlay">
         <div class="loader"></div>
-    </div>
+    </div> -->
 
     <div class="admin-portal">
             <!-- Mobile Menu Button -->
@@ -23,8 +23,10 @@
         <aside class="sidebar" id="sidebar">
             <div>
                 <div class="logo-section">
-                    <span class="material-symbols-outlined logo-icon">local_shipping</span>
-                    <h1 class="logo-title">CRFFN Admin</h1>
+                    <div class="logo"></div>
+                    <div class="logo-text">
+                        <h1>CRFFN</h1>
+                    </div>
                 </div>
 
                 <nav class="nav-menu">
@@ -55,7 +57,7 @@
                 <div class="profile-info">
                     <div class="profile-avatar"></div>
                     <div class="profile-text">
-                        <h3>Admin Name</h3>
+                        <h3>Gloria</h3>
                         <p>CRFFN Administrator</p>
                     </div>
                 </div>
@@ -83,7 +85,7 @@
                     <div class="header-profile">
                         <div class="header-avatar"></div>
                         <div class="profile-details">
-                            <p class="profile-name">Admin Name</p>
+                            <p class="profile-name">Gloria</p>
                             <p class="profile-role">Administrator</p>
                         </div>
                     </div>
@@ -145,6 +147,9 @@
 
                 <!-- Charts Grid -->
                 <div class="charts-grid">
+
+
+                    <!-- Donut Chart -->
                     <div class="chart-card">
                         <div class="chart-header">
                             <h3 class="chart-title">Engagement Distribution</h3>
@@ -184,39 +189,45 @@
                         </div>
                     </div>
 
-                    <!-- Line Chart -->
-                    <div class="chart-card">
-                        <p class="chart-title">User Activity Over Time</p>
-                        <p class="chart-value">5,230</p>
-                        <div class="chart-meta">
-                            <span class="chart-period">Last 6 Months</span>
-                            <span class="chart-growth">+8.5%</span>
-                        </div>
-                        <svg class="svg-chart" viewBox="0 0 475 150" preserveAspectRatio="none">
-                            <defs>
-                                <linearGradient id="chartGradient" x1="236" y1="1" x2="236" y2="149" gradientUnits="userSpaceOnUse">
-                                    <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.3"/>
-                                    <stop offset="100%" stop-color="#D4AF37" stop-opacity="0"/>
-                                </linearGradient>
-                            </defs>
-                            <path class="chart-fill" d="M0 109C18.1538 109 18.1538 21 36.3077 21C54.4615 21 54.4615 41 72.6154 41C90.7692 41 90.7692 93 108.923 93C127.077 93 127.077 33 145.231 33C163.385 33 163.385 101 181.538 101C199.692 101 199.692 61 217.846 61C236 61 236 45 254.154 45C272.308 45 272.308 121 290.462 121C308.615 121 308.615 149 326.769 149C344.923 149 344.923 1 363.077 1C381.231 1 381.231 81 399.385 81C417.538 81 417.538 129 435.692 129C453.846 129 453.846 25 472 25V149H326.769H0V109Z" fill="url(#chartGradient)"/>
-                            <path class="chart-path" d="M0 109C18.1538 109 18.1538 21 36.3077 21C54.4615 21 54.4615 41 72.6154 41C90.7692 41 90.7692 93 108.923 93C127.077 93 127.077 33 145.231 33C163.385 33 163.385 101 181.538 101C199.692 101 199.692 61 217.846 61C236 61 236 45 254.154 45C272.308 45 272.308 121 290.462 121C308.615 121 308.615 149 326.769 149C344.923 149 344.923 1 363.077 1C381.231 1 381.231 81 399.385 81C417.538 81 417.538 129 435.692 129C453.846 129 453.846 25 472 25" stroke="#D4AF37" stroke-width="3" stroke-linecap="round" fill="none"/>
-                        </svg>
-                        <div class="chart-labels">
-                            <span class="chart-label">Jan</span>
-                            <span class="chart-label">Feb</span>
-                            <span class="chart-label">Mar</span>
-                            <span class="chart-label">Apr</span>
-                            <span class="chart-label">May</span>
-                            <span class="chart-label">Jun</span>
-                        </div>
-                    </div>
+                                        <!-- Line Chart -->
+                                        <div class="chart-card">
+                                            <div class="chart-header">
+                                                <h3 class="chart-title">Performance Over Time</h3>
+                                                <div class="chart-filter">
+                                                    Last 30 Days
+                                                    <span class="material-symbols-outlined">expand_more</span>
+                                                </div>
+                                            </div>
+                                            <svg class="chart-svg" viewBox="-3 0 478 150">
+                                                <defs>
+                                                    <linearGradient id="chartGradient" x1="236" y1="1" x2="236" y2="149"
+                                                        gradientUnits="userSpaceOnUse">
+                                                        <stop offset="0%" stop-color="#0df259" stop-opacity="0.3" />
+                                                        <stop offset="100%" stop-color="#0df259" stop-opacity="0" />
+                                                    </linearGradient>
+                                                </defs>
+                                                <path class="chart-fill"
+                                                    d="M0 109C18.1538 109 18.1538 21 36.3077 21C54.4615 21 54.4615 41 72.6154 41C90.7692 41 90.7692 93 108.923 93C127.077 93 127.077 33 145.231 33C163.385 33 163.385 101 181.538 101C199.692 101 199.692 61 217.846 61C236 61 236 45 254.154 45C272.308 45 272.308 121 290.462 121C308.615 121 308.615 149 326.769 149C344.923 149 344.923 1 363.077 1C381.231 1 381.231 81 399.385 81C417.538 81 417.538 129 435.692 129C453.846 129 453.846 25 472 25V149H0V109Z"
+                                                    fill="url(#chartGradient)" />
+                                                <path class="chart-path"
+                                                    d="M0 109C18.1538 109 18.1538 21 36.3077 21C54.4615 21 54.4615 41 72.6154 41C90.7692 41 90.7692 93 108.923 93C127.077 93 127.077 33 145.231 33C163.385 33 163.385 101 181.538 101C199.692 101 199.692 61 217.846 61C236 61 236 45 254.154 45C272.308 45 272.308 121 290.462 121C308.615 121 308.615 149 326.769 149C344.923 149 344.923 1 363.077 1C381.231 1 381.231 81 399.385 81C417.538 81 417.538 129 435.692 129C453.846 129 453.846 25 472 25"
+                                                    stroke="#0df259" stroke-width="3" stroke-linecap="round" fill="none" />
+                                            </svg>
+                                            <div class="chart-labels">
+                                                <span class="chart-label">Jan</span>
+                                                <span class="chart-label">Feb</span>
+                                                <span class="chart-label">Mar</span>
+                                                <span class="chart-label">Apr</span>
+                                                <span class="chart-label">May</span>
+                                                <span class="chart-label">Jun</span>
+                                            </div>
+                                        </div>
                 </div>
 
                 <!-- Table -->
                 <div class="table-card">
                     <div class="table-header">
-                        <h3 class="table-title">Manage Users</h3>
+                        <h3 class="table-title">Manage Freighters</h3>
                         <div class="export-actions">
                             <button class="export-btn">
                                 <span class="material-symbols-outlined">description</span>

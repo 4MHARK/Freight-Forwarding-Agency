@@ -7,40 +7,29 @@
 }
 
 :root {
-    /* Primary & Accent */
-    --primary: #2F4F4F; /* Dark Slate Grey (like a muted Rifle Green) - a good base for dark themes */
-    --accent: #D4AF37; /* Keeping your original gold accent as it contrasts well with dark greens */
+    /* 🌿 RFFN Balanced Corporate Theme (with soft light base) */
+    --primary: #00A757;          /* CRFFN Green */
+    --primary-light: #33C67A;    /* Softer green for hover and accents */
+--text-muted:#153715;
+    --bg-light: #33C67A;         /* Gentle light grey-green (not white) */
+    --bg-dark: #E8F0EC;          /* For dark mode sections if needed */
+    --card-bg: #F4F7F5;          /* Light neutral cards with green tint */
+    --sidebar-bg: #153715;       /* Deep muted grey-green sidebar */
+    --border-color: #C5D1C8;     /* Neutral divider that blends smoothly */
 
-    /* Backgrounds */
-    --bg-light: #F4F6F8; /* Light Ash/Grey */
-    --bg-dark: #1F2D2E; /* Deep Jungle Green / Obsidian Green (very dark green-grey) */
+    --hover-bg: #00C263;         /* Lively green hover */
+    --text-primary: #1A1F1B;     /* Deep charcoal text */
+    --text-muted: #4F5B56;       /* Calm muted grey text */
 
-    /* Cards/Panels */
-    --card-light: #FFFFFF; /* White */
-    --card-dark: #2C3C3D; /* Slightly lighter shade of Deep Jungle Green for card distinction */
-
-    /* Borders */
-    --border-light: #D3D3D3; /* Light Grey */
-    --border-dark: #405152; /* Muted, slightly desaturated green for dark borders */
-
-    /* Text Colors */
-    --text-light: #36454F; /* Charcoal Grey (Dark Ash) */
-    --text-dark: #E0E8E7; /* Light grey with a hint of green for readability on dark backgrounds */
-    --text-muted: #808B8D; /* Medium Grey for muted text */
-
-    /* Status Colors */
-    --success: #3C763D; /* Forest Green (a strong, clear green for success) */
-    --danger: #A52A2A; /* A deep, rich red for danger, contrasting with greens */
-
-    /* Utility */
-    --transition: cubic-bezier(0.4, 0, 0.2, 1);
-    /* No direct equivalent for 'lemon' in this set of variables, but could be an alert color if needed */
+    --success: #00A757;          /* Brand green for success */
+    --warning: #E6B800;          /* Deep gold, not too bright */
+    --danger: #D64545;           /* Controlled red tone */
 }
 
 body {
     font-family: 'Public Sans', sans-serif;
-    background: var(--bg-light);
-    color: var(--text-light);
+    background: var(--bg-dark);
+    color: var(--text-muted);
     overflow-x: hidden;
 }
 
@@ -57,8 +46,9 @@ body {
 /* ===== SIDEBAR ===== */
 .sidebar {
     width: 256px;
-    background: var(--primary);
-    color: white;
+    background: var(--sidebar-bg);
+    border-right: 1px solid var(--border-color);
+    /* color: white; */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -93,19 +83,22 @@ body {
     to { opacity: 1; }
 }
 
-.logo-icon {
-    font-size: 36px;
-    color: var(--accent);
-    transition: transform 0.4s var(--transition);
+.logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: url(https://crffn.gov.ng/wp-content/uploads/2024/05/1578995471crffn-logo.png)  center/cover;
 }
 
-.logo-section:hover .logo-icon {
-    transform: rotate(360deg) scale(1.1);
+.logo-text h1 {
+    color:var(--card-bg);
+    font-size: 16px;
+    font-weight: 500;
 }
 
-.logo-title {
-    font-size: 18px;
-    font-weight: 700;
+.logo-text p {
+    color: var(--border-color);
+    font-size: 14px;
 }
 
 .nav-menu {
@@ -122,8 +115,8 @@ body {
     padding: 10px 12px;
     border-radius: 8px;
     text-decoration: none;
-    color: rgba(255, 255, 255, 0.8);
-    transition: all 0.3s var(--transition);
+    /* color: rgba(255, 255, 255, 0.8); */
+    transition: all 0.3s ;
     opacity: 0;
     animation: fadeInLeft 0.5s ease forwards;
     position: relative;
@@ -154,37 +147,31 @@ body {
     top: 0;
     height: 100%;
     width: 4px;
-    background: var(--accent);
+    background: var(--primary);
     transform: scaleY(0);
     transition: transform 0.3s ease;
 }
 
 .nav-item.active {
-    background: rgba(212, 175, 55, 0.2);
-    color: var(--accent);
-    border-left: 4px solid var(--accent);
+    background: var(--hover-bg);
+    /* border-left: 4px solid var(--accent); */
 }
 
 .nav-item.active::before {
     transform: scaleY(1);
 }
-
 .nav-item:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-    transform: translateX(4px);
+    background: var(--hover-bg);
+    transform: translateX(5px);
 }
 
 .nav-item .material-symbols-outlined {
-    font-size: 20px;
-    transition: transform 0.3s ease;
-}
-
-.nav-item:hover .material-symbols-outlined {
-    transform: scale(1.15) rotate(5deg);
+    color: white;
+    font-size: 24px;
 }
 
 .nav-item p {
+    color: white;
     font-size: 14px;
     font-weight: 500;
 }
@@ -197,6 +184,7 @@ body {
 }
 
 .profile-info {
+    color: var(--bg-dark);
     display: flex;
     align-items: center;
     gap: 12px;
@@ -259,12 +247,15 @@ body {
 
 /* ===== HEADER ===== */
 .header {
-    background: var(--card-light);
-    border-bottom: 1px solid var(--border-light);
-    padding: 12px 24px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+    padding: 12px 40px;
+    background: var(--sidebar-bg);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
     animation: slideDown 0.6s ease;
 }
 
@@ -282,28 +273,29 @@ body {
 .search-bar {
     display: flex;
     align-items: center;
-    background: var(--bg-light);
+    background: var(--hover-bg);
     border-radius: 8px;
     width: 100%;
-    max-width: 400px;
+    max-width: 320px;
     overflow: hidden;
     transition: all 0.3s ease;
 }
 
 .search-bar:focus-within {
-    box-shadow: 0 0 0 3px rgba(0, 31, 63, 0.1);
+    /* box-shadow: 0 0 0 3px rgba(0, 167, 87, 0.3); */
     transform: translateY(-2px);
 }
 
 .search-icon {
     padding: 0 12px;
-    color: var(--text-muted);
+    color: var(--card-bg);
 }
 
 .search-bar input {
     flex: 1;
     padding: 10px 12px 10px 0;
     background: transparent;
+    color: white;
     border: none;
     outline: none;
     font-size: 14px;
@@ -318,9 +310,10 @@ body {
 .notification-btn {
     width: 40px;
     height: 40px;
+    background: var(--hover-bg);
     border: none;
-    background: transparent;
-    border-radius: 50%;
+    border-radius: 8px;
+    color: white;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -383,11 +376,13 @@ body {
 .profile-name {
     font-size: 14px;
     font-weight: 500;
+    color: var(--bg-dark);
+    text-align: start;
 }
 
 .profile-role {
     font-size: 12px;
-    color: var(--text-muted);
+    color: var(--card-bg);
 }
 
 /* ===== PAGE CONTENT ===== */
@@ -420,8 +415,8 @@ body {
 
 .page-title {
     font-size: 32px;
-    font-weight: 900;
-    color: var(--primary);
+    font-weight: 700;
+    color: #1A1F1B;
     margin-bottom: 8px;
 }
 
@@ -479,7 +474,7 @@ body {
 }
 
 .stat-card {
-    background: var(--card-light);
+    background: var(--card-bg);
     border: 1px solid var(--border-light);
     border-radius: 12px;
     padding: 24px;
@@ -513,14 +508,15 @@ body {
     left: 0;
     right: 0;
     height: 3px;
-    background: linear-gradient(90deg, var(--accent), transparent);
+    background: linear-gradient(90deg, var(--primary), transparent);
     transform: scaleX(0);
     transition: transform 0.6s ease;
 }
 
 .stat-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 12px 40px rgba(0, 167, 87, 0.2);
+    border-color: var(--primary);
 }
 
 .stat-card:hover::before {
@@ -529,11 +525,13 @@ body {
 
 .stat-label {
     font-size: 14px;
+    font-weight: 500;
     color: var(--text-muted);
     margin-bottom: 8px;
 }
 
 .stat-value {
+    color: var(--text-muted);
     font-size: 32px;
     font-weight: 700;
     margin-bottom: 8px;
@@ -551,16 +549,22 @@ body {
 .stat-change.negative { color: var(--danger); }
 
 /* ===== CHARTS GRID ===== */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    width: 100%;
+    gap: 32px;
+}
 .charts-grid {
     display: grid;
     grid-template-columns: 2fr 3fr;
-    gap: 24px;
+    gap: 16px;
     margin-bottom: 32px;
 }
 
 .chart-card {
-    background: var(--card-light);
-    border: 1px solid var(--border-light);
+    /* background: var(--card-light); */
+    border: 1px solid var(--sidebar-bg);
     border-radius: 12px;
     padding: 24px;
     animation: fadeIn 0.8s ease 0.8s both;
@@ -569,53 +573,50 @@ body {
 
 .chart-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
 }
+
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+  }
 
 .chart-title {
-    font-size: 16px;
-    font-weight: 500;
-    margin-bottom: 12px;
+    font-size: 18px;
+    font-weight: 600;
 }
 
-.chart-value {
-    font-size: 32px;
-    font-weight: 700;
-    margin-bottom: 8px;
-}
-
-.chart-meta {
+.chart-filter {
     display: flex;
     align-items: center;
     gap: 8px;
-    margin-bottom: 24px;
-}
-
-.chart-period {
+    padding: 6px 12px;
+    background: var(--hover-bg);
+    border-radius: 6px;
     font-size: 14px;
     color: var(--text-muted);
-}
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
 
-.chart-growth {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--success);
-}
+  .chart-filter:hover {
+    background: var(--border-green);
+    color: white;
+  }
 
-.chart-image {
-    width: 100%;
-    max-height: 256px;
-    object-fit: contain;
-}
+
+
 
 .svg-chart {
     width: 100%;
-    height: 180px;
+    height: 250px;
 }
 
 .chart-path {
-    stroke-dasharray: 2000;
-    stroke-dashoffset: 2000;
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
     animation: drawPath 2s ease forwards 1s;
 }
 
@@ -630,6 +631,86 @@ body {
     animation: fadeIn 1s ease 1.5s forwards;
 }
 
+  /* Donut Chart */
+  .donut-container {
+    position: relative;
+    width: 192px;
+    height: 192px;
+    margin: 0 auto;
+  }
+
+  .donut-chart {
+    transform: rotate(-90deg);
+    animation: rotateIn 1s ease 0.5s both;
+  }
+  @keyframes rotateIn {
+    from {
+      transform: rotate(-90deg) scale(0);
+      opacity: 0;
+    }
+
+    to {
+      transform: rotate(-90deg) scale(1);
+      opacity: 1;
+    }
+  }
+
+
+  .donut-segment {
+    transition: all 0.3s ease;
+  }
+
+  .donut-segment:hover {
+    opacity: 0.8;
+    filter: brightness(1.2);
+  }
+
+  .donut-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  .donut-label {
+    color: var(--text-muted);
+    font-size: 12px;
+  }
+
+  .donut-value {
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  .chart-legend {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 16px;
+    font-size: 12px;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.3s ease;
+  }
+
+  .legend-item:hover {
+    transform: scale(1.1);
+  }
+
+  .legend-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+  }
+
+  .legend-item:hover .legend-dot {
+    transform: scale(1.5);
+  }
 .chart-labels {
     display: flex;
     justify-content: space-around;

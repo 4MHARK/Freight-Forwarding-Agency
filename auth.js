@@ -1,21 +1,10 @@
-// Ensure ALL logic is wrapped inside one DOMContentLoaded listener
 document.addEventListener("DOMContentLoaded", () => {
-    
-  // =================================================================
-  // ==           CUSTOM NOTIFICATION FUNCTION
-  // =================================================================
-  // Must be defined first so other functions can use it
-  function showNotification(
-    title,
-    message,
-    type = "success",
-    duration = 5000
-  ) {
+  // ===============================================================
+  // ==   CUSTOM NOTIFICATION FUNCTION
+  // ===============================================================
+  function showNotification(title, message, type = "success", duration = 5000) {
     const container = document.getElementById("notification-container");
-    if (!container) {
-      console.error("Notification container not found!");
-      return;
-    }
+    if (!container) return console.error("Notification container not found!");
 
     const notification = document.createElement("div");
     notification.className = `notification ${type}`;
@@ -31,29 +20,25 @@ document.addEventListener("DOMContentLoaded", () => {
         <p class="notification-title">${title}</p>
         <p class="notification-message">${message}</p>
       </div>
-      <button class="notification-close">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/></svg>
-      </button>
+      <button class="notification-close">×</button>
     `;
 
     container.appendChild(notification);
-    const removeNotification = () => {
+    const remove = () => {
       notification.classList.add("exiting");
       notification.addEventListener("transitionend", () => notification.remove());
     };
-    let timer;
-    if (duration > 0) timer = setTimeout(removeNotification, duration);
-    notification
-      .querySelector(".notification-close")
-      .addEventListener("click", () => {
-        clearTimeout(timer);
-        removeNotification();
-      });
+
+    const timer = duration ? setTimeout(remove, duration) : null;
+    notification.querySelector(".notification-close").addEventListener("click", () => {
+      clearTimeout(timer);
+      remove();
+    });
   }
 
-  // =================================================================
-  // ==           DATABASE & SESSION HELPERS
-  // =================================================================
+  // ===============================================================
+  // ==   LOCAL STORAGE HELPERS
+  // ===============================================================
   const DB_KEY = "users";
   const SESSION_KEY = "sessionUser";
 
@@ -64,53 +49,52 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem(DB_KEY, JSON.stringify(users));
   }
   function setSession(user) {
-  const sessionData = {
-    companyName: user.companyName || "",
-    email: user.email || "",
-    rcNumber: user.rcNumber || "",
-    phone: user.phone || "",
-    address: user.address || "",
-    status: user.status || "",
-    createdAt: user.createdAt || "",
-  };
-  localStorage.setItem(SESSION_KEY, JSON.stringify(sessionData));
-}
+    const sessionData = {
+      companyName: user.companyName || "",
+      email: user.email || "",
+      rcNumber: user.rcNumber || "",
+      phone: user.phone || "",
+      address: user.address || "",
+      status: user.status || "",
+      createdAt: user.createdAt || "",
+    };
+    localStorage.setItem(SESSION_KEY, JSON.stringify(sessionData));
+  }
 
-
-  // =================================================================
-  // ==           SIGNUP FORM LOGIC (Runs on Login/Registration Page)
-  // =================================================================
+  // ===============================================================
+  // ==   SIGNUP LOGIC
+  // ===============================================================
   const registrationForm = document.getElementById("registrationForm");
   if (registrationForm) {
     registrationForm.addEventListener("submit", (e) => {
       e.preventDefault();
+
       const companyName = document.getElementById("companyName").value.trim();
       const email = document.getElementById("email").value.trim().toLowerCase();
       const password = document.getElementById("password").value;
       const confirmPassword = document.getElementById("confirmPassword").value;
+      const rcNumber = document.getElementById("rc-number").value.trim(); // fixed ID
+      const phone = document.getElementById("phone").value.trim();
+      const address = document.getElementById("address").value.trim();
       const terms = document.getElementById("terms").checked;
 
-      if (!terms) {
+      if (!terms)
         return showNotification("Action Required", "Please agree to the Terms and Conditions.", "error");
-      }
-      if (password !== confirmPassword) {
+      if (password !== confirmPassword)
         return showNotification("Signup Error", "Passwords do not match.", "error");
-      }
 
       const users = getUsers();
-      if (users.some((u) => u.email === email)) {
+      if (users.some((u) => u.email === email))
         return showNotification("Signup Error", "An account with this email already exists.", "error");
-      }
 
-      // --- Setup new user status for onboarding ---
       const newUser = {
         companyName,
         email,
         password,
-        status: "NEEDS_FORM_SUBMISSION", 
-        rcNumber: document.getElementById("rcNumber").value.trim(),
-        phone: document.getElementById("phone").value.trim(),
-        address: document.getElementById("address").value.trim(),
+        status: "NEEDS_FORM_SUBMISSION",
+        rcNumber,
+        phone,
+        address,
         createdAt: new Date().toISOString(),
       };
 
@@ -120,16 +104,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
       showNotification("Account Created!", "Redirecting you to complete your company profile...", "success", 3000);
 
-      // --- Redirect to the form submission page ---
       setTimeout(() => {
-        window.location.href = "./digital-form-submission/digital-form-sub.html";
+        window.location.href = "digital-form-submission/digital-form-sub.html";
       }, 3000);
     });
   }
 
-  // =================================================================
-  // ==           LOGIN FORM LOGIC (Runs on Login/Registration Page)
-  // =================================================================
+  // ===============================================================
+  // ==   LOGIN LOGIC
+  // ===============================================================
   const loginForm = document.getElementById("loginForm");
   if (loginForm) {
     loginForm.addEventListener("submit", (e) => {
@@ -142,15 +125,12 @@ document.addEventListener("DOMContentLoaded", () => {
           (u.email === emailOrName || u.companyName.toLowerCase() === emailOrName) &&
           u.password === password
       );
-
-      if (!user) {
+      if (!user)
         return showNotification("Login Failed", "Invalid credentials. Please try again.", "error");
-      }
 
       setSession(user);
 
-      // --- Login Checkpoint for dynamic redirection ---
-      let redirectUrl = "./User-Dashboard/dashboard.html"; // Default redirect location
+      let redirectUrl = "./User-Dashboard/dashboard.html";
       let welcomeMessage = `Welcome back, ${user.companyName}!`;
 
       if (user.status === "NEEDS_FORM_SUBMISSION") {
@@ -160,60 +140,46 @@ document.addEventListener("DOMContentLoaded", () => {
 
       showNotification(welcomeMessage, "Redirecting you now...", "success", 4000);
 
-      // --- Redirect logic is now dynamic ---
       setTimeout(() => {
         window.location.href = redirectUrl;
       }, 4000);
     });
   }
 
-  // =================================================================
-  // ==           LOGOUT LOGIC (Runs on Dashboard Page)
-  // =================================================================
+  // ===============================================================
+  // ==   LOGOUT (Dashboard)
+  // ===============================================================
   const logoutBtn = document.getElementById("logoutBtn");
-
   if (logoutBtn) {
-      logoutBtn.addEventListener("click", () => {
-          // Optional: confirm logout
-          if (!confirm("Are you sure you want to log out?")) return;
-
-          // Remove session data
-          localStorage.removeItem("sessionUser");
-
-          // Notify and redirect
-          showNotification("Logout Successful", "Redirecting to login page...", "success", 2000);
-
-          // **CRITICAL FIX**: Go up one directory (from /User-Dashboard/) to find index.html
-          setTimeout(() => {
-              window.location.href = "../index.html"; 
-          }, 2000); 
-      });
+    logoutBtn.addEventListener("click", () => {
+      if (!confirm("Are you sure you want to log out?")) return;
+      localStorage.removeItem(SESSION_KEY);
+      showNotification("Logout Successful", "Redirecting to login page...", "success", 2000);
+      setTimeout(() => {
+        window.location.href = "../index.html";
+      }, 2000);
+    });
   }
 
-  // =================================================================
-  // ==           PAGE SWITCHING & UI HELPERS (Runs on Login/Registration Page)
-  // =================================================================
+  // ===============================================================
+  // ==   PAGE SWITCHING HELPERS
+  // ===============================================================
   const goToLoginBtn = document.getElementById("goToLogin");
-  if (goToLoginBtn) {
+  if (goToLoginBtn)
     goToLoginBtn.addEventListener("click", (e) => {
       e.preventDefault();
       document.querySelector(".form-flipper").classList.add("show-login");
     });
-  }
+
   const goToRegistrationBtn = document.getElementById("goToRegistration");
-  if (goToRegistrationBtn) {
+  if (goToRegistrationBtn)
     goToRegistrationBtn.addEventListener("click", (e) => {
       e.preventDefault();
       document.querySelector(".form-flipper").classList.remove("show-login");
     });
-  }
+
   window.togglePassword = function (id) {
     const input = document.getElementById(id);
-    if (input) {
-      input.type = input.type === "password" ? "text" : "password";
-    }
+    if (input) input.type = input.type === "password" ? "text" : "password";
   };
 });
-
-// NOTE: The previous, duplicated code blocks that were outside the DOMContentLoaded 
-// have been removed to prevent immediate, unwanted execution.

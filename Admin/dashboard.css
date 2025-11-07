@@ -927,6 +927,10 @@ td {
     background: rgba(239, 68, 68, 0.1);
     color: var(--danger);
 }
+.status-pending{
+    background: rgba(239, 130, 246, 0.15);
+    color: var(--warning);
+}
 
 .action-buttons {
     display: flex;

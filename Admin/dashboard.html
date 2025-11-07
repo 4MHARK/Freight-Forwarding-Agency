@@ -9,7 +9,7 @@
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
     <link rel="stylesheet" href="dashboard.css">
-    <!-- <link rel="stylesheet" href="support.css"> -->
+    <link rel="stylesheet" href="support.css">
 </head>
 
 <body>
@@ -39,8 +39,10 @@
                         <p>Dashboard</p>
                     </div>
                     <div class="nav-item" data-section="shipments">
-                        <span class="material-symbols-outlined">local_shipping</span>
-                        <p>Shipments</p>
+                        <span class="material-symbols-outlined">
+                            license
+                        </span>
+                        <p>Liscense application</p>
                     </div>
                     <div class="nav-item" data-section="support">
                         <span class="material-symbols-outlined">
@@ -48,12 +50,12 @@
                         </span>
                         <p>Support</p>
                     </div>
-                    <div class="nav-item" data-section="License">
+                    <!-- <div class="nav-item" data-section="License">
                         <span class="material-symbols-outlined">
                             license
                         </span>
                         <p>License Applications</p>
-                    </div>
+                    </div> -->
                     <div class="nav-item" data-section="analytics">
                         <span class="material-symbols-outlined">analytics</span>
                         <p>Analytics</p>
@@ -369,9 +371,139 @@
 
             <!-- Shipments/Documents Section -->
             <section id="shipments-section" class="section hidden">
-                <div class="page-content">
-                    <h1>Shipments</h1>
-                    <p>Details will be provided soon....</p>
+
+
+   <!-- Table -->
+   <div class="table-card">
+    <div class="table-header">
+        <h3 class="table-title">License Section</h3>
+        <div class="export-actions">
+            <button class="export-btn">
+                <span class="material-symbols-outlined">description</span>
+                <span>CSV</span>
+            </button>
+            <button class="export-btn">
+                <span class="material-symbols-outlined">picture_as_pdf</span>
+                <span>PDF</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>User Name</th>
+                    <th>Role</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="user-cell">
+                            <img class="user-avatar"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDf8mFfaWF9IaGzcoDsJQDp0u9Xb1QQYM9buf5Quepcuhh2LOE946TTkCZzcdgxmyG7x3X3xoOkUCK0dlFu1ovWo05P9fKC96Qmqb96gKcP5oAwRL0xS7gf0yZEToiMhgHCUejcHA-d8D0oUJi79DR7lREqUBULQWg8QXY4RphlMeLJUw7cwMGRKyERdo6l7ClPSm3Yhi9V3gLT67HRi3pop-HRHwPBsiPa317Wxbmuksv3Srupr4V3fnnHS8vAT6gfmr5tUaViujNa"
+                                alt="User avatar">
+                            <span class="user-name">John Doe</span>
+                        </div>
+                    </td>
+                    <td>Applicants</td>
+                    <td><span class="status-badge status-pending">pending</span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="user-cell">
+                            <img class="user-avatar"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBj4EkK-ims-fiKm5FyeuD6nKRGKmyzKqEg-oO_zKUNCsl_VrYbBSgXsz41jM18o7-iF1rII4k9HErO2a8IeBof51sAPipfqKyXOwyCJ8b7rx7ZdGJQ0X1SRT4gGWqK09XkambAvbQNsCdCp00-NCYE6OvY78jikeeBCK4v-Ysy2ua_QXBqRlkysIdPMFso3vHnbqvvB4dJNhXRW9LEk646u_LuycEyNzLbSF2Df-Z5OaDIW2B5wPKZIMvQhnnSAUFbvXynkT63Ezfl"
+                                alt="User avatar">
+                            <span class="user-name">Jane Smith</span>
+                        </div>
+                    </td>
+                    <td>Freight Forwarder</td>
+                    <td><span class="status-badge status-active">Renewed</span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="user-cell">
+                            <img class="user-avatar"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhiUOmfl9QACSGPUSVnYMG26GD-tT82z2RqoyoknMGtEBNhSdJt-u1oSD2IzFOkEJQF20nAR53_5rg-2vAHsVD4cDUy291lbXqmlk_WcEqG4R1513duV99H8IBcIfghih9quwQcT4Nbwo43A1alYja1gWJ6hpwUdFylN7HOlqAnkdOIq5wbIxeXaUTxWdozo2ZukiYyomfn8cwyDTex8sbXf2jxByjVN-IfL-nU9UYTIHpDYLXLZAvHuqUXcPSZ2ABceTZQoEDpAHJ"
+                                alt="User avatar">
+                            <span class="user-name">Mike Johnson</span>
+                        </div>
+                    </td>
+                    <td>Applicant</td>
+                    <td><span class="status-badge status-inactive">Expired</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table>
+       
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="user-cell">
+                            <img class="user-avatar"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDf8mFfaWF9IaGzcoDsJQDp0u9Xb1QQYM9buf5Quepcuhh2LOE946TTkCZzcdgxmyG7x3X3xoOkUCK0dlFu1ovWo05P9fKC96Qmqb96gKcP5oAwRL0xS7gf0yZEToiMhgHCUejcHA-d8D0oUJi79DR7lREqUBULQWg8QXY4RphlMeLJUw7cwMGRKyERdo6l7ClPSm3Yhi9V3gLT67HRi3pop-HRHwPBsiPa317Wxbmuksv3Srupr4V3fnnHS8vAT6gfmr5tUaViujNa"
+                                alt="User avatar">
+                            <span class="user-name">John Doe</span>
+                        </div>
+                    </td>
+                    <td>Applicants</td>
+                    <td><span class="status-badge status-pending">pending</span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="user-cell">
+                            <img class="user-avatar"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBj4EkK-ims-fiKm5FyeuD6nKRGKmyzKqEg-oO_zKUNCsl_VrYbBSgXsz41jM18o7-iF1rII4k9HErO2a8IeBof51sAPipfqKyXOwyCJ8b7rx7ZdGJQ0X1SRT4gGWqK09XkambAvbQNsCdCp00-NCYE6OvY78jikeeBCK4v-Ysy2ua_QXBqRlkysIdPMFso3vHnbqvvB4dJNhXRW9LEk646u_LuycEyNzLbSF2Df-Z5OaDIW2B5wPKZIMvQhnnSAUFbvXynkT63Ezfl"
+                                alt="User avatar">
+                            <span class="user-name">Jane Smith</span>
+                        </div>
+                    </td>
+                    <td>Freight Forwarder</td>
+                    <td><span class="status-badge status-active">Renewed</span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="user-cell">
+                            <img class="user-avatar"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhiUOmfl9QACSGPUSVnYMG26GD-tT82z2RqoyoknMGtEBNhSdJt-u1oSD2IzFOkEJQF20nAR53_5rg-2vAHsVD4cDUy291lbXqmlk_WcEqG4R1513duV99H8IBcIfghih9quwQcT4Nbwo43A1alYja1gWJ6hpwUdFylN7HOlqAnkdOIq5wbIxeXaUTxWdozo2ZukiYyomfn8cwyDTex8sbXf2jxByjVN-IfL-nU9UYTIHpDYLXLZAvHuqUXcPSZ2ABceTZQoEDpAHJ"
+                                alt="User avatar">
+                            <span class="user-name">Mike Johnson</span>
+                        </div>
+                    </td>
+                    <td>Applicant</td>
+                    <td><span class="status-badge status-inactive">Expired</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination-container">
+        <p class="pagination-info">
+            Showing <strong>1</strong> to <strong>6</strong> of <strong>50</strong> users
+        </p>
+        <div class="pagination-controls">
+            <button class="pagination-btn" disabled>
+                <span class="material-symbols-outlined">chevron_left</span>
+            </button>
+            <button class="pagination-btn active">1</button>
+            <button class="pagination-btn">2</button>
+            <button class="pagination-btn">3</button>
+            <span style="padding: 0 8px;">...</span>
+            <button class="pagination-btn">17</button>
+            <button class="pagination-btn">
+                <span class="material-symbols-outlined">chevron_right</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+
+                    </p>
             </section>
             <!-- SUPPORT -->
           <!-- MANAGE-FREIGHTERS -->
@@ -635,13 +767,15 @@
                 </div>
             </div>
            </section>
+
+
         </main>
     </div>
     <div id="notification-container"></div>
-    <!-- <script src="notification.js"></script> -->
     <script src="dashboard.js"></script>
     <script src="active-nav.js"></script>
     <script src="../admin-login.js"></script>
+    <script src=""></script>
 </body>
 
 </html>

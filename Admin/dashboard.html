@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRFFN Admin Portal</title>
-    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700;900&display=swap"
+        rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
-  <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <!-- <link rel="stylesheet" href="support.css"> -->
 </head>
+
 <body>
     <!-- Loading Overlay -->
     <!-- <div class="loading-overlay">
@@ -15,10 +19,10 @@
     </div> -->
 
     <div class="admin-portal">
-            <!-- Mobile Menu Button -->
-    <button class="mobile-menu-btn" id="mobileMenuBtn">
-        <span class="material-symbols-outlined">menu</span>
-    </button>
+        <!-- Mobile Menu Button -->
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <span class="material-symbols-outlined">menu</span>
+        </button>
         <!-- Sidebar -->
         <aside class="sidebar" id="sidebar">
             <div>
@@ -30,26 +34,37 @@
                 </div>
 
                 <nav class="nav-menu">
-                    <a href="#" class="nav-item active">
-                        <span class="material-symbols-outlined">dashboard</span>
+                    <div class="nav-item active" data-section="dashboard">
+                        <span class="material-symbols-outlined">grid_view</span>
                         <p>Dashboard</p>
-                    </a>
-                    <a href="#" class="nav-item">
-                        <span class="material-symbols-outlined">group</span>
+                    </div>
+                    <div class="nav-item" data-section="shipments">
+                        <span class="material-symbols-outlined">local_shipping</span>
+                        <p>Shipments</p>
+                    </div>
+                    <div class="nav-item" data-section="support">
+                        <span class="material-symbols-outlined">
+                            support_agent
+                        </span>
+                        <p>Support</p>
+                    </div>
+                    <div class="nav-item" data-section="License">
+                        <span class="material-symbols-outlined">
+                            license
+                        </span>
+                        <p>License Renewals</p>
+                    </div>
+                    <div class="nav-item" data-section="analytics">
+                        <span class="material-symbols-outlined">analytics</span>
+                        <p>Analytics</p>
+                    </div>
+                    <div class="nav-item" data-section="manage">
+                        <span class="material-symbols-outlined">
+                            manage_accounts
+                            </span>
                         <p>Manage Freighters</p>
-                    </a>
-                    <a href="#" class="nav-item">
-                        <span class="material-symbols-outlined">description</span>
-                        <p>Applications</p>
-                    </a>
-                    <a href="#" class="nav-item">
-                        <span class="material-symbols-outlined">campaign</span>
-                        <p>Announcements</p>
-                    </a>
-                    <a href="#" class="nav-item">
-                        <span class="material-symbols-outlined">settings</span>
-                        <p>Settings</p>
-                    </a>
+                    </div>
+
                 </nav>
             </div>
 
@@ -164,9 +179,9 @@
                                 <circle class="donut-segment" cx="18" cy="18" r="15.9155" fill="none"
                                     stroke="var(--text-muted)" stroke-width="3.8" stroke-dasharray="30, 100"
                                     stroke-linecap="round" transform="rotate(144 18 18)" />
-                                <circle class="donut-segment" cx="18" cy="18" r="15.9155" fill="none"
-                                    stroke="#0bda43" stroke-width="3.8" stroke-dasharray="20, 100"
-                                    stroke-linecap="round" transform="rotate(252 18 18)" />
+                                <circle class="donut-segment" cx="18" cy="18" r="15.9155" fill="none" stroke="#0bda43"
+                                    stroke-width="3.8" stroke-dasharray="20, 100" stroke-linecap="round"
+                                    transform="rotate(252 18 18)" />
                             </svg>
                             <div class="donut-center">
                                 <div class="donut-label">Total Time</div>
@@ -189,39 +204,39 @@
                         </div>
                     </div>
 
-                                        <!-- Line Chart -->
-                                        <div class="chart-card">
-                                            <div class="chart-header">
-                                                <h3 class="chart-title">Performance Over Time</h3>
-                                                <div class="chart-filter">
-                                                    Last 30 Days
-                                                    <span class="material-symbols-outlined">expand_more</span>
-                                                </div>
-                                            </div>
-                                            <svg class="chart-svg" viewBox="-3 0 478 150">
-                                                <defs>
-                                                    <linearGradient id="chartGradient" x1="236" y1="1" x2="236" y2="149"
-                                                        gradientUnits="userSpaceOnUse">
-                                                        <stop offset="0%" stop-color="#0df259" stop-opacity="0.3" />
-                                                        <stop offset="100%" stop-color="#0df259" stop-opacity="0" />
-                                                    </linearGradient>
-                                                </defs>
-                                                <path class="chart-fill"
-                                                    d="M0 109C18.1538 109 18.1538 21 36.3077 21C54.4615 21 54.4615 41 72.6154 41C90.7692 41 90.7692 93 108.923 93C127.077 93 127.077 33 145.231 33C163.385 33 163.385 101 181.538 101C199.692 101 199.692 61 217.846 61C236 61 236 45 254.154 45C272.308 45 272.308 121 290.462 121C308.615 121 308.615 149 326.769 149C344.923 149 344.923 1 363.077 1C381.231 1 381.231 81 399.385 81C417.538 81 417.538 129 435.692 129C453.846 129 453.846 25 472 25V149H0V109Z"
-                                                    fill="url(#chartGradient)" />
-                                                <path class="chart-path"
-                                                    d="M0 109C18.1538 109 18.1538 21 36.3077 21C54.4615 21 54.4615 41 72.6154 41C90.7692 41 90.7692 93 108.923 93C127.077 93 127.077 33 145.231 33C163.385 33 163.385 101 181.538 101C199.692 101 199.692 61 217.846 61C236 61 236 45 254.154 45C272.308 45 272.308 121 290.462 121C308.615 121 308.615 149 326.769 149C344.923 149 344.923 1 363.077 1C381.231 1 381.231 81 399.385 81C417.538 81 417.538 129 435.692 129C453.846 129 453.846 25 472 25"
-                                                    stroke="#0df259" stroke-width="3" stroke-linecap="round" fill="none" />
-                                            </svg>
-                                            <div class="chart-labels">
-                                                <span class="chart-label">Jan</span>
-                                                <span class="chart-label">Feb</span>
-                                                <span class="chart-label">Mar</span>
-                                                <span class="chart-label">Apr</span>
-                                                <span class="chart-label">May</span>
-                                                <span class="chart-label">Jun</span>
-                                            </div>
-                                        </div>
+                    <!-- Line Chart -->
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3 class="chart-title">Performance Over Time</h3>
+                            <div class="chart-filter">
+                                Last 30 Days
+                                <span class="material-symbols-outlined">expand_more</span>
+                            </div>
+                        </div>
+                        <svg class="chart-svg" viewBox="-3 0 478 150">
+                            <defs>
+                                <linearGradient id="chartGradient" x1="236" y1="1" x2="236" y2="149"
+                                    gradientUnits="userSpaceOnUse">
+                                    <stop offset="0%" stop-color="#0df259" stop-opacity="0.3" />
+                                    <stop offset="100%" stop-color="#0df259" stop-opacity="0" />
+                                </linearGradient>
+                            </defs>
+                            <path class="chart-fill"
+                                d="M0 109C18.1538 109 18.1538 21 36.3077 21C54.4615 21 54.4615 41 72.6154 41C90.7692 41 90.7692 93 108.923 93C127.077 93 127.077 33 145.231 33C163.385 33 163.385 101 181.538 101C199.692 101 199.692 61 217.846 61C236 61 236 45 254.154 45C272.308 45 272.308 121 290.462 121C308.615 121 308.615 149 326.769 149C344.923 149 344.923 1 363.077 1C381.231 1 381.231 81 399.385 81C417.538 81 417.538 129 435.692 129C453.846 129 453.846 25 472 25V149H0V109Z"
+                                fill="url(#chartGradient)" />
+                            <path class="chart-path"
+                                d="M0 109C18.1538 109 18.1538 21 36.3077 21C54.4615 21 54.4615 41 72.6154 41C90.7692 41 90.7692 93 108.923 93C127.077 93 127.077 33 145.231 33C163.385 33 163.385 101 181.538 101C199.692 101 199.692 61 217.846 61C236 61 236 45 254.154 45C272.308 45 272.308 121 290.462 121C308.615 121 308.615 149 326.769 149C344.923 149 344.923 1 363.077 1C381.231 1 381.231 81 399.385 81C417.538 81 417.538 129 435.692 129C453.846 129 453.846 25 472 25"
+                                stroke="#0df259" stroke-width="3" stroke-linecap="round" fill="none" />
+                        </svg>
+                        <div class="chart-labels">
+                            <span class="chart-label">Jan</span>
+                            <span class="chart-label">Feb</span>
+                            <span class="chart-label">Mar</span>
+                            <span class="chart-label">Apr</span>
+                            <span class="chart-label">May</span>
+                            <span class="chart-label">Jun</span>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Table -->
@@ -254,7 +269,9 @@
                                 <tr>
                                     <td>
                                         <div class="user-cell">
-                                            <img class="user-avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDf8mFfaWF9IaGzcoDsJQDp0u9Xb1QQYM9buf5Quepcuhh2LOE946TTkCZzcdgxmyG7x3X3xoOkUCK0dlFu1ovWo05P9fKC96Qmqb96gKcP5oAwRL0xS7gf0yZEToiMhgHCUejcHA-d8D0oUJi79DR7lREqUBULQWg8QXY4RphlMeLJUw7cwMGRKyERdo6l7ClPSm3Yhi9V3gLT67HRi3pop-HRHwPBsiPa317Wxbmuksv3Srupr4V3fnnHS8vAT6gfmr5tUaViujNa" alt="User avatar">
+                                            <img class="user-avatar"
+                                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDf8mFfaWF9IaGzcoDsJQDp0u9Xb1QQYM9buf5Quepcuhh2LOE946TTkCZzcdgxmyG7x3X3xoOkUCK0dlFu1ovWo05P9fKC96Qmqb96gKcP5oAwRL0xS7gf0yZEToiMhgHCUejcHA-d8D0oUJi79DR7lREqUBULQWg8QXY4RphlMeLJUw7cwMGRKyERdo6l7ClPSm3Yhi9V3gLT67HRi3pop-HRHwPBsiPa317Wxbmuksv3Srupr4V3fnnHS8vAT6gfmr5tUaViujNa"
+                                                alt="User avatar">
                                             <span class="user-name">John Doe</span>
                                         </div>
                                     </td>
@@ -277,7 +294,9 @@
                                 <tr>
                                     <td>
                                         <div class="user-cell">
-                                            <img class="user-avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBj4EkK-ims-fiKm5FyeuD6nKRGKmyzKqEg-oO_zKUNCsl_VrYbBSgXsz41jM18o7-iF1rII4k9HErO2a8IeBof51sAPipfqKyXOwyCJ8b7rx7ZdGJQ0X1SRT4gGWqK09XkambAvbQNsCdCp00-NCYE6OvY78jikeeBCK4v-Ysy2ua_QXBqRlkysIdPMFso3vHnbqvvB4dJNhXRW9LEk646u_LuycEyNzLbSF2Df-Z5OaDIW2B5wPKZIMvQhnnSAUFbvXynkT63Ezfl" alt="User avatar">
+                                            <img class="user-avatar"
+                                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBj4EkK-ims-fiKm5FyeuD6nKRGKmyzKqEg-oO_zKUNCsl_VrYbBSgXsz41jM18o7-iF1rII4k9HErO2a8IeBof51sAPipfqKyXOwyCJ8b7rx7ZdGJQ0X1SRT4gGWqK09XkambAvbQNsCdCp00-NCYE6OvY78jikeeBCK4v-Ysy2ua_QXBqRlkysIdPMFso3vHnbqvvB4dJNhXRW9LEk646u_LuycEyNzLbSF2Df-Z5OaDIW2B5wPKZIMvQhnnSAUFbvXynkT63Ezfl"
+                                                alt="User avatar">
                                             <span class="user-name">Jane Smith</span>
                                         </div>
                                     </td>
@@ -300,7 +319,9 @@
                                 <tr>
                                     <td>
                                         <div class="user-cell">
-                                            <img class="user-avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhiUOmfl9QACSGPUSVnYMG26GD-tT82z2RqoyoknMGtEBNhSdJt-u1oSD2IzFOkEJQF20nAR53_5rg-2vAHsVD4cDUy291lbXqmlk_WcEqG4R1513duV99H8IBcIfghih9quwQcT4Nbwo43A1alYja1gWJ6hpwUdFylN7HOlqAnkdOIq5wbIxeXaUTxWdozo2ZukiYyomfn8cwyDTex8sbXf2jxByjVN-IfL-nU9UYTIHpDYLXLZAvHuqUXcPSZ2ABceTZQoEDpAHJ" alt="User avatar">
+                                            <img class="user-avatar"
+                                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhiUOmfl9QACSGPUSVnYMG26GD-tT82z2RqoyoknMGtEBNhSdJt-u1oSD2IzFOkEJQF20nAR53_5rg-2vAHsVD4cDUy291lbXqmlk_WcEqG4R1513duV99H8IBcIfghih9quwQcT4Nbwo43A1alYja1gWJ6hpwUdFylN7HOlqAnkdOIq5wbIxeXaUTxWdozo2ZukiYyomfn8cwyDTex8sbXf2jxByjVN-IfL-nU9UYTIHpDYLXLZAvHuqUXcPSZ2ABceTZQoEDpAHJ"
+                                                alt="User avatar">
                                             <span class="user-name">Mike Johnson</span>
                                         </div>
                                     </td>
@@ -345,9 +366,280 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Shipments/Documents Section -->
+            <section id="shipments-section" class="section hidden">
+                <div class="page-content">
+                    <h1>Shipments</h1>
+                    <p>Details will be provided soon....</p>
+            </section>
+            <!-- SUPPORT -->
+          <!-- MANAGE-FREIGHTERS -->
+           <section id="manage-section" class="section hidden">
+            <div class="table-card">
+                <div class="table-header">
+                    <h3 class="table-title">Manage Freighters</h3>
+                    <div class="export-actions">
+                        <button class="export-btn">
+                            <span class="material-symbols-outlined">description</span>
+                            <span>CSV</span>
+                        </button>
+                        <button class="export-btn">
+                            <span class="material-symbols-outlined">picture_as_pdf</span>
+                            <span>PDF</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>User Name</th>
+                                <th>Role</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="user-cell">
+                                        <img class="user-avatar"
+                                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDf8mFfaWF9IaGzcoDsJQDp0u9Xb1QQYM9buf5Quepcuhh2LOE946TTkCZzcdgxmyG7x3X3xoOkUCK0dlFu1ovWo05P9fKC96Qmqb96gKcP5oAwRL0xS7gf0yZEToiMhgHCUejcHA-d8D0oUJi79DR7lREqUBULQWg8QXY4RphlMeLJUw7cwMGRKyERdo6l7ClPSm3Yhi9V3gLT67HRi3pop-HRHwPBsiPa317Wxbmuksv3Srupr4V3fnnHS8vAT6gfmr5tUaViujNa"
+                                            alt="User avatar">
+                                        <span class="user-name">John Doe</span>
+                                    </div>
+                                </td>
+                                <td>Administrator</td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-icon-btn">
+                                            <span class="material-symbols-outlined">edit</span>
+                                        </button>
+                                        <button class="action-icon-btn">
+                                            <span class="material-symbols-outlined">visibility</span>
+                                        </button>
+                                        <button class="action-icon-btn danger">
+                                            <span class="material-symbols-outlined">toggle_off</span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="user-cell">
+                                        <img class="user-avatar"
+                                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBj4EkK-ims-fiKm5FyeuD6nKRGKmyzKqEg-oO_zKUNCsl_VrYbBSgXsz41jM18o7-iF1rII4k9HErO2a8IeBof51sAPipfqKyXOwyCJ8b7rx7ZdGJQ0X1SRT4gGWqK09XkambAvbQNsCdCp00-NCYE6OvY78jikeeBCK4v-Ysy2ua_QXBqRlkysIdPMFso3vHnbqvvB4dJNhXRW9LEk646u_LuycEyNzLbSF2Df-Z5OaDIW2B5wPKZIMvQhnnSAUFbvXynkT63Ezfl"
+                                            alt="User avatar">
+                                        <span class="user-name">Jane Smith</span>
+                                    </div>
+                                </td>
+                                <td>Freight Forwarder</td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-icon-btn">
+                                            <span class="material-symbols-outlined">edit</span>
+                                        </button>
+                                        <button class="action-icon-btn">
+                                            <span class="material-symbols-outlined">visibility</span>
+                                        </button>
+                                        <button class="action-icon-btn danger">
+                                            <span class="material-symbols-outlined">toggle_off</span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="user-cell">
+                                        <img class="user-avatar"
+                                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhiUOmfl9QACSGPUSVnYMG26GD-tT82z2RqoyoknMGtEBNhSdJt-u1oSD2IzFOkEJQF20nAR53_5rg-2vAHsVD4cDUy291lbXqmlk_WcEqG4R1513duV99H8IBcIfghih9quwQcT4Nbwo43A1alYja1gWJ6hpwUdFylN7HOlqAnkdOIq5wbIxeXaUTxWdozo2ZukiYyomfn8cwyDTex8sbXf2jxByjVN-IfL-nU9UYTIHpDYLXLZAvHuqUXcPSZ2ABceTZQoEDpAHJ"
+                                            alt="User avatar">
+                                        <span class="user-name">Mike Johnson</span>
+                                    </div>
+                                </td>
+                                <td>Applicant</td>
+                                <td><span class="status-badge status-inactive">Inactive</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-icon-btn">
+                                            <span class="material-symbols-outlined">edit</span>
+                                        </button>
+                                        <button class="action-icon-btn">
+                                            <span class="material-symbols-outlined">visibility</span>
+                                        </button>
+                                        <button class="action-icon-btn">
+                                            <span class="material-symbols-outlined">toggle_on</span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td>
+                                    <div class="user-cell">
+                                        <img class="user-avatar"
+                                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhiUOmfl9QACSGPUSVnYMG26GD-tT82z2RqoyoknMGtEBNhSdJt-u1oSD2IzFOkEJQF20nAR53_5rg-2vAHsVD4cDUy291lbXqmlk_WcEqG4R1513duV99H8IBcIfghih9quwQcT4Nbwo43A1alYja1gWJ6hpwUdFylN7HOlqAnkdOIq5wbIxeXaUTxWdozo2ZukiYyomfn8cwyDTex8sbXf2jxByjVN-IfL-nU9UYTIHpDYLXLZAvHuqUXcPSZ2ABceTZQoEDpAHJ"
+                                            alt="User avatar">
+                                        <span class="user-name">Mike Johnson</span>
+                                    </div>
+                                </td>
+                                <td>Applicant</td>
+                                <td><span class="status-badge status-inactive">Inactive</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-icon-btn">
+                                            <span class="material-symbols-outlined">edit</span>
+                                        </button>
+                                        <button class="action-icon-btn">
+                                            <span class="material-symbols-outlined">visibility</span>
+                                        </button>
+                                        <button class="action-icon-btn">
+                                            <span class="material-symbols-outlined">toggle_on</span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="user-cell">
+                                        <img class="user-avatar"
+                                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhiUOmfl9QACSGPUSVnYMG26GD-tT82z2RqoyoknMGtEBNhSdJt-u1oSD2IzFOkEJQF20nAR53_5rg-2vAHsVD4cDUy291lbXqmlk_WcEqG4R1513duV99H8IBcIfghih9quwQcT4Nbwo43A1alYja1gWJ6hpwUdFylN7HOlqAnkdOIq5wbIxeXaUTxWdozo2ZukiYyomfn8cwyDTex8sbXf2jxByjVN-IfL-nU9UYTIHpDYLXLZAvHuqUXcPSZ2ABceTZQoEDpAHJ"
+                                            alt="User avatar">
+                                        <span class="user-name">Danny Drinkwater</span>
+                                    </div>
+                                </td>
+                                <td>Applicant</td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-icon-btn">
+                                            <span class="material-symbols-outlined">edit</span>
+                                        </button>
+                                        <button class="action-icon-btn">
+                                            <span class="material-symbols-outlined">visibility</span>
+                                        </button>
+                                        <button class="action-icon-btn">
+                                            <span class="material-symbols-outlined">toggle_on</span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="user-cell">
+                                        <img class="user-avatar"
+                                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhiUOmfl9QACSGPUSVnYMG26GD-tT82z2RqoyoknMGtEBNhSdJt-u1oSD2IzFOkEJQF20nAR53_5rg-2vAHsVD4cDUy291lbXqmlk_WcEqG4R1513duV99H8IBcIfghih9quwQcT4Nbwo43A1alYja1gWJ6hpwUdFylN7HOlqAnkdOIq5wbIxeXaUTxWdozo2ZukiYyomfn8cwyDTex8sbXf2jxByjVN-IfL-nU9UYTIHpDYLXLZAvHuqUXcPSZ2ABceTZQoEDpAHJ"
+                                            alt="User avatar">
+                                        <span class="user-name">Andrew Williams</span>
+                                    </div>
+                                </td>
+                                <td>Applicant</td>
+                                <td><span class="status-badge status-inactive">Inactive</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-icon-btn">
+                                            <span class="material-symbols-outlined">edit</span>
+                                        </button>
+                                        <button class="action-icon-btn">
+                                            <span class="material-symbols-outlined">visibility</span>
+                                        </button>
+                                        <button class="action-icon-btn">
+                                            <span class="material-symbols-outlined">toggle_on</span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="user-cell">
+                                        <img class="user-avatar"
+                                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhiUOmfl9QACSGPUSVnYMG26GD-tT82z2RqoyoknMGtEBNhSdJt-u1oSD2IzFOkEJQF20nAR53_5rg-2vAHsVD4cDUy291lbXqmlk_WcEqG4R1513duV99H8IBcIfghih9quwQcT4Nbwo43A1alYja1gWJ6hpwUdFylN7HOlqAnkdOIq5wbIxeXaUTxWdozo2ZukiYyomfn8cwyDTex8sbXf2jxByjVN-IfL-nU9UYTIHpDYLXLZAvHuqUXcPSZ2ABceTZQoEDpAHJ"
+                                            alt="User avatar">
+                                        <span class="user-name">Meek Morgan</span>
+                                    </div>
+                                </td>
+                                <td>Administrator</td>
+                                <td><span class="status-badge status-inactive">Inactive</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-icon-btn">
+                                            <span class="material-symbols-outlined">edit</span>
+                                        </button>
+                                        <button class="action-icon-btn">
+                                            <span class="material-symbols-outlined">visibility</span>
+                                        </button>
+                                        <button class="action-icon-btn">
+                                            <span class="material-symbols-outlined">toggle_on</span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="user-cell">
+                                        <img class="user-avatar"
+                                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhiUOmfl9QACSGPUSVnYMG26GD-tT82z2RqoyoknMGtEBNhSdJt-u1oSD2IzFOkEJQF20nAR53_5rg-2vAHsVD4cDUy291lbXqmlk_WcEqG4R1513duV99H8IBcIfghih9quwQcT4Nbwo43A1alYja1gWJ6hpwUdFylN7HOlqAnkdOIq5wbIxeXaUTxWdozo2ZukiYyomfn8cwyDTex8sbXf2jxByjVN-IfL-nU9UYTIHpDYLXLZAvHuqUXcPSZ2ABceTZQoEDpAHJ"
+                                            alt="User avatar">
+                                        <span class="user-name">Mark Enderson</span>
+                                    </div>
+                                </td>
+                                <td>Freight Forwarder</td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-icon-btn">
+                                            <span class="material-symbols-outlined">edit</span>
+                                        </button>
+                                        <button class="action-icon-btn">
+                                            <span class="material-symbols-outlined">visibility</span>
+                                        </button>
+                                        <button class="action-icon-btn">
+                                            <span class="material-symbols-outlined">toggle_on</span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination-container">
+                    <p class="pagination-info">
+                        Showing <strong>1</strong> to <strong>3</strong> of <strong>50</strong> users
+                    </p>
+                    <div class="pagination-controls">
+                        <button class="pagination-btn" disabled>
+                            <span class="material-symbols-outlined">chevron_left</span>
+                        </button>
+                        <button class="pagination-btn active">1</button>
+                        <button class="pagination-btn">2</button>
+                        <button class="pagination-btn">3</button>
+                        <span style="padding: 0 8px;">...</span>
+                        <button class="pagination-btn">17</button>
+                        <button class="pagination-btn">
+                            <span class="material-symbols-outlined">chevron_right</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+           </section>
         </main>
     </div>
 
-<script src="dashboard.js"></script>
+    <script src="dashboard.js"></script>
+    <script src="active-nav.js"></script>
 </body>
+
 </html>

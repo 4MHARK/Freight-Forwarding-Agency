@@ -1,5 +1,28 @@
+:root {
+    /* 🌿 RFFN Balanced Corporate Theme (with soft light base) */
+    --primary: #00A757;          /* CRFFN Green */
+    --primary-light: #33C67A;    /* Softer green for hover and accents */
+--text-muted:#153715;
+    --bg-light: #33C67A;         /* Gentle light grey-green (not white) */
+    --bg-dark: #E8F0EC;          /* For dark mode sections if needed */
+    --card-bg: #F4F7F5;          /* Light neutral cards with green tint */
+    --sidebar-bg: #153715;       /* Deep muted grey-green sidebar */
+    --border-color: #C5D1C8;     /* Neutral divider that blends smoothly */
 
+    --hover-bg: #00C263;         /* Lively green hover */
+    --text-primary: #1A1F1B;     /* Deep charcoal text */
+    --text-muted: #4F5B56;       /* Calm muted grey text */
 
+    --success: #00A757;          /* Brand green for success */
+    --warning: #E6B800;          /* Deep gold, not too bright */
+    --danger: #D64545;           /* Controlled red tone */
+}
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-muted);
+    overflow-x: hidden;
+}
 /* Main Content */
 main {
     max-width: 1536px;
@@ -38,7 +61,7 @@ main {
     align-items: center;
     gap: 0.5rem;
     padding: 0.75rem 1.5rem;
-    background: #0d59f2;
+    background: var(--primary);
     color: white;
     border: none;
     border-radius: 8px;
@@ -49,9 +72,9 @@ main {
 }
 
 .create-ticket-btn:hover {
-    background: #0b4cd6;
+    background: var(--primary);
     transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(13, 89, 242, 0.4);
+    box-shadow: 0 10px 30px rgba(36, 242, 13, 0.149);
 }
 
 /* Search */
@@ -69,7 +92,7 @@ main {
 }
 
 .search-box:focus-within {
-    box-shadow: 0 0 0 3px rgba(13, 89, 242, 0.2);
+    /* box-shadow: 0 0 0 3px rgba(13, 89, 242, 0.2); */
 }
 
 .search-icon {
@@ -101,13 +124,14 @@ main {
 }
 
 .access-card {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background:var(--sidebar-bg);
+    border: 1px solid var(--card-bg);
     border-radius: 12px;
     padding: 1.5rem;
     cursor: pointer;
     transition: all 0.3s;
     animation: slideUp 0.5s ease;
+    color: white;
 }
 
 @keyframes slideUp {
@@ -121,15 +145,15 @@ main {
 
 .access-card:hover {
     transform: translateY(-5px);
-    border-color: #0d59f2;
-    box-shadow: 0 10px 30px rgba(13, 89, 242, 0.2);
+    /* border-color: var(--text-muted); */
+    box-shadow: 0 10px 30px var(--primary-light);
 }
 
 .card-icon {
     width: 48px;
     height: 48px;
-    background: rgba(13, 89, 242, 0.1);
-    color: #0d59f2;
+    background: rgba(47, 242, 13, 0.1);
+    color: var(--primary);
     border-radius: 8px;
     display: flex;
     align-items: center;
@@ -181,6 +205,7 @@ main {
 }
 
 .section-title {
+    color: var(--text-muted);
     font-size: 1.375rem;
     font-weight: 700;
 }
@@ -206,11 +231,12 @@ main {
 }
 
 .filter-tab:hover {
+    background: var(--primary);
     color: white;
 }
 
 .filter-tab.active {
-    background: #0d59f2;
+    background: var(--primary);
     color: white;
 }
 
@@ -237,7 +263,7 @@ th {
     font-size: 0.75rem;
     font-weight: 600;
     text-transform: uppercase;
-    color: #9ca3af;
+    color: var(--text-muted);
 }
 
 tbody tr {
@@ -259,14 +285,16 @@ td {
 .ticket-id {
     font-family: 'Courier New', monospace;
     font-size: 0.75rem;
-    color: #9ca3af;
+    color: var(--text-muted);
 }
 
 .ticket-subject {
-    color: white;
+    color: var(--text-muted);
     font-weight: 600;
 }
-
+.ticket.updated{
+    color: var(--text-muted);
+}
 .status-badge {
     display: inline-block;
     padding: 0.375rem 0.75rem;
@@ -544,3 +572,113 @@ html {
 .hidden {
     display: none !important;
 }
+.chat-box {
+    position: fixed;
+    bottom: 20px;
+    right: 25px;
+    width: 340px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 2000;
+    font-family: 'Public Sans', sans-serif;
+  }
+  
+  .chat-header {
+    background: var(--primary, #1e88e5);
+    color: #fff;
+    padding: 10px 15px;
+    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .chat-close {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
+    max-height: 260px;
+  }
+  
+  .chat-msg {
+    max-width: 80%;
+    padding: 8px 12px;
+    border-radius: 10px;
+    word-wrap: break-word;
+    font-size: 14px;
+  }
+  
+  .user-msg {
+    background: var(--primary, #1e88e5);
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 2px;
+  }
+  
+  .agent-msg {
+    background: #f0f2f5;
+    color: #333;
+    align-self: flex-start;
+    border-bottom-left-radius: 2px;
+  }
+  
+  .chat-time {
+    font-size: 11px;
+    color: #999;
+    margin-top: 2px;
+    text-align: right;
+  }
+  
+  .chat-input-bar {
+    display: flex;
+    border-top: 1px solid #ddd;
+  }
+  
+  .chat-input-bar input {
+    flex: 1;
+    border: none;
+    padding: 10px;
+    font-size: 14px;
+    outline: none;
+  }
+  
+  .chat-input-bar button {
+    background: var(--primary, #1e88e5);
+    color: white;
+    border: none;
+    padding: 0 15px;
+    cursor: pointer;
+    font-weight: 500;
+  }
+  
+  .chat-box.show {
+    display: flex;
+    animation: chatPop 0.25s ease;
+  }
+  
+  @keyframes chatPop {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }

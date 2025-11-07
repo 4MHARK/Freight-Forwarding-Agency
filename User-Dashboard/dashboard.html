@@ -13,6 +13,7 @@
     <!-- <link rel="stylesheet" href="settings.css"> -->
     <link rel="stylesheet" href="shipping.css">
     <link rel="stylesheet" href="license-renew.css">
+    <link rel="stylesheet" href="support.css">
     <!-- <link rel="stylesheet" href="../Media Query/dashboard.css"> -->
 </head>
 
@@ -1571,62 +1572,211 @@
 
             <!-- Customer Care Section -->
             <section id="help-section" class="section hidden">
-            <div class="page-content">
-                <h1>Customer Care</h1>
-                <p>Need help? Submit your complaint or request below and our support team will get back to you.</p>
+               <!-- Main Content -->
+    <main>
+        <!-- Page Header -->
+        <div class="page-header">
+            <div>
+                <h1 class="page-title">Support Center</h1>
+                <p class="page-subtitle">How can we help you today?</p>
+            </div>
+            <button class="create-ticket-btn" onclick="openTicketModal()">
+                <span class="material-symbols-outlined">
+                    add
+                    </span>
+                <span>Create Ticket</span>
+            </button>
+        </div>
 
-                <div class="card">
-                <form id="complaintForm">
-                    <div class="form-group">
-                    <label for="subject" class="form-label">Subject <span class="required">*</span></label>
-                    <input type="text" id="subject" name="subject" class="form-input" placeholder="Enter a brief subject" required />
-                    </div>
+        <!-- Search -->
+        <div class="search-box">
+                                    
+            <input type="text" class="search-input" id="searchInput"
+                placeholder="Search by Request ID..." aria-label="Search renewal history">
+        </div>
 
-                    <div class="form-group">
-                    <label for="category" class="form-label">Category <span class="required">*</span></label>
-                    <select id="category" name="category" class="form-input" required>
-                        <option value="">Select category</option>
-                        <option value="login">Login Issue</option>
-                        <option value="application">Application Problem</option>
-                        <option value="payment">Payment Related</option>
-                        <option value="profile">Profile Update</option>
-                        <option value="others">Others</option>
-                    </select>
-                    </div>
-
-                    <div class="form-group">
-                    <label for="message" class="form-label">Message <span class="required">*</span></label>
-                    <textarea id="message" name="message" class="form-textarea" placeholder="Describe your issue in detail..." rows="5" required></textarea>
-                    </div>
-
-                    <div class="form-group">
-                    <button type="submit" class="btn btn-primary">
-                        <span>Submit Complaint</span>
-                        <span class="material-symbols-outlined">send</span>
-                    </button>
-                    </div>
-                </form>
-                </div>
-
-                <div id="complaint-history" class="card mt-4">
-                <h3>Previous Complaints</h3>
-                <div id="complaints-list">
-                    <p>No complaints filed yet.</p>
-                </div>
+        <!-- Quick Access -->
+        <div class="quick-access">
+            <div class="access-card">
+                <div class="card-icon"><span class="material-symbols-outlined">
+                    question_mark
+                    </span></div>
+                <h3 class="card-title">Frequently Asked Questions</h3>
+                <p class="card-desc">Get instant answers to common questions.</p>
+            </div>
+            <div class="access-card">
+                <div class="card-icon"><span class="material-symbols-outlined">
+                    book_5
+                    </span></div>
+                <h3 class="card-title">Knowledge Base</h3>
+                <p class="card-desc">Browse our detailed guides and tutorials.</p>
+            </div>
+            <div class="access-card">
+                <div class="card-icon"><span class="material-symbols-outlined">
+                    mobile_ticket
+                    </span></div>
+                <h3 class="card-title">My Support Tickets</h3>
+                <p class="card-desc">View and manage your support requests.</p>
+            </div>
+            <div class="access-card" onclick="showNotification('Live Chat', 'Connecting to support agent...', 'info')">
+                <div class="card-icon"><span class="material-symbols-outlined">
+                    chat
+                    </span></div>
+                <h3 class="card-title">Live Chat</h3>
+                <div class="card-desc online-badge">
+                    <span class="status-dot"></span>
+                    <span>Agents are online</span>
                 </div>
             </div>
+        </div>
+
+        <!-- Tickets Section -->
+        <div class="tickets-section">
+            <div class="section-header">
+                <h2 class="section-title">My Recent Tickets</h2>
+                <div class="filter-tabs">
+                    <button class="filter-tab active" onclick="filterTickets('all')">All</button>
+                    <button class="filter-tab" onclick="filterTickets('open')">Open</button>
+                    <button class="filter-tab" onclick="filterTickets('progress')">In Progress</button>
+                    <button class="filter-tab" onclick="filterTickets('closed')">Closed</button>
+                </div>
+            </div>
+
+            <div class="tickets-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Ticket ID</th>
+                            <th>Subject</th>
+                            <th>Last Updated</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ticketsTableBody">
+                        <!-- Tickets will be inserted here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="contact-section">
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <h3>Need to speak with someone?</h3>
+                    <p>Our support team is here to help you.</p>
+                </div>
+                <div class="contact-item">
+                   
+                    <h3> <span class="material-symbols-outlined">
+                        contact_mail
+                        </span>Email Us</h3>
+                    <a href="mailto:support@freightforward.com" class="contact-link">support@freightforward.com</a>
+                </div>
+                <div class="contact-item">
+                    <h3>📞 Call Us</h3>
+                    <p>+1 (800) 555-0123</p>
+                    <p style="font-size: 0.75rem;">Mon-Fri, 9am - 5pm EST</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Ticket Modal -->
+    <div class="modal-overlay" id="ticketModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title">Create Support Ticket</h2>
+                <button class="close-btn" onclick="closeTicketModal()">×</button>
+            </div>
+
+            <form id="ticketForm">
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="company">Company</label>
+                    <input type="text" id="company">
+                </div>
+
+                <div class="form-group">
+                    <label for="category">Issue Category *</label>
+                    <select id="category" required>
+                        <option value="">Select a category</option>
+                        <option value="Technical Issue">Technical Issue</option>
+                        <option value="Billing Inquiry">Billing Inquiry</option>
+                        <option value="Shipment Tracking">Shipment Tracking</option>
+                        <option value="Documentation">Documentation</option>
+                        <option value="Account Support">Account Support</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Subject *</label>
+                    <input type="text" id="subject" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description *</label>
+                    <textarea id="description" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Attach Files (Optional)</label>
+                    <div class="file-upload" onclick="document.getElementById('fileInput').click()">
+                        <div>📎 Click to attach files</div>
+                        <div class="file-name" id="fileName"></div>
+                        <input type="file" id="fileInput" multiple>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit Ticket</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <div class="notification-header">
+            <span id="notifIcon"></span>
+            <span id="notifTitle"></span>
+        </div>
+        <div class="notification-body" id="notifBody"></div>
+    </div>
             </section>
 
 
 
         </div>
     </div>
+
+    <!-- Live Chat Box -->
+<div id="liveChatBox" class="chat-box">
+    <div class="chat-header">
+      <span>Live Support Chat</span>
+      <button id="closeChatBtn" class="chat-close">&times;</button>
+    </div>
+    <div id="chatMessages" class="chat-messages">
+      <div class="agent-msg">👋 Hello! How can I assist you today?</div>
+    </div>
+    <div class="chat-input-bar">
+      <input
+        id="chatInput"
+        type="text"
+        placeholder="Type a message..."
+        autocomplete="off"
+        required
+      />
+      <button id="sendChatBtn">Send</button>
+    </div>
+  </div>
     <script src="dashboard.js"></script>
     <script src="license-renew.js"></script>
-    <script src="chart.js"></script>
-    <script src="../auth.js"></script>
     <script src="../digital-form-submission/digital-form.js"></script>
-    <script src="../Media Query/sidebar.js"></script>
+<script src="support.js"></script>
 
 </body>
 
